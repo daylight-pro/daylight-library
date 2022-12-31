@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 template<int alphabet, char base>
 struct Trie {
 	struct Node {

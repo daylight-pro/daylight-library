@@ -1,5 +1,5 @@
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
+#include "./base.hpp"
+#include "./graph/base.hpp"
 template<typename Data, typename Cost = ll>
 struct Rerooting {
 	vector<Data> dp, memo;

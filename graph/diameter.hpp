@@ -1,5 +1,5 @@
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
+#include "../base.hpp"
+#include "./base.hpp"
 namespace inner_diameter {
 using P = pair<int, int>;
 P dfs(int cur, int pre, Graph<> &G) {

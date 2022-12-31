@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 ll gcd(ll x, ll y) {
 	ll r = 0;
 	if(x < y) swap(x, y);

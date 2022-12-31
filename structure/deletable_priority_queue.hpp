@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 
 template<typename T, typename vec = vector<T>,
 		 typename cmp = less<typename vec::value_type>>

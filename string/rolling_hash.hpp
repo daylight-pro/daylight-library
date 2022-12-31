@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 struct RollingHash {
 private:
 	static const uint64_t mod = (1ull << 61ull) - 1;

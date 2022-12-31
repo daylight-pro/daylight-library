@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "./base.hpp"
 /// @brief 各lについてcheck(l,r)==trueになる最小のrを求める。
 /// @param left 探索範囲の左端(inclusive)
 /// @param right 探索範囲の右端(exclusive)

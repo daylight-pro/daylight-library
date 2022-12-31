@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 typedef complex<double> Point;
 typedef complex<double> Vec;
 typedef pair<Point, Point> Line;

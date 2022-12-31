@@ -1,5 +1,5 @@
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
+#include "../base.hpp"
+#include "./base.hpp"
 struct LCA {
 private:
 	vvi parent;

@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 template<typename S = __int128_t, bool doReduction = true>
 struct Rational {
 private:

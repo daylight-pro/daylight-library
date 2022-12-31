@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 /// @brief 約数を全列挙する
 /// @param N 整数N
 /// @return Nの約数が小さい順に格納されたリスト

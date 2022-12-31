@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 
 /// @brief 各文字について、その文字を中心とする最長回文の半径をもとめる
 /// @param S 対象の文字列

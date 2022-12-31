@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 
 template<typename S, typename F>
 struct sparse_table {

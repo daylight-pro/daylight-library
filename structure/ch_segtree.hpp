@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 class SegmentTreeBeats {
 private:
 	const ll inf = 1e18;

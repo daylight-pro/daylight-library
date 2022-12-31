@@ -1,6 +1,6 @@
+#include "../base.hpp"
+#include "./base.hpp"
 #include "atcoder/all"
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
 using namespace atcoder;
 /// @brief 最小全域木のコストを求める
 /// @param V 頂点数

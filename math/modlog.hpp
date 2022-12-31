@@ -1,5 +1,5 @@
-#include <atcoder/all>
-#include "daylight/base.hpp"
+#include "../base.hpp"
+#include "atcoder/all"
 using namespace atcoder;
 
 /// @brief a^n=b(mod m)となる最小のnを求める

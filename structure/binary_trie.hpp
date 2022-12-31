@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 template<typename T, int MAX_LOG = 32>
 struct BinaryTrie {
 	struct Node {

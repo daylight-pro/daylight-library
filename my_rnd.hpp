@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "./base.hpp"
 
 struct my_rnd {
 	mt19937_64 randomEngine;

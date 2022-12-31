@@ -1,5 +1,5 @@
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
+#include "../base.hpp"
+#include "./base.hpp"
 vi cycle_detection(Graph<>& G) {
 	int N = SZ(G);
 	vi cycle;

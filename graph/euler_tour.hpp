@@ -1,5 +1,5 @@
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
+#include "../base.hpp"
+#include "./base.hpp"
 /// @brief オイラーツアーを求めます
 /// @param G グラフ
 /// @param root 木の根

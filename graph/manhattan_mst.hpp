@@ -1,6 +1,6 @@
-#include <atcoder/all>
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
+#include "../base.hpp"
+#include "./base.hpp"
+#include "atcoder/all"
 using namespace atcoder;
 PL op_for_manhattan_mst(PL a, PL b) {
 	return min(a, b);

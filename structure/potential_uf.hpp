@@ -1,5 +1,5 @@
-#include "daylight/base.hpp"
-#include "daylight/structure/abel.hpp"
+#include "../base.hpp"
+#include "./abel.hpp"
 template<typename Abel = AbelAdd<ll>>
 class potential_uf {
 public:

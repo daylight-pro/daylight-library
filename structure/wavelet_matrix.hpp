@@ -1,4 +1,4 @@
-#include "daylight/base.hpp"
+#include "../base.hpp"
 struct BitVector {
 private:
 	vector<int> vec;

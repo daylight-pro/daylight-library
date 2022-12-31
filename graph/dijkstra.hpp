@@ -1,5 +1,5 @@
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
+#include "../base.hpp"
+#include "./base.hpp"
 /// @brief 単一始点最短経路長問題を解く
 /// @param s 始点
 /// @param G グラフ
