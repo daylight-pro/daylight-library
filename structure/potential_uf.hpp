@@ -1,5 +1,8 @@
 #include "../base.hpp"
 #include "./abel.hpp"
+
+/// @brief ポテンシャル付きUF
+/// @tparam Abel 可換群の型
 template<typename Abel = AbelAdd<ll>>
 class potential_uf {
 public:

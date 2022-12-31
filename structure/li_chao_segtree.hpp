@@ -1,4 +1,8 @@
 #include "../base.hpp"
+
+/// @brief Li Chao Segmenttree
+/// @tparam T 型
+/// @tparam e 単位元
 template<typename T, const T e>
 class cht {
 	struct line {

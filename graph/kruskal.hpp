@@ -2,6 +2,8 @@
 #include "./base.hpp"
 #include "atcoder/all"
 using namespace atcoder;
+/// @brief クラスカル法
+
 /// @brief 最小全域木のコストを求める
 /// @param V 頂点数
 /// @param ES 辺集合

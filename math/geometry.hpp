@@ -1,4 +1,5 @@
 #include "../base.hpp"
+/// @brief 幾何ライブラリ
 typedef complex<double> Point;
 typedef complex<double> Vec;
 typedef pair<Point, Point> Line;

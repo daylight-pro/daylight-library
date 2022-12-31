@@ -1,4 +1,6 @@
 #include "../base.hpp"
+/// @brief (K)MP
+/// @tparam T 配列の型
 template<typename T>
 struct MP {
 	vi a;

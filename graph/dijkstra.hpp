@@ -1,5 +1,7 @@
 #include "../base.hpp"
 #include "./base.hpp"
+/// @brief ダイクストラ法
+
 /// @brief 単一始点最短経路長問題を解く
 /// @param s 始点
 /// @param G グラフ

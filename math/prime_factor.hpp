@@ -1,4 +1,6 @@
 #include "../base.hpp"
+/// @brief 素因数分解
+
 /// @brief 素因数分解をする
 /// @param n 素因数分解する整数
 /// @return map[p]=a:p^aが因数に含まれる

@@ -1,4 +1,6 @@
 #include "../base.hpp"
+/// @brief Wavelet Matrix
+
 struct BitVector {
 private:
 	vector<int> vec;

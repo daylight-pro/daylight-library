@@ -1,5 +1,7 @@
 #include "../base.hpp"
 #include "./base.hpp"
+/// @brief 木の直径
+
 namespace inner_diameter {
 using P = pair<int, int>;
 P dfs(int cur, int pre, Graph<> &G) {

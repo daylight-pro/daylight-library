@@ -2,6 +2,7 @@
 #include "./base.hpp"
 #include "atcoder/all"
 using namespace atcoder;
+
 PL op_for_manhattan_mst(PL a, PL b) {
 	return min(a, b);
 }
@@ -9,6 +10,9 @@ PL e_for_manhattan_mst() {
 	return { LINF, -1 };
 }
 
+/// @brief マンハッタン距離でMST
+/// @param V 点の集合
+/// @return MST
 Graph<> manhattan_mst(vector<PL>& V) {
 	int N = SZ(V);
 	Graph<> G(N);

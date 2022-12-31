@@ -2,6 +2,8 @@
 #include "atcoder/all"
 using namespace atcoder;
 
+/// @brief 離散対数
+
 /// @brief a^n=b(mod m)となる最小のnを求める
 /// @param a パラメータ
 /// @param b パラメータ

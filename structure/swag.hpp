@@ -1,4 +1,6 @@
 #include "../base.hpp"
+/// @brief SWAG(スライド最小値)
+/// @tparam S 要素の型
 template<typename S>
 struct SWAG {
 private:

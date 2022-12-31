@@ -1,4 +1,7 @@
 #include "../base.hpp"
+
+/// @brief 有理数ライブラリ
+
 template<typename S = __int128_t, bool doReduction = true>
 struct Rational {
 private:

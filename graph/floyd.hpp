@@ -1,4 +1,6 @@
 #include "../base.hpp"
+/// @brief ワーシャルフロイド法
+
 /// @brief 全点対最短経路長問題を解く
 /// @param n 頂点数
 /// @param WF 隣接行列(out:最短経路長)

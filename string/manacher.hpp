@@ -1,5 +1,7 @@
 #include "../base.hpp"
 
+/// @brief Manacher
+
 /// @brief 各文字について、その文字を中心とする最長回文の半径をもとめる
 /// @param S 対象の文字列
 /// @return ret[i]:i文字目を中心とする最長回文の半径

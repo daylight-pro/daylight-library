@@ -1,4 +1,6 @@
 #include "../base.hpp"
+/// @brief 行列ライブラリ
+
 template<typename T>
 vector<vector<T>> multiMatrix(const vector<vector<T>> &A,
 							  const vector<vector<T>> &B) {

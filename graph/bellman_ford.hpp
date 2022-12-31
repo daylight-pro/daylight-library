@@ -1,5 +1,7 @@
 #include "../base.hpp"
 #include "./base.hpp"
+/// @brief ベルマンフォード法
+
 /// @brief ベルマンフォード法で単一始点最短経路長問題を解く
 /// @param V 頂点数
 /// @param EG 辺のリスト

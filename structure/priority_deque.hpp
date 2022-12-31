@@ -1,6 +1,8 @@
 
 #include "../base.hpp"
 
+/// @brief priority_deque
+/// @tparam T 要素の型
 template<typename T>
 struct priority_deque {
 private:

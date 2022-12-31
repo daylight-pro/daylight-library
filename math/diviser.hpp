@@ -1,5 +1,5 @@
 #include "../base.hpp"
-/// @brief 約数を全列挙する
+/// @brief 約数全列挙
 /// @param N 整数N
 /// @return Nの約数が小さい順に格納されたリスト
 vll get_divisers(ll N) {

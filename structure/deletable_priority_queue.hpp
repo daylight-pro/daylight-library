@@ -1,5 +1,7 @@
 #include "../base.hpp"
 
+/// @brief 削除可能プライオリティーキュー
+
 template<typename T, typename vec = vector<T>,
 		 typename cmp = less<typename vec::value_type>>
 struct deletable_priority_queue {

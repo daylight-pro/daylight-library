@@ -1,5 +1,7 @@
 #include "../base.hpp"
 #include "./base.hpp"
+/// @brief 閉路検出
+
 vi cycle_detection(Graph<>& G) {
 	int N = SZ(G);
 	vi cycle;

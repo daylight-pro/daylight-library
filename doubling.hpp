@@ -1,4 +1,6 @@
 #include "./base.hpp"
+/// @brief ダブリング
+/// @tparam T モノイドの型
 template<class T = ll>
 struct Doubling {
 private:

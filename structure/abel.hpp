@@ -1,4 +1,6 @@
 #pragma once
+/// @brief 可換群ライブラリ
+
 template<typename T>
 struct AbelAdd {
 	using value_type = T;

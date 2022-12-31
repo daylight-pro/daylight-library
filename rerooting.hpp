@@ -1,5 +1,8 @@
 #include "./base.hpp"
 #include "./graph/base.hpp"
+/// @brief 全方位木DP
+/// @tparam Data DPテーブルの要素の型
+/// @tparam Cost グラフの辺のコストの型
 template<typename Data, typename Cost = ll>
 struct Rerooting {
 	vector<Data> dp, memo;

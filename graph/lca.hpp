@@ -1,5 +1,6 @@
 #include "../base.hpp"
 #include "./base.hpp"
+/// @brief LCA
 struct LCA {
 private:
 	vvi parent;

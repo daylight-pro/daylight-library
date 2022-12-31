@@ -1,5 +1,6 @@
 #include "./base.hpp"
 
+/// @brief 乱数構造体
 struct my_rnd {
 	mt19937_64 randomEngine;
 	my_rnd() {

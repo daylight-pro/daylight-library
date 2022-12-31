@@ -1,4 +1,8 @@
 #include "../base.hpp"
+
+/// @brief バイナリトライ木
+/// @tparam T 整数の型
+/// @tparam MAX_LOG ビット数
 template<typename T, int MAX_LOG = 32>
 struct BinaryTrie {
 	struct Node {

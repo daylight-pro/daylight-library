@@ -1,4 +1,5 @@
 #include "../base.hpp"
+/// @brief Chmax,Chminセグメントツリー
 class SegmentTreeBeats {
 private:
 	const ll inf = 1e18;

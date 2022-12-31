@@ -1,3 +1,5 @@
+/// @brief 区間和
+/// @tparam T 要素の型
 template<typename T>
 struct RangeSum {
 private:

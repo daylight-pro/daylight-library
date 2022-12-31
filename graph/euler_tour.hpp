@@ -1,5 +1,7 @@
 #include "../base.hpp"
 #include "./base.hpp"
+/// @brief オイラーツアー
+
 /// @brief オイラーツアーを求めます
 /// @param G グラフ
 /// @param root 木の根

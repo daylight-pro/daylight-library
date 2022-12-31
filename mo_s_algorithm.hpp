@@ -1,4 +1,6 @@
 #include "./base.hpp"
+/// @brief Mo's Algorithm
+
 /// @brief 区間クエリに高速にこたえる
 /// @tparam T クエリの答えの型
 /// @param N 区間の最大長

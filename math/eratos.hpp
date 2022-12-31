@@ -1,4 +1,8 @@
 #include "../base.hpp"
+
+/// @brief エラトステネスの篩
+/// @param n 整数の上限
+/// @param isprime 結果を格納する配列
 void eratos(int n, vb& isprime) {
 	isprime = vb(n + 1, true);
 	isprime[0] = false;

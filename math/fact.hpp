@@ -1,5 +1,7 @@
 #include "../base.hpp"
 #include "./powmod.hpp"
+/// @brief 階乗計算
+
 /// @brief Modint用の階乗計算関数です。
 /// @tparam T modintの型
 /// @param N 求める階乗の最大値
