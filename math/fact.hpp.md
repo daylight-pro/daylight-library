@@ -6,7 +6,7 @@ data:
     title: base.hpp
   - icon: ':warning:'
     path: math/powmod.hpp
-    title: math/powmod.hpp
+    title: powmod
   _extendedRequiredBy:
   - icon: ':warning:'
     path: math/all.hpp
@@ -16,8 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "Modint\u7528\u306E\u968E\u4E57\u8A08\u7B97\u95A2\u6570\u3067\u3059\
-      \u3002"
+    document_title: "\u968E\u4E57\u8A08\u7B97"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -47,35 +46,37 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 3 \"math/powmod.hpp\"\
-    \nll powmod(ll a, ll p, ll m = MOD) {\n\tll ans = 1;\n\tll mul = a;\n\tfor(; p\
-    \ > 0; p >>= 1) {\n\t\tif(p & 1) ans = (ans * mul) % m;\n\t\t//mul\u3092\u66F4\
-    \u65B0\u30022\u56DE\u5206\u306E\u64CD\u4F5C\u3092\u5165\u308C\u308B\u3002\n\t\t\
-    mul = (mul * mul) % m;\n\t}\n\treturn ans;\n}\n#line 3 \"math/fact.hpp\"\n///\
-    \ @brief Modint\u7528\u306E\u968E\u4E57\u8A08\u7B97\u95A2\u6570\u3067\u3059\u3002\
-    \n/// @tparam T modint\u306E\u578B\n/// @param N \u6C42\u3081\u308B\u968E\u4E57\
-    \u306E\u6700\u5927\u5024\n/// @param fact out:\u968E\u4E57\ntemplate<class T>\n\
-    void setFact(int N, vector<T> &fact) {\n\tfact = vector<T>(N + 1);\n\tfact[0]\
-    \ = T(1);\n\tFOR(i, 1, N + 1) {\n\t\tfact[i] = fact[i - 1] * i;\n\t}\n}\n/// @brief\
-    \ ll\u7528\u306E\u968E\u4E57\u304A\u3088\u3073\u305D\u306E\u9006\u5143\u8A08\u8A08\
-    \u7B97\u95A2\u6570\u3067\u3002\n/// @param N \u6C42\u3081\u308B\u4F1A\u5834\u306E\
-    \u6700\u5927\u5024\n/// @param fact out:\u968E\u4E57\n/// @param inv out:\u968E\
-    \u4E57\u306E\u9006\u5143\nvoid setFact(int N, vll &fact, vll &inv) {\n\tfact =\
-    \ vector<ll>(N + 1);\n\tinv = vector<ll>(N + 1);\n\tfact[0] = 1;\n\tFOR(i, 1,\
-    \ N + 1) {\n\t\tfact[i] = (fact[i - 1] * i) % MOD;\n\t}\n\tinv[N] = powmod(fact[N],\
-    \ MOD - 2);\n\tREPR(i, N) {\n\t\tinv[i] = inv[i + 1] * (i + 1) % MOD;\n\t}\n}\n"
-  code: "#include \"../base.hpp\"\n#include \"./powmod.hpp\"\n/// @brief Modint\u7528\
-    \u306E\u968E\u4E57\u8A08\u7B97\u95A2\u6570\u3067\u3059\u3002\n/// @tparam T modint\u306E\
-    \u578B\n/// @param N \u6C42\u3081\u308B\u968E\u4E57\u306E\u6700\u5927\u5024\n\
-    /// @param fact out:\u968E\u4E57\ntemplate<class T>\nvoid setFact(int N, vector<T>\
-    \ &fact) {\n\tfact = vector<T>(N + 1);\n\tfact[0] = T(1);\n\tFOR(i, 1, N + 1)\
-    \ {\n\t\tfact[i] = fact[i - 1] * i;\n\t}\n}\n/// @brief ll\u7528\u306E\u968E\u4E57\
-    \u304A\u3088\u3073\u305D\u306E\u9006\u5143\u8A08\u8A08\u7B97\u95A2\u6570\u3067\
-    \u3002\n/// @param N \u6C42\u3081\u308B\u4F1A\u5834\u306E\u6700\u5927\u5024\n\
-    /// @param fact out:\u968E\u4E57\n/// @param inv out:\u968E\u4E57\u306E\u9006\u5143\
-    \nvoid setFact(int N, vll &fact, vll &inv) {\n\tfact = vector<ll>(N + 1);\n\t\
-    inv = vector<ll>(N + 1);\n\tfact[0] = 1;\n\tFOR(i, 1, N + 1) {\n\t\tfact[i] =\
-    \ (fact[i - 1] * i) % MOD;\n\t}\n\tinv[N] = powmod(fact[N], MOD - 2);\n\tREPR(i,\
-    \ N) {\n\t\tinv[i] = inv[i + 1] * (i + 1) % MOD;\n\t}\n}"
+    \n/// @brief powmod\n\nll powmod(ll a, ll p, ll m = MOD) {\n\tll ans = 1;\n\t\
+    ll mul = a;\n\tfor(; p > 0; p >>= 1) {\n\t\tif(p & 1) ans = (ans * mul) % m;\n\
+    \t\t//mul\u3092\u66F4\u65B0\u30022\u56DE\u5206\u306E\u64CD\u4F5C\u3092\u5165\u308C\
+    \u308B\u3002\n\t\tmul = (mul * mul) % m;\n\t}\n\treturn ans;\n}\n#line 3 \"math/fact.hpp\"\
+    \n/// @brief \u968E\u4E57\u8A08\u7B97\n\n/// @brief Modint\u7528\u306E\u968E\u4E57\
+    \u8A08\u7B97\u95A2\u6570\u3067\u3059\u3002\n/// @tparam T modint\u306E\u578B\n\
+    /// @param N \u6C42\u3081\u308B\u968E\u4E57\u306E\u6700\u5927\u5024\n/// @param\
+    \ fact out:\u968E\u4E57\ntemplate<class T>\nvoid setFact(int N, vector<T> &fact)\
+    \ {\n\tfact = vector<T>(N + 1);\n\tfact[0] = T(1);\n\tFOR(i, 1, N + 1) {\n\t\t\
+    fact[i] = fact[i - 1] * i;\n\t}\n}\n/// @brief ll\u7528\u306E\u968E\u4E57\u304A\
+    \u3088\u3073\u305D\u306E\u9006\u5143\u8A08\u8A08\u7B97\u95A2\u6570\u3067\u3002\
+    \n/// @param N \u6C42\u3081\u308B\u4F1A\u5834\u306E\u6700\u5927\u5024\n/// @param\
+    \ fact out:\u968E\u4E57\n/// @param inv out:\u968E\u4E57\u306E\u9006\u5143\nvoid\
+    \ setFact(int N, vll &fact, vll &inv) {\n\tfact = vector<ll>(N + 1);\n\tinv =\
+    \ vector<ll>(N + 1);\n\tfact[0] = 1;\n\tFOR(i, 1, N + 1) {\n\t\tfact[i] = (fact[i\
+    \ - 1] * i) % MOD;\n\t}\n\tinv[N] = powmod(fact[N], MOD - 2);\n\tREPR(i, N) {\n\
+    \t\tinv[i] = inv[i + 1] * (i + 1) % MOD;\n\t}\n}\n"
+  code: "#include \"../base.hpp\"\n#include \"./powmod.hpp\"\n/// @brief \u968E\u4E57\
+    \u8A08\u7B97\n\n/// @brief Modint\u7528\u306E\u968E\u4E57\u8A08\u7B97\u95A2\u6570\
+    \u3067\u3059\u3002\n/// @tparam T modint\u306E\u578B\n/// @param N \u6C42\u3081\
+    \u308B\u968E\u4E57\u306E\u6700\u5927\u5024\n/// @param fact out:\u968E\u4E57\n\
+    template<class T>\nvoid setFact(int N, vector<T> &fact) {\n\tfact = vector<T>(N\
+    \ + 1);\n\tfact[0] = T(1);\n\tFOR(i, 1, N + 1) {\n\t\tfact[i] = fact[i - 1] *\
+    \ i;\n\t}\n}\n/// @brief ll\u7528\u306E\u968E\u4E57\u304A\u3088\u3073\u305D\u306E\
+    \u9006\u5143\u8A08\u8A08\u7B97\u95A2\u6570\u3067\u3002\n/// @param N \u6C42\u3081\
+    \u308B\u4F1A\u5834\u306E\u6700\u5927\u5024\n/// @param fact out:\u968E\u4E57\n\
+    /// @param inv out:\u968E\u4E57\u306E\u9006\u5143\nvoid setFact(int N, vll &fact,\
+    \ vll &inv) {\n\tfact = vector<ll>(N + 1);\n\tinv = vector<ll>(N + 1);\n\tfact[0]\
+    \ = 1;\n\tFOR(i, 1, N + 1) {\n\t\tfact[i] = (fact[i - 1] * i) % MOD;\n\t}\n\t\
+    inv[N] = powmod(fact[N], MOD - 2);\n\tREPR(i, N) {\n\t\tinv[i] = inv[i + 1] *\
+    \ (i + 1) % MOD;\n\t}\n}"
   dependsOn:
   - base.hpp
   - math/powmod.hpp
@@ -83,7 +84,7 @@ data:
   path: math/fact.hpp
   requiredBy:
   - math/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/fact.hpp
@@ -91,5 +92,5 @@ layout: document
 redirect_from:
 - /library/math/fact.hpp
 - /library/math/fact.hpp.html
-title: "Modint\u7528\u306E\u968E\u4E57\u8A08\u7B97\u95A2\u6570\u3067\u3059\u3002"
+title: "\u968E\u4E57\u8A08\u7B97"
 ---

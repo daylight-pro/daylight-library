@@ -10,34 +10,31 @@ data:
     title: graph/all.hpp
   - icon: ':warning:'
     path: graph/bellman_ford.hpp
-    title: "\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\u3067\u5358\u4E00\
-      \u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F"
+    title: "\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5"
   - icon: ':warning:'
     path: graph/cycle_detection.hpp
-    title: graph/cycle_detection.hpp
+    title: "\u9589\u8DEF\u691C\u51FA"
   - icon: ':warning:'
     path: graph/diameter.hpp
-    title: graph/diameter.hpp
+    title: "\u6728\u306E\u76F4\u5F84"
   - icon: ':warning:'
     path: graph/dijkstra.hpp
-    title: "\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\
-      \u89E3\u304F"
+    title: "\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5"
   - icon: ':warning:'
     path: graph/euler_tour.hpp
-    title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u3092\u6C42\u3081\u307E\u3059"
+    title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC"
   - icon: ':warning:'
     path: graph/kruskal.hpp
-    title: "\u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\u3092\u6C42\u3081\
-      \u308B"
+    title: "\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5"
   - icon: ':warning:'
     path: graph/lca.hpp
-    title: graph/lca.hpp
+    title: LCA
   - icon: ':warning:'
     path: graph/manhattan_mst.hpp
-    title: graph/manhattan_mst.hpp
+    title: "\u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u3067MST"
   - icon: ':warning:'
     path: rerooting.hpp
-    title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF"
+    title: "\u5168\u65B9\u4F4D\u6728DP"
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp

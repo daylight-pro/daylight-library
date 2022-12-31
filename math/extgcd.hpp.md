@@ -13,8 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "gcd(a,b)\u3068ax+by=gcd(a,b)\u3092\u6E80\u305F\u3059x,y\u3092\
-      \u6C42\u3081\u308B"
+    document_title: "\u62E1\u5F35GCD"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -44,20 +43,7 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"math/extgcd.hpp\"\
-    \n/// @brief gcd(a,b)\u3068ax+by=gcd(a,b)\u3092\u6E80\u305F\u3059x,y\u3092\u6C42\
-    \u3081\u308B\n/// @param a \u5165\u529B1\u3064\u76EE\n/// @param b \u5165\u529B\
-    2\u3064\u76EE\n/// @param x \u51FA\u529B1\u3064\u76EE\n/// @param y \u51FA\u529B\
-    2\u3064\u76EE\n/// @return gcd(a,b)\nll extgcd(ll a, ll b, ll& x, ll& y) {\n\t\
-    ll d = a;\n\tif(b != 0) {\n\t\td = extgcd(b, a % b, y, x);\n\t\ty -= (a / b) *\
-    \ x;\n\t} else {\n\t\tx = 1;\n\t\ty = 0;\n\t}\n\treturn d;\n}\n\n/// @brief \u4EFB\
-    \u610F\u306Em\u306B\u3064\u3044\u3066n^{-1} mod m\u3092\u6C42\u3081\u308B.\n///\
-    \ @param n \u9006\u5143\u3092\u6C42\u3081\u305F\u3044\u5024\n/// @param m \u6CD5\
-    (\u7D20\u6570\u3067\u306A\u304F\u3066\u3082\u3088\u3044)\n/// @return \u5B58\u5728\
-    \u3057\u306A\u3051\u308C\u3070-1,\u5B58\u5728\u3059\u308B\u306A\u3089\u9006\u5143\
-    \nll inv_extgcd(ll n, ll m) {\n\tll x, y;\n\tll G = extgcd(n, m, x, y);\n\tif(G\
-    \ != 1) {\n\t\treturn -1;\n\t}\n\tif(x < 0) {\n\t\tx += (abs(x) + 2 * m) / m *\
-    \ m;\n\t}\n\tx %= m;\n\treturn x;\n}\n"
-  code: "#include \"../base.hpp\"\n/// @brief gcd(a,b)\u3068ax+by=gcd(a,b)\u3092\u6E80\
+    \n/// @brief \u62E1\u5F35GCD\n/// @brief gcd(a,b)\u3068ax+by=gcd(a,b)\u3092\u6E80\
     \u305F\u3059x,y\u3092\u6C42\u3081\u308B\n/// @param a \u5165\u529B1\u3064\u76EE\
     \n/// @param b \u5165\u529B2\u3064\u76EE\n/// @param x \u51FA\u529B1\u3064\u76EE\
     \n/// @param y \u51FA\u529B2\u3064\u76EE\n/// @return gcd(a,b)\nll extgcd(ll a,\
@@ -69,14 +55,28 @@ data:
     /// @return \u5B58\u5728\u3057\u306A\u3051\u308C\u3070-1,\u5B58\u5728\u3059\u308B\
     \u306A\u3089\u9006\u5143\nll inv_extgcd(ll n, ll m) {\n\tll x, y;\n\tll G = extgcd(n,\
     \ m, x, y);\n\tif(G != 1) {\n\t\treturn -1;\n\t}\n\tif(x < 0) {\n\t\tx += (abs(x)\
-    \ + 2 * m) / m * m;\n\t}\n\tx %= m;\n\treturn x;\n}"
+    \ + 2 * m) / m * m;\n\t}\n\tx %= m;\n\treturn x;\n}\n"
+  code: "#include \"../base.hpp\"\n/// @brief \u62E1\u5F35GCD\n/// @brief gcd(a,b)\u3068\
+    ax+by=gcd(a,b)\u3092\u6E80\u305F\u3059x,y\u3092\u6C42\u3081\u308B\n/// @param\
+    \ a \u5165\u529B1\u3064\u76EE\n/// @param b \u5165\u529B2\u3064\u76EE\n/// @param\
+    \ x \u51FA\u529B1\u3064\u76EE\n/// @param y \u51FA\u529B2\u3064\u76EE\n/// @return\
+    \ gcd(a,b)\nll extgcd(ll a, ll b, ll& x, ll& y) {\n\tll d = a;\n\tif(b != 0) {\n\
+    \t\td = extgcd(b, a % b, y, x);\n\t\ty -= (a / b) * x;\n\t} else {\n\t\tx = 1;\n\
+    \t\ty = 0;\n\t}\n\treturn d;\n}\n\n/// @brief \u4EFB\u610F\u306Em\u306B\u3064\u3044\
+    \u3066n^{-1} mod m\u3092\u6C42\u3081\u308B.\n/// @param n \u9006\u5143\u3092\u6C42\
+    \u3081\u305F\u3044\u5024\n/// @param m \u6CD5(\u7D20\u6570\u3067\u306A\u304F\u3066\
+    \u3082\u3088\u3044)\n/// @return \u5B58\u5728\u3057\u306A\u3051\u308C\u3070-1,\u5B58\
+    \u5728\u3059\u308B\u306A\u3089\u9006\u5143\nll inv_extgcd(ll n, ll m) {\n\tll\
+    \ x, y;\n\tll G = extgcd(n, m, x, y);\n\tif(G != 1) {\n\t\treturn -1;\n\t}\n\t\
+    if(x < 0) {\n\t\tx += (abs(x) + 2 * m) / m * m;\n\t}\n\tx %= m;\n\treturn x;\n\
+    }"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: math/extgcd.hpp
   requiredBy:
   - math/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/extgcd.hpp
@@ -84,5 +84,5 @@ layout: document
 redirect_from:
 - /library/math/extgcd.hpp
 - /library/math/extgcd.hpp.html
-title: "gcd(a,b)\u3068ax+by=gcd(a,b)\u3092\u6E80\u305F\u3059x,y\u3092\u6C42\u3081\u308B"
+title: "\u62E1\u5F35GCD"
 ---

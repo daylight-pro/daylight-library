@@ -13,6 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -42,22 +43,27 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"math/eratos.hpp\"\
-    \nvoid eratos(int n, vb& isprime) {\n\tisprime = vb(n + 1, true);\n\tisprime[0]\
-    \ = false;\n\tisprime[1] = false;\n\tint last = ((int) sqrt(n)) + 1;\n\tFOR(i,\
-    \ 2, last) {\n\t\tif(isprime[i]) {\n\t\t\tint j = i + i;\n\t\t\twhile(j <= n)\
-    \ {\n\t\t\t\tisprime[j] = false;\n\t\t\t\tj += i;\n\t\t\t}\n\t\t}\n\t}\n}\n"
-  code: "#include \"../base.hpp\"\nvoid eratos(int n, vb& isprime) {\n\tisprime =\
+    \n\n/// @brief \u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\n/// @param\
+    \ n \u6574\u6570\u306E\u4E0A\u9650\n/// @param isprime \u7D50\u679C\u3092\u683C\
+    \u7D0D\u3059\u308B\u914D\u5217\nvoid eratos(int n, vb& isprime) {\n\tisprime =\
     \ vb(n + 1, true);\n\tisprime[0] = false;\n\tisprime[1] = false;\n\tint last =\
     \ ((int) sqrt(n)) + 1;\n\tFOR(i, 2, last) {\n\t\tif(isprime[i]) {\n\t\t\tint j\
     \ = i + i;\n\t\t\twhile(j <= n) {\n\t\t\t\tisprime[j] = false;\n\t\t\t\tj += i;\n\
-    \t\t\t}\n\t\t}\n\t}\n}"
+    \t\t\t}\n\t\t}\n\t}\n}\n"
+  code: "#include \"../base.hpp\"\n\n/// @brief \u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\
+    \u30B9\u306E\u7BE9\n/// @param n \u6574\u6570\u306E\u4E0A\u9650\n/// @param isprime\
+    \ \u7D50\u679C\u3092\u683C\u7D0D\u3059\u308B\u914D\u5217\nvoid eratos(int n, vb&\
+    \ isprime) {\n\tisprime = vb(n + 1, true);\n\tisprime[0] = false;\n\tisprime[1]\
+    \ = false;\n\tint last = ((int) sqrt(n)) + 1;\n\tFOR(i, 2, last) {\n\t\tif(isprime[i])\
+    \ {\n\t\t\tint j = i + i;\n\t\t\twhile(j <= n) {\n\t\t\t\tisprime[j] = false;\n\
+    \t\t\t\tj += i;\n\t\t\t}\n\t\t}\n\t}\n}"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: math/eratos.hpp
   requiredBy:
   - math/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/eratos.hpp
@@ -65,5 +71,5 @@ layout: document
 redirect_from:
 - /library/math/eratos.hpp
 - /library/math/eratos.hpp.html
-title: math/eratos.hpp
+title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
 ---

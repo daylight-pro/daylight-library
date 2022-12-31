@@ -16,6 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u9589\u8DEF\u691C\u51FA"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -49,39 +50,39 @@ data:
     \tEdge() {\n\t}\n\tEdge(int _from, int _to, T _cost) {\n\t\tfrom = _from;\n\t\t\
     to = _to;\n\t\tcost = _cost;\n\t}\n};\ntemplate<class T = ll>\nusing Edges = vector<Edge<T>>;\n\
     template<class T = ll>\nusing Graph = vector<Edges<T>>;\n#line 3 \"graph/cycle_detection.hpp\"\
-    \nvi cycle_detection(Graph<>& G) {\n\tint N = SZ(G);\n\tvi cycle;\n\tvb visited(N);\n\
-    \tvb seen(N);\n\tauto dfs = [&](auto f, int cur, int pre = -1) -> int {\n\t\t\
-    if(seen[cur]) {\n\t\t\treturn cur;\n\t\t}\n\t\tseen[cur] = true;\n\t\tfor(Edge\
-    \ e: G[cur]) {\n\t\t\tif(e.to == pre) continue;\n\t\t\tif(visited[e.to]) continue;\n\
-    \t\t\tint begin = f(f, e.to, cur);\n\t\t\tif(begin == -2) {\n\t\t\t\tvisited[cur]\
-    \ = true;\n\t\t\t\treturn -2;\n\t\t\t}\n\t\t\tif(begin == -1) continue;\n\t\t\t\
-    if(begin == cur) {\n\t\t\t\tcycle.push_back(cur);\n\t\t\t\tvisited[cur] = true;\n\
-    \t\t\t\treturn -2;\n\t\t\t}\n\t\t\tcycle.push_back(cur);\n\t\t\tvisited[cur] =\
-    \ true;\n\t\t\treturn begin;\n\t\t}\n\t\tvisited[cur] = true;\n\t\treturn -1;\n\
-    \t};\n\tREP(i, N) {\n\t\tif(!cycle.empty()) break;\n\t\tif(visited[i]) continue;\n\
-    \t\tdfs(dfs, i);\n\t}\n\tif(cycle.empty()) {\n\t\treturn vi();\n\t}\n\trev(cycle);\n\
-    \tvi C(N, -1);\n\tREP(i, SZ(cycle)) {\n\t\tC[cycle[i]] = i;\n\t}\n\tint ind =\
-    \ 0;\n\tvi ret;\n\tusing P = pair<int, int>;\n\tset<P> S;\n\twhile(ind != -1)\
-    \ {\n\t\tint v = cycle[ind];\n\t\tret.push_back(v);\n\t\tS.insert({ ind, SZ(ret)\
-    \ - 1 });\n\t\tint next = -1;\n\t\tint pre = -1;\n\t\tfor(Edge e: G[v]) {\n\t\t\
-    \tint n = C[e.to];\n\t\t\tif(n == -1) continue;\n\t\t\tif(n < ind) {\n\t\t\t\t\
-    auto [a, b] = *S.lower_bound({ n, 0 });\n\t\t\t\tif(a != n) continue;\n\t\t\t\t\
-    chmax(pre, b);\n\t\t\t}\n\t\t\tchmax(next, n);\n\t\t}\n\t\tif(pre != -1) {\n\t\
-    \t\tvi new_ret;\n\t\t\tFOR(i, pre, SZ(ret)) {\n\t\t\t\tnew_ret.push_back(ret[i]);\n\
+    \n/// @brief \u9589\u8DEF\u691C\u51FA\n\nvi cycle_detection(Graph<>& G) {\n\t\
+    int N = SZ(G);\n\tvi cycle;\n\tvb visited(N);\n\tvb seen(N);\n\tauto dfs = [&](auto\
+    \ f, int cur, int pre = -1) -> int {\n\t\tif(seen[cur]) {\n\t\t\treturn cur;\n\
+    \t\t}\n\t\tseen[cur] = true;\n\t\tfor(Edge e: G[cur]) {\n\t\t\tif(e.to == pre)\
+    \ continue;\n\t\t\tif(visited[e.to]) continue;\n\t\t\tint begin = f(f, e.to, cur);\n\
+    \t\t\tif(begin == -2) {\n\t\t\t\tvisited[cur] = true;\n\t\t\t\treturn -2;\n\t\t\
+    \t}\n\t\t\tif(begin == -1) continue;\n\t\t\tif(begin == cur) {\n\t\t\t\tcycle.push_back(cur);\n\
+    \t\t\t\tvisited[cur] = true;\n\t\t\t\treturn -2;\n\t\t\t}\n\t\t\tcycle.push_back(cur);\n\
+    \t\t\tvisited[cur] = true;\n\t\t\treturn begin;\n\t\t}\n\t\tvisited[cur] = true;\n\
+    \t\treturn -1;\n\t};\n\tREP(i, N) {\n\t\tif(!cycle.empty()) break;\n\t\tif(visited[i])\
+    \ continue;\n\t\tdfs(dfs, i);\n\t}\n\tif(cycle.empty()) {\n\t\treturn vi();\n\t\
+    }\n\trev(cycle);\n\tvi C(N, -1);\n\tREP(i, SZ(cycle)) {\n\t\tC[cycle[i]] = i;\n\
+    \t}\n\tint ind = 0;\n\tvi ret;\n\tusing P = pair<int, int>;\n\tset<P> S;\n\twhile(ind\
+    \ != -1) {\n\t\tint v = cycle[ind];\n\t\tret.push_back(v);\n\t\tS.insert({ ind,\
+    \ SZ(ret) - 1 });\n\t\tint next = -1;\n\t\tint pre = -1;\n\t\tfor(Edge e: G[v])\
+    \ {\n\t\t\tint n = C[e.to];\n\t\t\tif(n == -1) continue;\n\t\t\tif(n < ind) {\n\
+    \t\t\t\tauto [a, b] = *S.lower_bound({ n, 0 });\n\t\t\t\tif(a != n) continue;\n\
+    \t\t\t\tchmax(pre, b);\n\t\t\t}\n\t\t\tchmax(next, n);\n\t\t}\n\t\tif(pre != -1)\
+    \ {\n\t\t\tvi new_ret;\n\t\t\tFOR(i, pre, SZ(ret)) {\n\t\t\t\tnew_ret.push_back(ret[i]);\n\
     \t\t\t}\n\t\t\tret = new_ret;\n\t\t\treturn ret;\n\t\t}\n\t\tind = next;\n\t}\n\
     \treturn ret;\n}\n"
-  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\nvi cycle_detection(Graph<>&\
-    \ G) {\n\tint N = SZ(G);\n\tvi cycle;\n\tvb visited(N);\n\tvb seen(N);\n\tauto\
-    \ dfs = [&](auto f, int cur, int pre = -1) -> int {\n\t\tif(seen[cur]) {\n\t\t\
-    \treturn cur;\n\t\t}\n\t\tseen[cur] = true;\n\t\tfor(Edge e: G[cur]) {\n\t\t\t\
-    if(e.to == pre) continue;\n\t\t\tif(visited[e.to]) continue;\n\t\t\tint begin\
-    \ = f(f, e.to, cur);\n\t\t\tif(begin == -2) {\n\t\t\t\tvisited[cur] = true;\n\t\
-    \t\t\treturn -2;\n\t\t\t}\n\t\t\tif(begin == -1) continue;\n\t\t\tif(begin ==\
-    \ cur) {\n\t\t\t\tcycle.push_back(cur);\n\t\t\t\tvisited[cur] = true;\n\t\t\t\t\
-    return -2;\n\t\t\t}\n\t\t\tcycle.push_back(cur);\n\t\t\tvisited[cur] = true;\n\
-    \t\t\treturn begin;\n\t\t}\n\t\tvisited[cur] = true;\n\t\treturn -1;\n\t};\n\t\
-    REP(i, N) {\n\t\tif(!cycle.empty()) break;\n\t\tif(visited[i]) continue;\n\t\t\
-    dfs(dfs, i);\n\t}\n\tif(cycle.empty()) {\n\t\treturn vi();\n\t}\n\trev(cycle);\n\
+  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief \u9589\u8DEF\
+    \u691C\u51FA\n\nvi cycle_detection(Graph<>& G) {\n\tint N = SZ(G);\n\tvi cycle;\n\
+    \tvb visited(N);\n\tvb seen(N);\n\tauto dfs = [&](auto f, int cur, int pre = -1)\
+    \ -> int {\n\t\tif(seen[cur]) {\n\t\t\treturn cur;\n\t\t}\n\t\tseen[cur] = true;\n\
+    \t\tfor(Edge e: G[cur]) {\n\t\t\tif(e.to == pre) continue;\n\t\t\tif(visited[e.to])\
+    \ continue;\n\t\t\tint begin = f(f, e.to, cur);\n\t\t\tif(begin == -2) {\n\t\t\
+    \t\tvisited[cur] = true;\n\t\t\t\treturn -2;\n\t\t\t}\n\t\t\tif(begin == -1) continue;\n\
+    \t\t\tif(begin == cur) {\n\t\t\t\tcycle.push_back(cur);\n\t\t\t\tvisited[cur]\
+    \ = true;\n\t\t\t\treturn -2;\n\t\t\t}\n\t\t\tcycle.push_back(cur);\n\t\t\tvisited[cur]\
+    \ = true;\n\t\t\treturn begin;\n\t\t}\n\t\tvisited[cur] = true;\n\t\treturn -1;\n\
+    \t};\n\tREP(i, N) {\n\t\tif(!cycle.empty()) break;\n\t\tif(visited[i]) continue;\n\
+    \t\tdfs(dfs, i);\n\t}\n\tif(cycle.empty()) {\n\t\treturn vi();\n\t}\n\trev(cycle);\n\
     \tvi C(N, -1);\n\tREP(i, SZ(cycle)) {\n\t\tC[cycle[i]] = i;\n\t}\n\tint ind =\
     \ 0;\n\tvi ret;\n\tusing P = pair<int, int>;\n\tset<P> S;\n\twhile(ind != -1)\
     \ {\n\t\tint v = cycle[ind];\n\t\tret.push_back(v);\n\t\tS.insert({ ind, SZ(ret)\
@@ -99,7 +100,7 @@ data:
   path: graph/cycle_detection.hpp
   requiredBy:
   - graph/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/cycle_detection.hpp
@@ -107,5 +108,5 @@ layout: document
 redirect_from:
 - /library/graph/cycle_detection.hpp
 - /library/graph/cycle_detection.hpp.html
-title: graph/cycle_detection.hpp
+title: "\u9589\u8DEF\u691C\u51FA"
 ---

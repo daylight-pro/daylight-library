@@ -10,8 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\u3059\
-      \u308B"
+    document_title: priority_deque
     links: []
   bundledCode: "#line 1 \"structure/priority_deque.hpp\"\n\n#line 2 \"base.hpp\"\n\
     \n#include <bits/stdc++.h>\n\nusing namespace std;\n#define SZ(x) (int) (x).size()\n\
@@ -41,44 +40,20 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 3 \"structure/priority_deque.hpp\"\
-    \n\ntemplate<typename T>\nstruct priority_deque {\nprivate:\n\tmultiset<T> S;\n\
-    \npublic:\n\t/// @brief \u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\
-    \u3059\u308B\n\t/// @param v \u8FFD\u52A0\u3059\u308B\u8981\u7D20\n\tvoid push(T\
-    \ v) {\n\t\tS.insert(v);\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u304B\u3089\u8981\
-    \u7D20v\u3092\u524A\u9664\u3059\u308B\n\t/// @param v \u524A\u9664\u3059\u308B\
-    \u8981\u7D20\n\t/// @return \u524A\u9664\u304C\u6210\u529F\u3057\u305F\u304B\u3069\
-    \u3046\u304B\n\tbool del(T v) {\n\t\tauto it = S.find(v);\n\t\tif(it == S.end())\
-    \ return false;\n\t\tS.erase(it);\n\t\treturn true;\n\t}\n\t/// @brief \u30AD\u30E5\
-    \u30FC\u306E\u6700\u5927\u5143\u3092\u53D6\u308A\u51FA\u3059\n\t/// @return \u30AD\
-    \u30E5\u30FC\u306E\u6700\u5927\u5143\n\tT get_max() {\n\t\treturn *S.rbegin();\n\
-    \t}\n\tT get_min() {\n\t\treturn *S.begin();\n\t}\n\tvoid pop_max() {\n\t\tassert(!S.emtpy()\n\
-    \t\t\t   && \"\u30AD\u30E5\u30FC\u304C\u7A7A\u306E\u6642\u306Bpop_max\u304C\u547C\
-    \u3070\u308C\u307E\u3057\u305F.\");\n\t\tS.erase(S.rbegin());\n\t}\n\tvoid pop_min()\
-    \ {\n\t\tassert(!S.emtpy()\n\t\t\t   && \"\u30AD\u30E5\u30FC\u304C\u7A7A\u306E\
-    \u6642\u306Bpop_min\u304C\u547C\u3070\u308C\u307E\u3057\u305F.\");\n\t\tS.erase(S.begin());\n\
-    \t}\n\tint count(T v) {\n\t\tauto it = S.lower_bound(v);\n\t\tif(it == S.end()\
-    \ || *it != v) {\n\t\t\treturn 0;\n\t\t}\n\t\treturn S.upper_bound - it;\n\t}\n\
-    \t/// @brief \u30AD\u30E5\u30FC\u304C\u8981\u7D20v\u3092\u542B\u3080\u304B\u3092\
-    \u5224\u5B9A\u3059\u308B\n\t/// @param v \u30AD\u30E5\u30FC\u304C\u542B\u3080\u304B\
-    \u3092\u5224\u5B9A\u3059\u308B\u8981\u7D20\n\t/// @return \u30AD\u30E5\u30FC\u304C\
-    v\u3092\u542B\u3080\u304B\u3069\u3046\u304B\n\tbool contains(T v) {\n\t\treturn\
-    \ S.find(v) != S.end();\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u306E\u8981\u7D20\
-    \u6570\u3092\u53D6\u5F97\u3059\u308B\n\t/// @return \u30AD\u30E5\u30FC\u306E\u8981\
-    \u7D20\u6570\n\tsize_t size() {\n\t\treturn S.size();\n\t}\n};\n"
-  code: "\n#include \"../base.hpp\"\n\ntemplate<typename T>\nstruct priority_deque\
-    \ {\nprivate:\n\tmultiset<T> S;\n\npublic:\n\t/// @brief \u30AD\u30E5\u30FC\u306B\
-    \u8981\u7D20v\u3092\u8FFD\u52A0\u3059\u308B\n\t/// @param v \u8FFD\u52A0\u3059\
-    \u308B\u8981\u7D20\n\tvoid push(T v) {\n\t\tS.insert(v);\n\t}\n\t/// @brief \u30AD\
-    \u30E5\u30FC\u304B\u3089\u8981\u7D20v\u3092\u524A\u9664\u3059\u308B\n\t/// @param\
-    \ v \u524A\u9664\u3059\u308B\u8981\u7D20\n\t/// @return \u524A\u9664\u304C\u6210\
-    \u529F\u3057\u305F\u304B\u3069\u3046\u304B\n\tbool del(T v) {\n\t\tauto it = S.find(v);\n\
-    \t\tif(it == S.end()) return false;\n\t\tS.erase(it);\n\t\treturn true;\n\t}\n\
-    \t/// @brief \u30AD\u30E5\u30FC\u306E\u6700\u5927\u5143\u3092\u53D6\u308A\u51FA\
-    \u3059\n\t/// @return \u30AD\u30E5\u30FC\u306E\u6700\u5927\u5143\n\tT get_max()\
-    \ {\n\t\treturn *S.rbegin();\n\t}\n\tT get_min() {\n\t\treturn *S.begin();\n\t\
-    }\n\tvoid pop_max() {\n\t\tassert(!S.emtpy()\n\t\t\t   && \"\u30AD\u30E5\u30FC\
-    \u304C\u7A7A\u306E\u6642\u306Bpop_max\u304C\u547C\u3070\u308C\u307E\u3057\u305F\
-    .\");\n\t\tS.erase(S.rbegin());\n\t}\n\tvoid pop_min() {\n\t\tassert(!S.emtpy()\n\
+    \n\n/// @brief priority_deque\n/// @tparam T \u8981\u7D20\u306E\u578B\ntemplate<typename\
+    \ T>\nstruct priority_deque {\nprivate:\n\tmultiset<T> S;\n\npublic:\n\t/// @brief\
+    \ \u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\u3059\u308B\n\t/// @param\
+    \ v \u8FFD\u52A0\u3059\u308B\u8981\u7D20\n\tvoid push(T v) {\n\t\tS.insert(v);\n\
+    \t}\n\t/// @brief \u30AD\u30E5\u30FC\u304B\u3089\u8981\u7D20v\u3092\u524A\u9664\
+    \u3059\u308B\n\t/// @param v \u524A\u9664\u3059\u308B\u8981\u7D20\n\t/// @return\
+    \ \u524A\u9664\u304C\u6210\u529F\u3057\u305F\u304B\u3069\u3046\u304B\n\tbool del(T\
+    \ v) {\n\t\tauto it = S.find(v);\n\t\tif(it == S.end()) return false;\n\t\tS.erase(it);\n\
+    \t\treturn true;\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u306E\u6700\u5927\u5143\
+    \u3092\u53D6\u308A\u51FA\u3059\n\t/// @return \u30AD\u30E5\u30FC\u306E\u6700\u5927\
+    \u5143\n\tT get_max() {\n\t\treturn *S.rbegin();\n\t}\n\tT get_min() {\n\t\treturn\
+    \ *S.begin();\n\t}\n\tvoid pop_max() {\n\t\tassert(!S.emtpy()\n\t\t\t   && \"\u30AD\
+    \u30E5\u30FC\u304C\u7A7A\u306E\u6642\u306Bpop_max\u304C\u547C\u3070\u308C\u307E\
+    \u3057\u305F.\");\n\t\tS.erase(S.rbegin());\n\t}\n\tvoid pop_min() {\n\t\tassert(!S.emtpy()\n\
     \t\t\t   && \"\u30AD\u30E5\u30FC\u304C\u7A7A\u306E\u6642\u306Bpop_min\u304C\u547C\
     \u3070\u308C\u307E\u3057\u305F.\");\n\t\tS.erase(S.begin());\n\t}\n\tint count(T\
     \ v) {\n\t\tauto it = S.lower_bound(v);\n\t\tif(it == S.end() || *it != v) {\n\
@@ -89,13 +64,39 @@ data:
     \u304B\u3069\u3046\u304B\n\tbool contains(T v) {\n\t\treturn S.find(v) != S.end();\n\
     \t}\n\t/// @brief \u30AD\u30E5\u30FC\u306E\u8981\u7D20\u6570\u3092\u53D6\u5F97\
     \u3059\u308B\n\t/// @return \u30AD\u30E5\u30FC\u306E\u8981\u7D20\u6570\n\tsize_t\
+    \ size() {\n\t\treturn S.size();\n\t}\n};\n"
+  code: "\n#include \"../base.hpp\"\n\n/// @brief priority_deque\n/// @tparam T \u8981\
+    \u7D20\u306E\u578B\ntemplate<typename T>\nstruct priority_deque {\nprivate:\n\t\
+    multiset<T> S;\n\npublic:\n\t/// @brief \u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\
+    \u8FFD\u52A0\u3059\u308B\n\t/// @param v \u8FFD\u52A0\u3059\u308B\u8981\u7D20\n\
+    \tvoid push(T v) {\n\t\tS.insert(v);\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u304B\
+    \u3089\u8981\u7D20v\u3092\u524A\u9664\u3059\u308B\n\t/// @param v \u524A\u9664\
+    \u3059\u308B\u8981\u7D20\n\t/// @return \u524A\u9664\u304C\u6210\u529F\u3057\u305F\
+    \u304B\u3069\u3046\u304B\n\tbool del(T v) {\n\t\tauto it = S.find(v);\n\t\tif(it\
+    \ == S.end()) return false;\n\t\tS.erase(it);\n\t\treturn true;\n\t}\n\t/// @brief\
+    \ \u30AD\u30E5\u30FC\u306E\u6700\u5927\u5143\u3092\u53D6\u308A\u51FA\u3059\n\t\
+    /// @return \u30AD\u30E5\u30FC\u306E\u6700\u5927\u5143\n\tT get_max() {\n\t\t\
+    return *S.rbegin();\n\t}\n\tT get_min() {\n\t\treturn *S.begin();\n\t}\n\tvoid\
+    \ pop_max() {\n\t\tassert(!S.emtpy()\n\t\t\t   && \"\u30AD\u30E5\u30FC\u304C\u7A7A\
+    \u306E\u6642\u306Bpop_max\u304C\u547C\u3070\u308C\u307E\u3057\u305F.\");\n\t\t\
+    S.erase(S.rbegin());\n\t}\n\tvoid pop_min() {\n\t\tassert(!S.emtpy()\n\t\t\t \
+    \  && \"\u30AD\u30E5\u30FC\u304C\u7A7A\u306E\u6642\u306Bpop_min\u304C\u547C\u3070\
+    \u308C\u307E\u3057\u305F.\");\n\t\tS.erase(S.begin());\n\t}\n\tint count(T v)\
+    \ {\n\t\tauto it = S.lower_bound(v);\n\t\tif(it == S.end() || *it != v) {\n\t\t\
+    \treturn 0;\n\t\t}\n\t\treturn S.upper_bound - it;\n\t}\n\t/// @brief \u30AD\u30E5\
+    \u30FC\u304C\u8981\u7D20v\u3092\u542B\u3080\u304B\u3092\u5224\u5B9A\u3059\u308B\
+    \n\t/// @param v \u30AD\u30E5\u30FC\u304C\u542B\u3080\u304B\u3092\u5224\u5B9A\u3059\
+    \u308B\u8981\u7D20\n\t/// @return \u30AD\u30E5\u30FC\u304Cv\u3092\u542B\u3080\u304B\
+    \u3069\u3046\u304B\n\tbool contains(T v) {\n\t\treturn S.find(v) != S.end();\n\
+    \t}\n\t/// @brief \u30AD\u30E5\u30FC\u306E\u8981\u7D20\u6570\u3092\u53D6\u5F97\
+    \u3059\u308B\n\t/// @return \u30AD\u30E5\u30FC\u306E\u8981\u7D20\u6570\n\tsize_t\
     \ size() {\n\t\treturn S.size();\n\t}\n};"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: structure/priority_deque.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/priority_deque.hpp
@@ -103,5 +104,5 @@ layout: document
 redirect_from:
 - /library/structure/priority_deque.hpp
 - /library/structure/priority_deque.hpp.html
-title: "\u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\u3059\u308B"
+title: priority_deque
 ---

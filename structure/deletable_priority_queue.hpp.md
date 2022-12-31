@@ -10,8 +10,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\u3059\
-      \u308B"
+    document_title: "\u524A\u9664\u53EF\u80FD\u30D7\u30E9\u30A4\u30AA\u30EA\u30C6\u30A3\
+      \u30FC\u30AD\u30E5\u30FC"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -41,31 +41,9 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"structure/deletable_priority_queue.hpp\"\
-    \n\ntemplate<typename T, typename vec = vector<T>,\n\t\t typename cmp = less<typename\
-    \ vec::value_type>>\nstruct deletable_priority_queue {\nprivate:\n\tmap<T, T>\
-    \ M;\n\tpriority_queue<T, vec, cmp> Q;\n\tint sz;\n\npublic:\n\tdeletable_priority_queue()\
-    \ {\n\t\tsz = 0;\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\
-    \u8FFD\u52A0\u3059\u308B\n\t/// @param v \u8FFD\u52A0\u3059\u308B\u8981\u7D20\n\
-    \tvoid push(T v) {\n\t\tQ.push(v);\n\t\tM[v]++;\n\t\tsz++;\n\t}\n\t/// @brief\
-    \ \u30AD\u30E5\u30FC\u304B\u3089\u8981\u7D20v\u3092\u524A\u9664\u3059\u308B\n\t\
-    /// @param v \u524A\u9664\u3059\u308B\u8981\u7D20\n\t/// @return \u524A\u9664\u304C\
-    \u6210\u529F\u3057\u305F\u304B\u3069\u3046\u304B\n\tbool del(T v) {\n\t\tif(M[v]\
-    \ == 0) return false;\n\t\tM[v]--;\n\t\tsz--;\n\t\twhile(!Q.empty() && M[Q.top()]\
-    \ == 0) {\n\t\t\tQ.pop();\n\t\t}\n\t\treturn true;\n\t}\n\t/// @brief \u30AD\u30E5\
-    \u30FC\u306E\u6700\u5927\u5143\u3092\u53D6\u308A\u51FA\u3059\n\t/// @return \u30AD\
-    \u30E5\u30FC\u306E\u6700\u5927\u5143\n\tT top() {\n\t\treturn Q.top();\n\t}\n\t\
-    /// @brief \u30AD\u30E5\u30FC\u306E\u6700\u5927\u5143\u3092\u524A\u9664\u3059\u308B\
-    \n\tvoid pop() {\n\t\twhile(M[Q.top()] == 0) {\n\t\t\tQ.pop();\n\t\t}\n\t\tM[Q.top()]--;\n\
-    \t\tsz--;\n\t\tQ.pop();\n\t\twhile(!Q.empty() && M[Q.top()] == 0) {\n\t\t\tQ.pop();\n\
-    \t\t}\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u304C\u8981\u7D20v\u3092\u542B\u3080\
-    \u304B\u3092\u5224\u5B9A\u3059\u308B\n\t/// @param v \u30AD\u30E5\u30FC\u304C\u542B\
-    \u3080\u304B\u3092\u5224\u5B9A\u3059\u308B\u8981\u7D20\n\t/// @return \u30AD\u30E5\
-    \u30FC\u304Cv\u3092\u542B\u3080\u304B\u3069\u3046\u304B\n\tbool contains(T v)\
-    \ {\n\t\treturn M[v] > 0;\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u306E\u8981\u7D20\
-    \u6570\u3092\u53D6\u5F97\u3059\u308B\n\t/// @return \u30AD\u30E5\u30FC\u306E\u8981\
-    \u7D20\u6570\n\tsize_t size() {\n\t\treturn (size_t) sz;\n\t}\n};\n"
-  code: "#include \"../base.hpp\"\n\ntemplate<typename T, typename vec = vector<T>,\n\
-    \t\t typename cmp = less<typename vec::value_type>>\nstruct deletable_priority_queue\
+    \n\n/// @brief \u524A\u9664\u53EF\u80FD\u30D7\u30E9\u30A4\u30AA\u30EA\u30C6\u30A3\
+    \u30FC\u30AD\u30E5\u30FC\n\ntemplate<typename T, typename vec = vector<T>,\n\t\
+    \t typename cmp = less<typename vec::value_type>>\nstruct deletable_priority_queue\
     \ {\nprivate:\n\tmap<T, T> M;\n\tpriority_queue<T, vec, cmp> Q;\n\tint sz;\n\n\
     public:\n\tdeletable_priority_queue() {\n\t\tsz = 0;\n\t}\n\t/// @brief \u30AD\
     \u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\u3059\u308B\n\t/// @param v\
@@ -87,13 +65,38 @@ data:
     \u542B\u3080\u304B\u3069\u3046\u304B\n\tbool contains(T v) {\n\t\treturn M[v]\
     \ > 0;\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u306E\u8981\u7D20\u6570\u3092\u53D6\
     \u5F97\u3059\u308B\n\t/// @return \u30AD\u30E5\u30FC\u306E\u8981\u7D20\u6570\n\
-    \tsize_t size() {\n\t\treturn (size_t) sz;\n\t}\n};"
+    \tsize_t size() {\n\t\treturn (size_t) sz;\n\t}\n};\n"
+  code: "#include \"../base.hpp\"\n\n/// @brief \u524A\u9664\u53EF\u80FD\u30D7\u30E9\
+    \u30A4\u30AA\u30EA\u30C6\u30A3\u30FC\u30AD\u30E5\u30FC\n\ntemplate<typename T,\
+    \ typename vec = vector<T>,\n\t\t typename cmp = less<typename vec::value_type>>\n\
+    struct deletable_priority_queue {\nprivate:\n\tmap<T, T> M;\n\tpriority_queue<T,\
+    \ vec, cmp> Q;\n\tint sz;\n\npublic:\n\tdeletable_priority_queue() {\n\t\tsz =\
+    \ 0;\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\
+    \u3059\u308B\n\t/// @param v \u8FFD\u52A0\u3059\u308B\u8981\u7D20\n\tvoid push(T\
+    \ v) {\n\t\tQ.push(v);\n\t\tM[v]++;\n\t\tsz++;\n\t}\n\t/// @brief \u30AD\u30E5\
+    \u30FC\u304B\u3089\u8981\u7D20v\u3092\u524A\u9664\u3059\u308B\n\t/// @param v\
+    \ \u524A\u9664\u3059\u308B\u8981\u7D20\n\t/// @return \u524A\u9664\u304C\u6210\
+    \u529F\u3057\u305F\u304B\u3069\u3046\u304B\n\tbool del(T v) {\n\t\tif(M[v] ==\
+    \ 0) return false;\n\t\tM[v]--;\n\t\tsz--;\n\t\twhile(!Q.empty() && M[Q.top()]\
+    \ == 0) {\n\t\t\tQ.pop();\n\t\t}\n\t\treturn true;\n\t}\n\t/// @brief \u30AD\u30E5\
+    \u30FC\u306E\u6700\u5927\u5143\u3092\u53D6\u308A\u51FA\u3059\n\t/// @return \u30AD\
+    \u30E5\u30FC\u306E\u6700\u5927\u5143\n\tT top() {\n\t\treturn Q.top();\n\t}\n\t\
+    /// @brief \u30AD\u30E5\u30FC\u306E\u6700\u5927\u5143\u3092\u524A\u9664\u3059\u308B\
+    \n\tvoid pop() {\n\t\twhile(M[Q.top()] == 0) {\n\t\t\tQ.pop();\n\t\t}\n\t\tM[Q.top()]--;\n\
+    \t\tsz--;\n\t\tQ.pop();\n\t\twhile(!Q.empty() && M[Q.top()] == 0) {\n\t\t\tQ.pop();\n\
+    \t\t}\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u304C\u8981\u7D20v\u3092\u542B\u3080\
+    \u304B\u3092\u5224\u5B9A\u3059\u308B\n\t/// @param v \u30AD\u30E5\u30FC\u304C\u542B\
+    \u3080\u304B\u3092\u5224\u5B9A\u3059\u308B\u8981\u7D20\n\t/// @return \u30AD\u30E5\
+    \u30FC\u304Cv\u3092\u542B\u3080\u304B\u3069\u3046\u304B\n\tbool contains(T v)\
+    \ {\n\t\treturn M[v] > 0;\n\t}\n\t/// @brief \u30AD\u30E5\u30FC\u306E\u8981\u7D20\
+    \u6570\u3092\u53D6\u5F97\u3059\u308B\n\t/// @return \u30AD\u30E5\u30FC\u306E\u8981\
+    \u7D20\u6570\n\tsize_t size() {\n\t\treturn (size_t) sz;\n\t}\n};"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: structure/deletable_priority_queue.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/deletable_priority_queue.hpp
@@ -101,5 +104,6 @@ layout: document
 redirect_from:
 - /library/structure/deletable_priority_queue.hpp
 - /library/structure/deletable_priority_queue.hpp.html
-title: "\u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\u3059\u308B"
+title: "\u524A\u9664\u53EF\u80FD\u30D7\u30E9\u30A4\u30AA\u30EA\u30C6\u30A3\u30FC\u30AD\
+  \u30E5\u30FC"
 ---

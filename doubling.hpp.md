@@ -10,8 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u30B5\u30A4\u30BAn\u306E\u6052\u7B49\u5199\u50CF\u3067\u521D\
-      \u671F\u5316"
+    document_title: "\u30C0\u30D6\u30EA\u30F3\u30B0"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -41,8 +40,9 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"doubling.hpp\"\
-    \ntemplate<class T = ll>\nstruct Doubling {\nprivate:\n\tint N;\n\tvvi V;\n\t\
-    vector<vector<T>> S;\n\tvector<T> s;\n\tfunction<T(T, T)> op;\n\tfunction<T()>\
+    \n/// @brief \u30C0\u30D6\u30EA\u30F3\u30B0\n/// @tparam T \u30E2\u30CE\u30A4\u30C9\
+    \u306E\u578B\ntemplate<class T = ll>\nstruct Doubling {\nprivate:\n\tint N;\n\t\
+    vvi V;\n\tvector<vector<T>> S;\n\tvector<T> s;\n\tfunction<T(T, T)> op;\n\tfunction<T()>\
     \ e;\n\tbool hasMonoid = false;\n\n\tinline void build_next() {\n\t\tint n = SZ(V);\n\
     \t\tV.push_back(vi(N));\n\t\tif(hasMonoid) S.push_back(vector<T>(N));\n\t\tREP(i,\
     \ N) {\n\t\t\tV[n][i] = V[n - 1][V[n - 1][i]];\n\t\t\tif(hasMonoid)\n\t\t\t\t\
@@ -79,50 +79,51 @@ data:
     if(i >= SZ(V)) build_next();\n\t\t\tif(L & 1ll) {\n\t\t\t\tret = op(ret, S[i][cur]);\n\
     \t\t\t\tcur = V[i][cur];\n\t\t\t}\n\t\t\tL >>= 1ll;\n\t\t}\n\t\treturn ret;\n\t\
     }\n};\n"
-  code: "#include \"./base.hpp\"\ntemplate<class T = ll>\nstruct Doubling {\nprivate:\n\
-    \tint N;\n\tvvi V;\n\tvector<vector<T>> S;\n\tvector<T> s;\n\tfunction<T(T, T)>\
-    \ op;\n\tfunction<T()> e;\n\tbool hasMonoid = false;\n\n\tinline void build_next()\
-    \ {\n\t\tint n = SZ(V);\n\t\tV.push_back(vi(N));\n\t\tif(hasMonoid) S.push_back(vector<T>(N));\n\
-    \t\tREP(i, N) {\n\t\t\tV[n][i] = V[n - 1][V[n - 1][i]];\n\t\t\tif(hasMonoid)\n\
-    \t\t\t\tS[n][i] = op(S[n - 1][i],\n\t\t\t\t\t\t\t S[n - 1][V[n - 1][i]]);\n\t\t\
-    }\n\t}\n\npublic:\n\tDoubling() {\n\t}\n\n\t/// @brief \u30B5\u30A4\u30BAn\u306E\
-    \u6052\u7B49\u5199\u50CF\u3067\u521D\u671F\u5316\n\t/// @param n \u30C0\u30D6\u30EA\
-    \u30F3\u30B0\u306E\u30B5\u30A4\u30BA\n\tDoubling(int n) {\n\t\tvi v(n);\n\t\t\
-    REP(i, n) v[i] = i;\n\t\tinit(v);\n\t}\n\n\t/// @brief \u5199\u50CF\u3092\u6307\
-    \u5B9A\u3057\u3066\u521D\u671F\u5316\n\t/// @param v \u30C0\u30D6\u30EA\u30F3\u30B0\
-    \u306E\u5199\u50CF\n\tDoubling(const vi& v) {\n\t\tinit(v);\n\t}\n\n\tvoid init(const\
-    \ vi& v) {\n\t\tN = SZ(v);\n\t\tREP(i, N) {\n\t\t\tassert(v[i] >= 0 && v[i] <\
-    \ N);\n\t\t}\n\t\tV.push_back(vi(N));\n\t\tREP(i, N) V[0][i] = v[i];\n\t}\n\t\
-    /// @brief \u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u30E2\u30CE\u30A4\u30C9\u3092\u8F09\
-    \u305B\u308B\n\t/// @param _s _s[i]\u306Fi\u304B\u3089\u5EF6\u3073\u308B\u8FBA\
-    \u306B\u5BFE\u5FDC\u3059\u308B\u30E2\u30CE\u30A4\u30C9\n\t/// @param _op \u30E2\
-    \u30CE\u30A4\u30C9\u306E\u6F14\u7B97\n\t/// @param _e \u30E2\u30CE\u30A4\u30C9\
-    \u306E\u5358\u4F4D\u5143\n\tvoid setMonoid(const vector<T>& _s,\n\t\t\t\t   const\
-    \ function<T(T, T)>& _op,\n\t\t\t\t   const function<T()>& _e) {\n\t\tassert(SZ(_s)\
-    \ == N);\n\t\thasMonoid = true;\n\t\top = _op;\n\t\te = _e;\n\t\ts = _s;\n\t\t\
-    S.clear();\n\t\tS.push_back(vector<T>(N));\n\t\tREP(i, N) S[0][i] = s[i];\n\t\
-    }\n\n\t/// @brief x\u3092L\u56DE\u5199\u50CF\u3057\u305F\u6642\u306E\u5024\u3092\
-    \u6C42\u3081\u308B\n\t/// @param L \u5199\u50CF\u306E\u7E70\u308A\u8FD4\u3057\u56DE\
-    \u6570\n\t/// @param x \u5199\u50CF\u306E\u521D\u671F\u5024\n\t/// @return x\u3092\
-    L\u56DE\u5199\u50CF\u3057\u305F\u6642\u306E\u5024\n\tint get(ll L, int x) {\n\t\
-    \tint ret = x;\n\t\tfor(int i = 0; L > 0ll; i++) {\n\t\t\tif(i >= SZ(V)) build_next();\n\
-    \t\t\tif(L & 1ll) ret = V[i][ret];\n\t\t\tL >>= 1ll;\n\t\t}\n\t\treturn ret;\n\
-    \t}\n\n\t/// @brief L\u56DE\u306E\u5199\u50CF\u3067\u305F\u3069\u3063\u305F\u8FBA\
-    \u306B\u5BFE\u5FDC\u3059\u308B\u30E2\u30CE\u30A4\u30C9\u306E\u7DCF\u7A4D\u3092\
-    \u6C42\u3081\u308B\n\t/// @param L \u5199\u50CF\u306E\u7E70\u308A\u8FD4\u3057\u56DE\
-    \u6570\n\t/// @param x \u5199\u50CF\u306E\u521D\u671F\u5024\n\t/// @return L\u56DE\
-    \u306E\u5199\u50CF\u3067\u305F\u3069\u3063\u305F\u8FBA\u306B\u5BFE\u5FDC\u3059\
-    \u308B\u30E2\u30CE\u30A4\u30C9\u7A4D\n\tT prod(ll L, int x) {\n\t\tassert(hasMonoid);\n\
-    \t\tint cur = x;\n\t\tT ret = e();\n\t\tfor(int i = 0; L > 0ll; i++) {\n\t\t\t\
-    if(i >= SZ(V)) build_next();\n\t\t\tif(L & 1ll) {\n\t\t\t\tret = op(ret, S[i][cur]);\n\
-    \t\t\t\tcur = V[i][cur];\n\t\t\t}\n\t\t\tL >>= 1ll;\n\t\t}\n\t\treturn ret;\n\t\
-    }\n};"
+  code: "#include \"./base.hpp\"\n/// @brief \u30C0\u30D6\u30EA\u30F3\u30B0\n/// @tparam\
+    \ T \u30E2\u30CE\u30A4\u30C9\u306E\u578B\ntemplate<class T = ll>\nstruct Doubling\
+    \ {\nprivate:\n\tint N;\n\tvvi V;\n\tvector<vector<T>> S;\n\tvector<T> s;\n\t\
+    function<T(T, T)> op;\n\tfunction<T()> e;\n\tbool hasMonoid = false;\n\n\tinline\
+    \ void build_next() {\n\t\tint n = SZ(V);\n\t\tV.push_back(vi(N));\n\t\tif(hasMonoid)\
+    \ S.push_back(vector<T>(N));\n\t\tREP(i, N) {\n\t\t\tV[n][i] = V[n - 1][V[n -\
+    \ 1][i]];\n\t\t\tif(hasMonoid)\n\t\t\t\tS[n][i] = op(S[n - 1][i],\n\t\t\t\t\t\t\
+    \t S[n - 1][V[n - 1][i]]);\n\t\t}\n\t}\n\npublic:\n\tDoubling() {\n\t}\n\n\t///\
+    \ @brief \u30B5\u30A4\u30BAn\u306E\u6052\u7B49\u5199\u50CF\u3067\u521D\u671F\u5316\
+    \n\t/// @param n \u30C0\u30D6\u30EA\u30F3\u30B0\u306E\u30B5\u30A4\u30BA\n\tDoubling(int\
+    \ n) {\n\t\tvi v(n);\n\t\tREP(i, n) v[i] = i;\n\t\tinit(v);\n\t}\n\n\t/// @brief\
+    \ \u5199\u50CF\u3092\u6307\u5B9A\u3057\u3066\u521D\u671F\u5316\n\t/// @param v\
+    \ \u30C0\u30D6\u30EA\u30F3\u30B0\u306E\u5199\u50CF\n\tDoubling(const vi& v) {\n\
+    \t\tinit(v);\n\t}\n\n\tvoid init(const vi& v) {\n\t\tN = SZ(v);\n\t\tREP(i, N)\
+    \ {\n\t\t\tassert(v[i] >= 0 && v[i] < N);\n\t\t}\n\t\tV.push_back(vi(N));\n\t\t\
+    REP(i, N) V[0][i] = v[i];\n\t}\n\t/// @brief \u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
+    \u30E2\u30CE\u30A4\u30C9\u3092\u8F09\u305B\u308B\n\t/// @param _s _s[i]\u306F\
+    i\u304B\u3089\u5EF6\u3073\u308B\u8FBA\u306B\u5BFE\u5FDC\u3059\u308B\u30E2\u30CE\
+    \u30A4\u30C9\n\t/// @param _op \u30E2\u30CE\u30A4\u30C9\u306E\u6F14\u7B97\n\t\
+    /// @param _e \u30E2\u30CE\u30A4\u30C9\u306E\u5358\u4F4D\u5143\n\tvoid setMonoid(const\
+    \ vector<T>& _s,\n\t\t\t\t   const function<T(T, T)>& _op,\n\t\t\t\t   const function<T()>&\
+    \ _e) {\n\t\tassert(SZ(_s) == N);\n\t\thasMonoid = true;\n\t\top = _op;\n\t\t\
+    e = _e;\n\t\ts = _s;\n\t\tS.clear();\n\t\tS.push_back(vector<T>(N));\n\t\tREP(i,\
+    \ N) S[0][i] = s[i];\n\t}\n\n\t/// @brief x\u3092L\u56DE\u5199\u50CF\u3057\u305F\
+    \u6642\u306E\u5024\u3092\u6C42\u3081\u308B\n\t/// @param L \u5199\u50CF\u306E\u7E70\
+    \u308A\u8FD4\u3057\u56DE\u6570\n\t/// @param x \u5199\u50CF\u306E\u521D\u671F\u5024\
+    \n\t/// @return x\u3092L\u56DE\u5199\u50CF\u3057\u305F\u6642\u306E\u5024\n\tint\
+    \ get(ll L, int x) {\n\t\tint ret = x;\n\t\tfor(int i = 0; L > 0ll; i++) {\n\t\
+    \t\tif(i >= SZ(V)) build_next();\n\t\t\tif(L & 1ll) ret = V[i][ret];\n\t\t\tL\
+    \ >>= 1ll;\n\t\t}\n\t\treturn ret;\n\t}\n\n\t/// @brief L\u56DE\u306E\u5199\u50CF\
+    \u3067\u305F\u3069\u3063\u305F\u8FBA\u306B\u5BFE\u5FDC\u3059\u308B\u30E2\u30CE\
+    \u30A4\u30C9\u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n\t/// @param L \u5199\u50CF\
+    \u306E\u7E70\u308A\u8FD4\u3057\u56DE\u6570\n\t/// @param x \u5199\u50CF\u306E\u521D\
+    \u671F\u5024\n\t/// @return L\u56DE\u306E\u5199\u50CF\u3067\u305F\u3069\u3063\u305F\
+    \u8FBA\u306B\u5BFE\u5FDC\u3059\u308B\u30E2\u30CE\u30A4\u30C9\u7A4D\n\tT prod(ll\
+    \ L, int x) {\n\t\tassert(hasMonoid);\n\t\tint cur = x;\n\t\tT ret = e();\n\t\t\
+    for(int i = 0; L > 0ll; i++) {\n\t\t\tif(i >= SZ(V)) build_next();\n\t\t\tif(L\
+    \ & 1ll) {\n\t\t\t\tret = op(ret, S[i][cur]);\n\t\t\t\tcur = V[i][cur];\n\t\t\t\
+    }\n\t\t\tL >>= 1ll;\n\t\t}\n\t\treturn ret;\n\t}\n};"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: doubling.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: doubling.hpp
@@ -130,5 +131,5 @@ layout: document
 redirect_from:
 - /library/doubling.hpp
 - /library/doubling.hpp.html
-title: "\u30B5\u30A4\u30BAn\u306E\u6052\u7B49\u5199\u50CF\u3067\u521D\u671F\u5316"
+title: "\u30C0\u30D6\u30EA\u30F3\u30B0"
 ---

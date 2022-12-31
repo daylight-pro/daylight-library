@@ -10,8 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u521D\u671F\u5316\u3002\u57FA\u5E95\u306E\u9078\u5B9A\u3092\u884C\
-      \u3046"
+    document_title: "\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -41,62 +40,63 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"string/rolling_hash.hpp\"\
-    \nstruct RollingHash {\nprivate:\n\tstatic const uint64_t mod = (1ull << 61ull)\
-    \ - 1;\n\tusing uint128_t = __uint128_t;\n\tuint64_t base1, base2;\n\tvector<uint64_t>\
-    \ pow1, pow2;\n\n\t// \u5FC5\u8981\u5206\u306Epow\u914D\u5217\u3092\u8FFD\u52A0\
-    \u3067\u6C42\u3081\u308B\u3002\n\tinline void expand(int sz) {\n\t\tint pre_sz\
-    \ = SZ(pow1);\n\t\tif(pre_sz < sz + 1) {\n\t\t\tfor(int i = pre_sz - 1; i < sz;\
-    \ i++) {\n\t\t\t\tpow1.push_back(mul(pow1[i], base1));\n\t\t\t\tpow2.push_back(mul(pow2[i],\
-    \ base2));\n\t\t\t}\n\t\t}\n\t}\n\tstatic inline uint64_t add(uint64_t a, uint64_t\
-    \ b) {\n\t\tif((a += b) >= mod) a -= mod;\n\t\treturn a;\n\t}\n\n\tstatic inline\
-    \ uint64_t mul(uint64_t a, uint64_t b) {\n\t\tuint128_t c = (uint128_t) a * b;\n\
-    \t\treturn add(c >> 61, c & mod);\n\t}\n\npublic:\n\t/// @brief \u521D\u671F\u5316\
-    \u3002\u57FA\u5E95\u306E\u9078\u5B9A\u3092\u884C\u3046\n\tRollingHash() {\n\t\t\
-    mt19937_64 mt(chrono::steady_clock::now()\n\t\t\t\t\t\t  .time_since_epoch()\n\
-    \t\t\t\t\t\t  .count());\n\t\tuniform_int_distribution<uint64_t> rand(\n\t\t\t\
-    1e9, RollingHash::mod - 1);\n\t\tbase1 = rand(mt);\n\t\tbase2 = rand(mt);\n\t\t\
-    pow1.push_back(1);\n\t\tpow2.push_back(1);\n\t}\n\n\t/// @brief \u4E0E\u3048\u3089\
-    \u308C\u305F\u6587\u5B57\u5217\u306B\u3064\u3044\u3066,hash\u5024\u3092\u8A08\u7B97\
-    \u3059\u308B\n\t/// @param s hash\u5024\u3092\u6C42\u3081\u308B\u6587\u5B57\u5217\
-    \n\t/// @return \u8A08\u7B97\u3055\u308C\u305F2\u901A\u308A\u306Ehash\u5024\n\t\
-    pair<vector<uint64_t>, vector<uint64_t>> build(\n\t\tconst string& s) {\n\t\t\
-    expand(SZ(s) + 1);\n\t\tvector<uint64_t> hash1\n\t\t\t= vector<uint64_t>(SZ(s)\
-    \ + 1);\n\t\tvector<uint64_t> hash2\n\t\t\t= vector<uint64_t>(SZ(s) + 1);\n\t\t\
-    REP(i, SZ(s)) {\n\t\t\thash1[i + 1] = add(mul(hash1[i], base1), s[i]);\n\t\t\t\
-    hash2[i + 1] = add(mul(hash2[i], base2), s[i]);\n\t\t}\n\t\treturn { hash1, hash2\
-    \ };\n\t}\n\n\t/// @brief \u4E0E\u3048\u3089\u308C\u305Fvector\u306B\u3064\u3044\
-    \u3066hash\u5024\u3092\u6C42\u3081\u308B\n\t/// @tparam T vector\u306E\u8981\u7D20\
-    \u306E\u578B\n\t/// @param s hash\u5024\u3092\u6C42\u3081\u308Bvector\n\t/// @return\
-    \ \u8A08\u7B97\u3055\u308C\u305F2\u901A\u308A\u306Ehash\u5024\n\ttemplate<typename\
-    \ T>\n\tpair<vector<uint64_t>, vector<uint64_t>> build(\n\t\tconst vector<T>&\
-    \ s) {\n\t\texpand(SZ(s) + 1);\n\t\tvector<uint64_t> hash1\n\t\t\t= vector<uint64_t>(SZ(s)\
-    \ + 1);\n\t\tvector<uint64_t> hash2\n\t\t\t= vector<uint64_t>(SZ(s) + 1);\n\t\t\
-    REP(i, SZ(s)) {\n\t\t\thash1[i + 1] = add(mul(hash1[i], base1), s[i]);\n\t\t\t\
-    hash2[i + 1] = add(mul(hash2[i], base2), s[i]);\n\t\t}\n\t\treturn { hash1, hash2\
-    \ };\n\t}\n\n\t/// @brief build\u95A2\u6570\u3067\u8A08\u7B97\u3055\u308C\u305F\
-    hash\u5024\u3092\u3082\u3068\u306Bbegin\u6587\u5B57\u76EE\u304B\u3089length\u6587\
-    \u5B57\u306Ehash\u5024\u3092\u6C42\u3081\u308B\n\t/// @param hash build\u95A2\u6570\
-    \u306E\u7D50\u679C\n\t/// @param begin \u6587\u5B57\u5217\u306E\u521D\u671F\u4F4D\
-    \u7F6E(0-indexed)\n\t/// @param length \u6587\u5B57\u5217\u306E\u9577\u3055\n\t\
-    /// @return 2\u901A\u308A\u306Ehash\u5024\n\tpair<uint64_t, uint64_t> query(\n\
-    \t\tconst pair<vector<uint64_t>, vector<uint64_t>>&\n\t\t\thash,\n\t\tint begin,\
-    \ int length) {\n\t\tassert(begin + length <= SZ(hash.first));\n\t\tassert(begin\
-    \ >= 0);\n\t\tassert(length > 0);\n\t\texpand(length);\n\t\treturn {\n\t\t\tadd(hash.first[begin\
-    \ + length],\n\t\t\t\tmod - mul(hash.first[begin], pow1[length])),\n\t\t\tadd(hash.second[begin\
-    \ + length],\n\t\t\t\tmod - mul(hash.second[begin], pow2[length]))\n\t\t};\n\t\
-    }\n};\n"
-  code: "#include \"../base.hpp\"\nstruct RollingHash {\nprivate:\n\tstatic const\
-    \ uint64_t mod = (1ull << 61ull) - 1;\n\tusing uint128_t = __uint128_t;\n\tuint64_t\
-    \ base1, base2;\n\tvector<uint64_t> pow1, pow2;\n\n\t// \u5FC5\u8981\u5206\u306E\
-    pow\u914D\u5217\u3092\u8FFD\u52A0\u3067\u6C42\u3081\u308B\u3002\n\tinline void\
-    \ expand(int sz) {\n\t\tint pre_sz = SZ(pow1);\n\t\tif(pre_sz < sz + 1) {\n\t\t\
-    \tfor(int i = pre_sz - 1; i < sz; i++) {\n\t\t\t\tpow1.push_back(mul(pow1[i],\
-    \ base1));\n\t\t\t\tpow2.push_back(mul(pow2[i], base2));\n\t\t\t}\n\t\t}\n\t}\n\
-    \tstatic inline uint64_t add(uint64_t a, uint64_t b) {\n\t\tif((a += b) >= mod)\
-    \ a -= mod;\n\t\treturn a;\n\t}\n\n\tstatic inline uint64_t mul(uint64_t a, uint64_t\
-    \ b) {\n\t\tuint128_t c = (uint128_t) a * b;\n\t\treturn add(c >> 61, c & mod);\n\
-    \t}\n\npublic:\n\t/// @brief \u521D\u671F\u5316\u3002\u57FA\u5E95\u306E\u9078\u5B9A\
-    \u3092\u884C\u3046\n\tRollingHash() {\n\t\tmt19937_64 mt(chrono::steady_clock::now()\n\
+    \n/// @brief \u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5\nstruct RollingHash\
+    \ {\nprivate:\n\tstatic const uint64_t mod = (1ull << 61ull) - 1;\n\tusing uint128_t\
+    \ = __uint128_t;\n\tuint64_t base1, base2;\n\tvector<uint64_t> pow1, pow2;\n\n\
+    \t// \u5FC5\u8981\u5206\u306Epow\u914D\u5217\u3092\u8FFD\u52A0\u3067\u6C42\u3081\
+    \u308B\u3002\n\tinline void expand(int sz) {\n\t\tint pre_sz = SZ(pow1);\n\t\t\
+    if(pre_sz < sz + 1) {\n\t\t\tfor(int i = pre_sz - 1; i < sz; i++) {\n\t\t\t\t\
+    pow1.push_back(mul(pow1[i], base1));\n\t\t\t\tpow2.push_back(mul(pow2[i], base2));\n\
+    \t\t\t}\n\t\t}\n\t}\n\tstatic inline uint64_t add(uint64_t a, uint64_t b) {\n\t\
+    \tif((a += b) >= mod) a -= mod;\n\t\treturn a;\n\t}\n\n\tstatic inline uint64_t\
+    \ mul(uint64_t a, uint64_t b) {\n\t\tuint128_t c = (uint128_t) a * b;\n\t\treturn\
+    \ add(c >> 61, c & mod);\n\t}\n\npublic:\n\t/// @brief \u521D\u671F\u5316\u3002\
+    \u57FA\u5E95\u306E\u9078\u5B9A\u3092\u884C\u3046\n\tRollingHash() {\n\t\tmt19937_64\
+    \ mt(chrono::steady_clock::now()\n\t\t\t\t\t\t  .time_since_epoch()\n\t\t\t\t\t\
+    \t  .count());\n\t\tuniform_int_distribution<uint64_t> rand(\n\t\t\t1e9, RollingHash::mod\
+    \ - 1);\n\t\tbase1 = rand(mt);\n\t\tbase2 = rand(mt);\n\t\tpow1.push_back(1);\n\
+    \t\tpow2.push_back(1);\n\t}\n\n\t/// @brief \u4E0E\u3048\u3089\u308C\u305F\u6587\
+    \u5B57\u5217\u306B\u3064\u3044\u3066,hash\u5024\u3092\u8A08\u7B97\u3059\u308B\n\
+    \t/// @param s hash\u5024\u3092\u6C42\u3081\u308B\u6587\u5B57\u5217\n\t/// @return\
+    \ \u8A08\u7B97\u3055\u308C\u305F2\u901A\u308A\u306Ehash\u5024\n\tpair<vector<uint64_t>,\
+    \ vector<uint64_t>> build(\n\t\tconst string& s) {\n\t\texpand(SZ(s) + 1);\n\t\
+    \tvector<uint64_t> hash1\n\t\t\t= vector<uint64_t>(SZ(s) + 1);\n\t\tvector<uint64_t>\
+    \ hash2\n\t\t\t= vector<uint64_t>(SZ(s) + 1);\n\t\tREP(i, SZ(s)) {\n\t\t\thash1[i\
+    \ + 1] = add(mul(hash1[i], base1), s[i]);\n\t\t\thash2[i + 1] = add(mul(hash2[i],\
+    \ base2), s[i]);\n\t\t}\n\t\treturn { hash1, hash2 };\n\t}\n\n\t/// @brief \u4E0E\
+    \u3048\u3089\u308C\u305Fvector\u306B\u3064\u3044\u3066hash\u5024\u3092\u6C42\u3081\
+    \u308B\n\t/// @tparam T vector\u306E\u8981\u7D20\u306E\u578B\n\t/// @param s hash\u5024\
+    \u3092\u6C42\u3081\u308Bvector\n\t/// @return \u8A08\u7B97\u3055\u308C\u305F2\u901A\
+    \u308A\u306Ehash\u5024\n\ttemplate<typename T>\n\tpair<vector<uint64_t>, vector<uint64_t>>\
+    \ build(\n\t\tconst vector<T>& s) {\n\t\texpand(SZ(s) + 1);\n\t\tvector<uint64_t>\
+    \ hash1\n\t\t\t= vector<uint64_t>(SZ(s) + 1);\n\t\tvector<uint64_t> hash2\n\t\t\
+    \t= vector<uint64_t>(SZ(s) + 1);\n\t\tREP(i, SZ(s)) {\n\t\t\thash1[i + 1] = add(mul(hash1[i],\
+    \ base1), s[i]);\n\t\t\thash2[i + 1] = add(mul(hash2[i], base2), s[i]);\n\t\t\
+    }\n\t\treturn { hash1, hash2 };\n\t}\n\n\t/// @brief build\u95A2\u6570\u3067\u8A08\
+    \u7B97\u3055\u308C\u305Fhash\u5024\u3092\u3082\u3068\u306Bbegin\u6587\u5B57\u76EE\
+    \u304B\u3089length\u6587\u5B57\u306Ehash\u5024\u3092\u6C42\u3081\u308B\n\t///\
+    \ @param hash build\u95A2\u6570\u306E\u7D50\u679C\n\t/// @param begin \u6587\u5B57\
+    \u5217\u306E\u521D\u671F\u4F4D\u7F6E(0-indexed)\n\t/// @param length \u6587\u5B57\
+    \u5217\u306E\u9577\u3055\n\t/// @return 2\u901A\u308A\u306Ehash\u5024\n\tpair<uint64_t,\
+    \ uint64_t> query(\n\t\tconst pair<vector<uint64_t>, vector<uint64_t>>&\n\t\t\t\
+    hash,\n\t\tint begin, int length) {\n\t\tassert(begin + length <= SZ(hash.first));\n\
+    \t\tassert(begin >= 0);\n\t\tassert(length > 0);\n\t\texpand(length);\n\t\treturn\
+    \ {\n\t\t\tadd(hash.first[begin + length],\n\t\t\t\tmod - mul(hash.first[begin],\
+    \ pow1[length])),\n\t\t\tadd(hash.second[begin + length],\n\t\t\t\tmod - mul(hash.second[begin],\
+    \ pow2[length]))\n\t\t};\n\t}\n};\n"
+  code: "#include \"../base.hpp\"\n/// @brief \u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\
+    \u30C3\u30B7\u30E5\nstruct RollingHash {\nprivate:\n\tstatic const uint64_t mod\
+    \ = (1ull << 61ull) - 1;\n\tusing uint128_t = __uint128_t;\n\tuint64_t base1,\
+    \ base2;\n\tvector<uint64_t> pow1, pow2;\n\n\t// \u5FC5\u8981\u5206\u306Epow\u914D\
+    \u5217\u3092\u8FFD\u52A0\u3067\u6C42\u3081\u308B\u3002\n\tinline void expand(int\
+    \ sz) {\n\t\tint pre_sz = SZ(pow1);\n\t\tif(pre_sz < sz + 1) {\n\t\t\tfor(int\
+    \ i = pre_sz - 1; i < sz; i++) {\n\t\t\t\tpow1.push_back(mul(pow1[i], base1));\n\
+    \t\t\t\tpow2.push_back(mul(pow2[i], base2));\n\t\t\t}\n\t\t}\n\t}\n\tstatic inline\
+    \ uint64_t add(uint64_t a, uint64_t b) {\n\t\tif((a += b) >= mod) a -= mod;\n\t\
+    \treturn a;\n\t}\n\n\tstatic inline uint64_t mul(uint64_t a, uint64_t b) {\n\t\
+    \tuint128_t c = (uint128_t) a * b;\n\t\treturn add(c >> 61, c & mod);\n\t}\n\n\
+    public:\n\t/// @brief \u521D\u671F\u5316\u3002\u57FA\u5E95\u306E\u9078\u5B9A\u3092\
+    \u884C\u3046\n\tRollingHash() {\n\t\tmt19937_64 mt(chrono::steady_clock::now()\n\
     \t\t\t\t\t\t  .time_since_epoch()\n\t\t\t\t\t\t  .count());\n\t\tuniform_int_distribution<uint64_t>\
     \ rand(\n\t\t\t1e9, RollingHash::mod - 1);\n\t\tbase1 = rand(mt);\n\t\tbase2 =\
     \ rand(mt);\n\t\tpow1.push_back(1);\n\t\tpow2.push_back(1);\n\t}\n\n\t/// @brief\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/rolling_hash.hpp
@@ -142,5 +142,5 @@ layout: document
 redirect_from:
 - /library/string/rolling_hash.hpp
 - /library/string/rolling_hash.hpp.html
-title: "\u521D\u671F\u5316\u3002\u57FA\u5E95\u306E\u9078\u5B9A\u3092\u884C\u3046"
+title: "\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5"
 ---

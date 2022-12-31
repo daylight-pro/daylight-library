@@ -16,6 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: LCA
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -49,11 +50,11 @@ data:
     \tEdge() {\n\t}\n\tEdge(int _from, int _to, T _cost) {\n\t\tfrom = _from;\n\t\t\
     to = _to;\n\t\tcost = _cost;\n\t}\n};\ntemplate<class T = ll>\nusing Edges = vector<Edge<T>>;\n\
     template<class T = ll>\nusing Graph = vector<Edges<T>>;\n#line 3 \"graph/lca.hpp\"\
-    \nstruct LCA {\nprivate:\n\tvvi parent;\n\tvi dis;\n\tvoid dfs(int cur, int pre,\
-    \ const Graph<>& G, int d) {\n\t\tparent[0][cur] = pre;\n\t\tdis[cur] = d;\n\t\
-    \tfor(auto e: G[cur]) {\n\t\t\tif(e.to == pre) continue;\n\t\t\tdfs(e.to, cur,\
-    \ G, d + e.cost);\n\t\t}\n\t}\n\npublic:\n\tLCA(const Graph<>& G) {\n\t\tint N\
-    \ = SZ(G);\n\t\tint K = 1;\n\t\twhile((1 << K) < N) K++;\n\t\tparent = vvi(K,\
+    \n/// @brief LCA\nstruct LCA {\nprivate:\n\tvvi parent;\n\tvi dis;\n\tvoid dfs(int\
+    \ cur, int pre, const Graph<>& G, int d) {\n\t\tparent[0][cur] = pre;\n\t\tdis[cur]\
+    \ = d;\n\t\tfor(auto e: G[cur]) {\n\t\t\tif(e.to == pre) continue;\n\t\t\tdfs(e.to,\
+    \ cur, G, d + e.cost);\n\t\t}\n\t}\n\npublic:\n\tLCA(const Graph<>& G) {\n\t\t\
+    int N = SZ(G);\n\t\tint K = 1;\n\t\twhile((1 << K) < N) K++;\n\t\tparent = vvi(K,\
     \ vi(N, -1));\n\t\tdis = vi(N, -1);\n\t\tdfs(0, -1, G, 0);\n\t\tREP(i, K - 1)\
     \ {\n\t\t\tREP(j, N) {\n\t\t\t\tif(parent[i][j] < 0) {\n\t\t\t\t\tparent[i + 1][j]\
     \ = -1;\n\t\t\t\t} else {\n\t\t\t\t\tparent[i + 1][j]\n\t\t\t\t\t\t= parent[i][parent[i][j]];\n\
@@ -68,26 +69,26 @@ data:
     \ get_dis(int u, int v) {\n\t\tassert(u >= 0 && v >= 0 && u < SZ(dis)\n\t\t\t\
     \   && v < SZ(dis) && \"invalid vertex index\");\n\t\treturn dis[u] + dis[v] -\
     \ 2 * dis[query(u, v)];\n\t}\n};\n"
-  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\nstruct LCA {\nprivate:\n\
-    \tvvi parent;\n\tvi dis;\n\tvoid dfs(int cur, int pre, const Graph<>& G, int d)\
-    \ {\n\t\tparent[0][cur] = pre;\n\t\tdis[cur] = d;\n\t\tfor(auto e: G[cur]) {\n\
-    \t\t\tif(e.to == pre) continue;\n\t\t\tdfs(e.to, cur, G, d + e.cost);\n\t\t}\n\
-    \t}\n\npublic:\n\tLCA(const Graph<>& G) {\n\t\tint N = SZ(G);\n\t\tint K = 1;\n\
-    \t\twhile((1 << K) < N) K++;\n\t\tparent = vvi(K, vi(N, -1));\n\t\tdis = vi(N,\
-    \ -1);\n\t\tdfs(0, -1, G, 0);\n\t\tREP(i, K - 1) {\n\t\t\tREP(j, N) {\n\t\t\t\t\
-    if(parent[i][j] < 0) {\n\t\t\t\t\tparent[i + 1][j] = -1;\n\t\t\t\t} else {\n\t\
-    \t\t\t\tparent[i + 1][j]\n\t\t\t\t\t\t= parent[i][parent[i][j]];\n\t\t\t\t}\n\t\
-    \t\t}\n\t\t}\n\t}\n\tint query(int u, int v, int root) {\n\t\treturn query(u,\
-    \ v) ^ query(v, root)\n\t\t\t^ query(u, root);\n\t}\n\tint query(int u, int v)\
-    \ {\n\t\tassert(u >= 0 && v >= 0 && u < SZ(dis)\n\t\t\t   && v < SZ(dis) && \"\
-    invalid vertex index\");\n\t\tif(dis[u] < dis[v]) swap(u, v);\n\t\tint K = SZ(parent);\n\
-    \t\tREP(i, K) {\n\t\t\tif((dis[u] - dis[v]) >> i & 1) {\n\t\t\t\tu = parent[i][u];\n\
-    \t\t\t}\n\t\t}\n\t\tif(u == v) return u;\n\t\tREPR(i, K) {\n\t\t\tif(parent[i][u]\
-    \ != parent[i][v]) {\n\t\t\t\tu = parent[i][u];\n\t\t\t\tv = parent[i][v];\n\t\
-    \t\t}\n\t\t}\n\t\treturn parent[0][u];\n\t}\n\n\tint get_dis(int u, int v) {\n\
-    \t\tassert(u >= 0 && v >= 0 && u < SZ(dis)\n\t\t\t   && v < SZ(dis) && \"invalid\
-    \ vertex index\");\n\t\treturn dis[u] + dis[v] - 2 * dis[query(u, v)];\n\t}\n\
-    };"
+  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief LCA\nstruct\
+    \ LCA {\nprivate:\n\tvvi parent;\n\tvi dis;\n\tvoid dfs(int cur, int pre, const\
+    \ Graph<>& G, int d) {\n\t\tparent[0][cur] = pre;\n\t\tdis[cur] = d;\n\t\tfor(auto\
+    \ e: G[cur]) {\n\t\t\tif(e.to == pre) continue;\n\t\t\tdfs(e.to, cur, G, d + e.cost);\n\
+    \t\t}\n\t}\n\npublic:\n\tLCA(const Graph<>& G) {\n\t\tint N = SZ(G);\n\t\tint\
+    \ K = 1;\n\t\twhile((1 << K) < N) K++;\n\t\tparent = vvi(K, vi(N, -1));\n\t\t\
+    dis = vi(N, -1);\n\t\tdfs(0, -1, G, 0);\n\t\tREP(i, K - 1) {\n\t\t\tREP(j, N)\
+    \ {\n\t\t\t\tif(parent[i][j] < 0) {\n\t\t\t\t\tparent[i + 1][j] = -1;\n\t\t\t\t\
+    } else {\n\t\t\t\t\tparent[i + 1][j]\n\t\t\t\t\t\t= parent[i][parent[i][j]];\n\
+    \t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tint query(int u, int v, int root) {\n\t\treturn\
+    \ query(u, v) ^ query(v, root)\n\t\t\t^ query(u, root);\n\t}\n\tint query(int\
+    \ u, int v) {\n\t\tassert(u >= 0 && v >= 0 && u < SZ(dis)\n\t\t\t   && v < SZ(dis)\
+    \ && \"invalid vertex index\");\n\t\tif(dis[u] < dis[v]) swap(u, v);\n\t\tint\
+    \ K = SZ(parent);\n\t\tREP(i, K) {\n\t\t\tif((dis[u] - dis[v]) >> i & 1) {\n\t\
+    \t\t\tu = parent[i][u];\n\t\t\t}\n\t\t}\n\t\tif(u == v) return u;\n\t\tREPR(i,\
+    \ K) {\n\t\t\tif(parent[i][u] != parent[i][v]) {\n\t\t\t\tu = parent[i][u];\n\t\
+    \t\t\tv = parent[i][v];\n\t\t\t}\n\t\t}\n\t\treturn parent[0][u];\n\t}\n\n\tint\
+    \ get_dis(int u, int v) {\n\t\tassert(u >= 0 && v >= 0 && u < SZ(dis)\n\t\t\t\
+    \   && v < SZ(dis) && \"invalid vertex index\");\n\t\treturn dis[u] + dis[v] -\
+    \ 2 * dis[query(u, v)];\n\t}\n};"
   dependsOn:
   - base.hpp
   - graph/base.hpp
@@ -95,7 +96,7 @@ data:
   path: graph/lca.hpp
   requiredBy:
   - graph/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/lca.hpp
@@ -103,5 +104,5 @@ layout: document
 redirect_from:
 - /library/graph/lca.hpp
 - /library/graph/lca.hpp.html
-title: graph/lca.hpp
+title: LCA
 ---

@@ -13,8 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u5168\u70B9\u5BFE\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\
-      \u89E3\u304F"
+    document_title: "\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -44,25 +43,27 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"graph/floyd.hpp\"\
-    \n/// @brief \u5168\u70B9\u5BFE\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\
-    \u89E3\u304F\n/// @param n \u9802\u70B9\u6570\n/// @param WF \u96A3\u63A5\u884C\
-    \u5217(out:\u6700\u77ED\u7D4C\u8DEF\u9577)\nvoid floyd(int n, vector<vll>& WF)\
-    \ {\n\tREP(k, n)\n\tREP(i, n) {\n\t\tif(WF[i][k] == LINF) continue;\n\t\tREP(j,\
-    \ n) {\n\t\t\tif(WF[k][j] == LINF) continue;\n\t\t\tchmin(WF[i][j], WF[i][k] +\
-    \ WF[k][j]);\n\t\t}\n\t}\n}\n"
-  code: "#include \"../base.hpp\"\n/// @brief \u5168\u70B9\u5BFE\u6700\u77ED\u7D4C\
-    \u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F\n/// @param n \u9802\u70B9\u6570\n\
-    /// @param WF \u96A3\u63A5\u884C\u5217(out:\u6700\u77ED\u7D4C\u8DEF\u9577)\nvoid\
-    \ floyd(int n, vector<vll>& WF) {\n\tREP(k, n)\n\tREP(i, n) {\n\t\tif(WF[i][k]\
-    \ == LINF) continue;\n\t\tREP(j, n) {\n\t\t\tif(WF[k][j] == LINF) continue;\n\t\
-    \t\tchmin(WF[i][j], WF[i][k] + WF[k][j]);\n\t\t}\n\t}\n}"
+    \n/// @brief \u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\n\n\
+    /// @brief \u5168\u70B9\u5BFE\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\
+    \u304F\n/// @param n \u9802\u70B9\u6570\n/// @param WF \u96A3\u63A5\u884C\u5217\
+    (out:\u6700\u77ED\u7D4C\u8DEF\u9577)\nvoid floyd(int n, vector<vll>& WF) {\n\t\
+    REP(k, n)\n\tREP(i, n) {\n\t\tif(WF[i][k] == LINF) continue;\n\t\tREP(j, n) {\n\
+    \t\t\tif(WF[k][j] == LINF) continue;\n\t\t\tchmin(WF[i][j], WF[i][k] + WF[k][j]);\n\
+    \t\t}\n\t}\n}\n"
+  code: "#include \"../base.hpp\"\n/// @brief \u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\
+    \u30ED\u30A4\u30C9\u6CD5\n\n/// @brief \u5168\u70B9\u5BFE\u6700\u77ED\u7D4C\u8DEF\
+    \u9577\u554F\u984C\u3092\u89E3\u304F\n/// @param n \u9802\u70B9\u6570\n/// @param\
+    \ WF \u96A3\u63A5\u884C\u5217(out:\u6700\u77ED\u7D4C\u8DEF\u9577)\nvoid floyd(int\
+    \ n, vector<vll>& WF) {\n\tREP(k, n)\n\tREP(i, n) {\n\t\tif(WF[i][k] == LINF)\
+    \ continue;\n\t\tREP(j, n) {\n\t\t\tif(WF[k][j] == LINF) continue;\n\t\t\tchmin(WF[i][j],\
+    \ WF[i][k] + WF[k][j]);\n\t\t}\n\t}\n}"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: graph/floyd.hpp
   requiredBy:
   - graph/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/floyd.hpp
@@ -70,5 +71,5 @@ layout: document
 redirect_from:
 - /library/graph/floyd.hpp
 - /library/graph/floyd.hpp.html
-title: "\u5168\u70B9\u5BFE\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F"
+title: "\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5"
 ---

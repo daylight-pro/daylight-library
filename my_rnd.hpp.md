@@ -10,8 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\u3064\
-      \u30E9\u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B"
+    document_title: "\u4E71\u6570\u69CB\u9020\u4F53"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -41,47 +40,8 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"my_rnd.hpp\"\n\
-    \nstruct my_rnd {\n\tmt19937_64 randomEngine;\n\tmy_rnd() {\n\t\trandom_device\
-    \ randomDevice;\n\t\tvector<uint32_t> randomSeedVector(10);\n\t\tgenerate(randomSeedVector.begin(),\n\
-    \t\t\t\t randomSeedVector.end(), ref(randomDevice));\n\t\tseed_seq randomSeed(randomSeedVector.begin(),\n\
-    \t\t\t\t\t\t\trandomSeedVector.end());\n\t\trandomEngine = mt19937_64(randomSeed);\n\
-    \t}\n\n\t/// @brief 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\
-    \u3064\u30E9\u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param upper\
-    \ \u4E71\u6570\u306E\u4E0A\u9650\u5024(exclusive)\n\t/// @return 0\u4EE5\u4E0A\
-    upper\u672A\u6E80\u306E\u30E9\u30F3\u30C0\u30E0\u306A\u6574\u6570\n\tint nextInt(int\
-    \ upper) {\n\t\tuniform_int_distribution<int> randomIntDistribution(\n\t\t\t0,\
-    \ upper - 1);\n\t\treturn randomIntDistribution(randomEngine);\n\t}\n\n\t/// @brief\
-    \ lower\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\u3064\u30E9\
-    \u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param lower \u4E71\u6570\
-    \u306E\u4E0B\u9650\u5024(inclusive)\n\t/// @param upper \u4E71\u6570\u306E\u4E0A\
-    \u9650\u5024(exclusive)\n\t/// @return lower\u4EE5\u4E0Aupper\u672A\u6E80\u306E\
-    \u30E9\u30F3\u30C0\u30E0\u306A\u6574\u6570\n\tint nextInt(int lower, int upper)\
-    \ {\n\t\tuniform_int_distribution<int> randomIntDistribution(\n\t\t\tlower, upper\
-    \ - 1);\n\t\treturn randomIntDistribution(randomEngine);\n\t}\n\n\t/// @brief\
-    \ 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\u3064\u30E9\u30F3\
-    \u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param upper \u4E71\u6570\u306E\
-    \u4E0A\u9650\u5024(exclusive)\n\t/// @return 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\
-    \u30E9\u30F3\u30C0\u30E0\u306A\u6574\u6570\n\tll nextLong(ll upper) {\n\t\tuniform_int_distribution<ll>\
-    \ randomIntDistribution(\n\t\t\t0, upper - 1);\n\t\treturn randomIntDistribution(randomEngine);\n\
-    \t}\n\n\t/// @brief lower\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\
-    \u4E00\u3064\u30E9\u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param\
-    \ lower \u4E71\u6570\u306E\u4E0B\u9650\u5024(inclusive)\n\t/// @param upper \u4E71\
-    \u6570\u306E\u4E0A\u9650\u5024(exclusive)\n\t/// @return lower\u4EE5\u4E0Aupper\u672A\
-    \u6E80\u306E\u30E9\u30F3\u30C0\u30E0\u306A\u6574\u6570\n\tll nextLong(ll lower,\
-    \ ll upper) {\n\t\tuniform_int_distribution<ll> randomIntDistribution(\n\t\t\t\
-    lower, upper - 1);\n\t\treturn randomIntDistribution(randomEngine);\n\t}\n\n\t\
-    /// @brief 0\u4EE5\u4E0A1\u672A\u6E80\u306E\u5B9F\u6570\u3092\u30E9\u30F3\u30C0\
-    \u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @return 0\u4EE5\u4E0A1\u672A\u6E80\
-    \u306E\u30E9\u30F3\u30C0\u30E0\u306A\u5B9F\u6570\n\tdouble next() {\n\t\tuniform_real_distribution<double>\n\
-    \t\t\trandomDoubleDistribution(0.0, 1.0);\n\t\treturn randomDoubleDistribution(randomEngine);\n\
-    \t}\n\n\t/// @brief 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u5B9F\u6570\u3092\u30E9\
-    \u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param upper \u4E71\u6570\
-    \u306E\u4E0A\u9650\u5024(exclusive)\n\t/// @return 0\u4EE5\u4E0Aupper\u672A\u6E80\
-    \u306E\u30E9\u30F3\u30C0\u30E0\u306A\u5B9F\u6570\n\tdouble nextDouble(double upper)\
-    \ {\n\t\tuniform_real_distribution<double>\n\t\t\trandomDoubleDistribution(0.0,\
-    \ upper);\n\t\treturn randomDoubleDistribution(randomEngine);\n\t}\n};\n"
-  code: "#include \"./base.hpp\"\n\nstruct my_rnd {\n\tmt19937_64 randomEngine;\n\t\
-    my_rnd() {\n\t\trandom_device randomDevice;\n\t\tvector<uint32_t> randomSeedVector(10);\n\
+    \n/// @brief \u4E71\u6570\u69CB\u9020\u4F53\nstruct my_rnd {\n\tmt19937_64 randomEngine;\n\
+    \tmy_rnd() {\n\t\trandom_device randomDevice;\n\t\tvector<uint32_t> randomSeedVector(10);\n\
     \t\tgenerate(randomSeedVector.begin(),\n\t\t\t\t randomSeedVector.end(), ref(randomDevice));\n\
     \t\tseed_seq randomSeed(randomSeedVector.begin(),\n\t\t\t\t\t\t\trandomSeedVector.end());\n\
     \t\trandomEngine = mt19937_64(randomSeed);\n\t}\n\n\t/// @brief 0\u4EE5\u4E0A\
@@ -119,13 +79,53 @@ data:
     \t/// @return 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u30E9\u30F3\u30C0\u30E0\u306A\
     \u5B9F\u6570\n\tdouble nextDouble(double upper) {\n\t\tuniform_real_distribution<double>\n\
     \t\t\trandomDoubleDistribution(0.0, upper);\n\t\treturn randomDoubleDistribution(randomEngine);\n\
-    \t}\n};"
+    \t}\n};\n"
+  code: "#include \"./base.hpp\"\n\n/// @brief \u4E71\u6570\u69CB\u9020\u4F53\nstruct\
+    \ my_rnd {\n\tmt19937_64 randomEngine;\n\tmy_rnd() {\n\t\trandom_device randomDevice;\n\
+    \t\tvector<uint32_t> randomSeedVector(10);\n\t\tgenerate(randomSeedVector.begin(),\n\
+    \t\t\t\t randomSeedVector.end(), ref(randomDevice));\n\t\tseed_seq randomSeed(randomSeedVector.begin(),\n\
+    \t\t\t\t\t\t\trandomSeedVector.end());\n\t\trandomEngine = mt19937_64(randomSeed);\n\
+    \t}\n\n\t/// @brief 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\
+    \u3064\u30E9\u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param upper\
+    \ \u4E71\u6570\u306E\u4E0A\u9650\u5024(exclusive)\n\t/// @return 0\u4EE5\u4E0A\
+    upper\u672A\u6E80\u306E\u30E9\u30F3\u30C0\u30E0\u306A\u6574\u6570\n\tint nextInt(int\
+    \ upper) {\n\t\tuniform_int_distribution<int> randomIntDistribution(\n\t\t\t0,\
+    \ upper - 1);\n\t\treturn randomIntDistribution(randomEngine);\n\t}\n\n\t/// @brief\
+    \ lower\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\u3064\u30E9\
+    \u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param lower \u4E71\u6570\
+    \u306E\u4E0B\u9650\u5024(inclusive)\n\t/// @param upper \u4E71\u6570\u306E\u4E0A\
+    \u9650\u5024(exclusive)\n\t/// @return lower\u4EE5\u4E0Aupper\u672A\u6E80\u306E\
+    \u30E9\u30F3\u30C0\u30E0\u306A\u6574\u6570\n\tint nextInt(int lower, int upper)\
+    \ {\n\t\tuniform_int_distribution<int> randomIntDistribution(\n\t\t\tlower, upper\
+    \ - 1);\n\t\treturn randomIntDistribution(randomEngine);\n\t}\n\n\t/// @brief\
+    \ 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\u3064\u30E9\u30F3\
+    \u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param upper \u4E71\u6570\u306E\
+    \u4E0A\u9650\u5024(exclusive)\n\t/// @return 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\
+    \u30E9\u30F3\u30C0\u30E0\u306A\u6574\u6570\n\tll nextLong(ll upper) {\n\t\tuniform_int_distribution<ll>\
+    \ randomIntDistribution(\n\t\t\t0, upper - 1);\n\t\treturn randomIntDistribution(randomEngine);\n\
+    \t}\n\n\t/// @brief lower\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\
+    \u4E00\u3064\u30E9\u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param\
+    \ lower \u4E71\u6570\u306E\u4E0B\u9650\u5024(inclusive)\n\t/// @param upper \u4E71\
+    \u6570\u306E\u4E0A\u9650\u5024(exclusive)\n\t/// @return lower\u4EE5\u4E0Aupper\u672A\
+    \u6E80\u306E\u30E9\u30F3\u30C0\u30E0\u306A\u6574\u6570\n\tll nextLong(ll lower,\
+    \ ll upper) {\n\t\tuniform_int_distribution<ll> randomIntDistribution(\n\t\t\t\
+    lower, upper - 1);\n\t\treturn randomIntDistribution(randomEngine);\n\t}\n\n\t\
+    /// @brief 0\u4EE5\u4E0A1\u672A\u6E80\u306E\u5B9F\u6570\u3092\u30E9\u30F3\u30C0\
+    \u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @return 0\u4EE5\u4E0A1\u672A\u6E80\
+    \u306E\u30E9\u30F3\u30C0\u30E0\u306A\u5B9F\u6570\n\tdouble next() {\n\t\tuniform_real_distribution<double>\n\
+    \t\t\trandomDoubleDistribution(0.0, 1.0);\n\t\treturn randomDoubleDistribution(randomEngine);\n\
+    \t}\n\n\t/// @brief 0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u5B9F\u6570\u3092\u30E9\
+    \u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B\n\t/// @param upper \u4E71\u6570\
+    \u306E\u4E0A\u9650\u5024(exclusive)\n\t/// @return 0\u4EE5\u4E0Aupper\u672A\u6E80\
+    \u306E\u30E9\u30F3\u30C0\u30E0\u306A\u5B9F\u6570\n\tdouble nextDouble(double upper)\
+    \ {\n\t\tuniform_real_distribution<double>\n\t\t\trandomDoubleDistribution(0.0,\
+    \ upper);\n\t\treturn randomDoubleDistribution(randomEngine);\n\t}\n};"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: my_rnd.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: my_rnd.hpp
@@ -133,6 +133,5 @@ layout: document
 redirect_from:
 - /library/my_rnd.hpp
 - /library/my_rnd.hpp.html
-title: "0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\u3064\u30E9\u30F3\
-  \u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B"
+title: "\u4E71\u6570\u69CB\u9020\u4F53"
 ---

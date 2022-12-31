@@ -13,8 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u3092\u6C42\u3081\u307E\
-      \u3059"
+    document_title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -48,16 +47,7 @@ data:
     \tEdge() {\n\t}\n\tEdge(int _from, int _to, T _cost) {\n\t\tfrom = _from;\n\t\t\
     to = _to;\n\t\tcost = _cost;\n\t}\n};\ntemplate<class T = ll>\nusing Edges = vector<Edge<T>>;\n\
     template<class T = ll>\nusing Graph = vector<Edges<T>>;\n#line 3 \"graph/euler_tour.hpp\"\
-    \n/// @brief \u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u3092\u6C42\u3081\u307E\
-    \u3059\n/// @param G \u30B0\u30E9\u30D5\n/// @param root \u6728\u306E\u6839\n\
-    /// @return \u5404\u9802\u70B9\u306B\u5272\u308A\u5F53\u3066\u3089\u308C\u305F\
-    \u9589\u533A\u9593\nvector<pair<int, int>> eulerTour(Graph<> &G, int root = 0)\
-    \ {\n\tint N = SZ(G);\n\tvector<pair<int, int>> ret(N);\n\tint turn = 0;\n\tauto\
-    \ dfs = [&](auto f, int cur, int pre) -> void {\n\t\tret[cur].first = turn++;\n\
-    \t\tfor(Edge e: G[cur]) {\n\t\t\tif(e.to == pre) continue;\n\t\t\tf(f, e.to, cur);\n\
-    \t\t}\n\t\tret[cur].second = turn++;\n\t};\n\tdfs(dfs, root, -1);\n\treturn ret;\n\
-    }\n"
-  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief \u30AA\u30A4\
+    \n/// @brief \u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\n\n/// @brief \u30AA\u30A4\
     \u30E9\u30FC\u30C4\u30A2\u30FC\u3092\u6C42\u3081\u307E\u3059\n/// @param G \u30B0\
     \u30E9\u30D5\n/// @param root \u6728\u306E\u6839\n/// @return \u5404\u9802\u70B9\
     \u306B\u5272\u308A\u5F53\u3066\u3089\u308C\u305F\u9589\u533A\u9593\nvector<pair<int,\
@@ -65,14 +55,24 @@ data:
     \ int>> ret(N);\n\tint turn = 0;\n\tauto dfs = [&](auto f, int cur, int pre) ->\
     \ void {\n\t\tret[cur].first = turn++;\n\t\tfor(Edge e: G[cur]) {\n\t\t\tif(e.to\
     \ == pre) continue;\n\t\t\tf(f, e.to, cur);\n\t\t}\n\t\tret[cur].second = turn++;\n\
-    \t};\n\tdfs(dfs, root, -1);\n\treturn ret;\n}"
+    \t};\n\tdfs(dfs, root, -1);\n\treturn ret;\n}\n"
+  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief \u30AA\u30A4\
+    \u30E9\u30FC\u30C4\u30A2\u30FC\n\n/// @brief \u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
+    \u30FC\u3092\u6C42\u3081\u307E\u3059\n/// @param G \u30B0\u30E9\u30D5\n/// @param\
+    \ root \u6728\u306E\u6839\n/// @return \u5404\u9802\u70B9\u306B\u5272\u308A\u5F53\
+    \u3066\u3089\u308C\u305F\u9589\u533A\u9593\nvector<pair<int, int>> eulerTour(Graph<>\
+    \ &G, int root = 0) {\n\tint N = SZ(G);\n\tvector<pair<int, int>> ret(N);\n\t\
+    int turn = 0;\n\tauto dfs = [&](auto f, int cur, int pre) -> void {\n\t\tret[cur].first\
+    \ = turn++;\n\t\tfor(Edge e: G[cur]) {\n\t\t\tif(e.to == pre) continue;\n\t\t\t\
+    f(f, e.to, cur);\n\t\t}\n\t\tret[cur].second = turn++;\n\t};\n\tdfs(dfs, root,\
+    \ -1);\n\treturn ret;\n}"
   dependsOn:
   - base.hpp
   - graph/base.hpp
   isVerificationFile: false
   path: graph/euler_tour.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/euler_tour.hpp
@@ -80,5 +80,5 @@ layout: document
 redirect_from:
 - /library/graph/euler_tour.hpp
 - /library/graph/euler_tour.hpp.html
-title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u3092\u6C42\u3081\u307E\u3059"
+title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC"
 ---

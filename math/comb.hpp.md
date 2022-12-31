@@ -13,6 +13,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u7D44\u307F\u5408\u308F\u305B\u3092\u8A08\u7B97\u3059\u308B\u69CB\
+      \u9020\u4F53"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -42,30 +44,8 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"math/comb.hpp\"\
-    \ntemplate<typename T>\nstruct Comb {\nprivate:\n\tvector<T> _fact;\n\tvector<T>\
-    \ inv;\n\tint pre_build;\n\tvoid expand(int x) {\n\t\tif(pre_build == -1) return;\n\
-    \t\twhile(SZ(_fact) <= x) {\n\t\t\tint next = SZ(_fact);\n\t\t\t_fact.push_back(_fact[next\
-    \ - 1] * next);\n\t\t\tinv.push_back(_fact[next].inv());\n\t\t}\n\t}\n\n\tT nPr_calc(int\
-    \ n, int r) {\n\t\tT ret = 1;\n\t\tfor(int i = n; i > n - r; i--) ret *= i;\n\t\
-    \treturn ret;\n\t}\n\tT nCr_calc(int n, int r) {\n\t\tT ret = 1;\n\t\tREP(i, r)\
-    \ {\n\t\t\tret *= n - i;\n\t\t\tret /= i + 1;\n\t\t}\n\t\treturn ret;\n\t}\n\n\
-    public:\n\tComb(int pre_build = 0): pre_build(pre_build) {\n\t\tif(pre_build ==\
-    \ -1) {\n\t\t\treturn;\n\t\t}\n\t\t_fact = vector<T>(pre_build + 1);\n\t\t_fact[0]\
-    \ = 1;\n\t\tinv = vector<T>(pre_build + 1);\n\t\tREP(i, pre_build) {\n\t\t\t_fact[i\
-    \ + 1] = _fact[i] * (i + 1);\n\t\t}\n\t\tinv[pre_build] = _fact[pre_build].inv();\n\
-    \t\tREPR(i, pre_build) {\n\t\t\tinv[i] = inv[i + 1] * (i + 1);\n\t\t}\n\t}\n\t\
-    T nPr(int n, int r) {\n\t\tassert(r >= 0);\n\t\tassert(n >= r);\n\t\texpand(n);\n\
-    \t\tif(pre_build == -1) return nPr_calc(n, r);\n\t\treturn _fact[n] * inv[n -\
-    \ r];\n\t}\n\tT nCr(int n, int r) {\n\t\tassert(r >= 0);\n\t\tassert(n >= r);\n\
-    \t\texpand(n);\n\t\tif(pre_build == -1) return nCr_calc(n, r);\n\t\treturn _fact[n]\
-    \ * inv[r] * inv[n - r];\n\t}\n\tT nHr(int n, int r) {\n\t\tassert(r >= 0);\n\t\
-    \tassert(n >= 1);\n\t\texpand(n + r - 1);\n\t\treturn nCr(n + r - 1, r);\n\t}\n\
-    \tT type_permission(vi V) {\n\t\tassert(pre_build != -1);\n\t\tint sum = 0;\n\t\
-    \tfor(int i: V) {\n\t\t\tassert(i >= 0);\n\t\t\tsum += i;\n\t\t}\n\t\texpand(sum);\n\
-    \t\tT ans = _fact[sum];\n\t\tfor(int i: V) ans *= inv[i];\n\t\treturn ans;\n\t\
-    }\n\tT fact(int n) {\n\t\texpand(n);\n\t\treturn _fact[n];\n\t}\n\tT inv_fact(int\
-    \ n) {\n\t\texpand(n);\n\t\treturn inv[n];\n\t}\n};\n"
-  code: "#include \"../base.hpp\"\ntemplate<typename T>\nstruct Comb {\nprivate:\n\
+    \n\n/// @brief \u7D44\u307F\u5408\u308F\u305B\u3092\u8A08\u7B97\u3059\u308B\u69CB\
+    \u9020\u4F53\n/// @tparam T \u578B\ntemplate<typename T>\nstruct Comb {\nprivate:\n\
     \tvector<T> _fact;\n\tvector<T> inv;\n\tint pre_build;\n\tvoid expand(int x) {\n\
     \t\tif(pre_build == -1) return;\n\t\twhile(SZ(_fact) <= x) {\n\t\t\tint next =\
     \ SZ(_fact);\n\t\t\t_fact.push_back(_fact[next - 1] * next);\n\t\t\tinv.push_back(_fact[next].inv());\n\
@@ -87,6 +67,31 @@ data:
     \tfor(int i: V) {\n\t\t\tassert(i >= 0);\n\t\t\tsum += i;\n\t\t}\n\t\texpand(sum);\n\
     \t\tT ans = _fact[sum];\n\t\tfor(int i: V) ans *= inv[i];\n\t\treturn ans;\n\t\
     }\n\tT fact(int n) {\n\t\texpand(n);\n\t\treturn _fact[n];\n\t}\n\tT inv_fact(int\
+    \ n) {\n\t\texpand(n);\n\t\treturn inv[n];\n\t}\n};\n"
+  code: "#include \"../base.hpp\"\n\n/// @brief \u7D44\u307F\u5408\u308F\u305B\u3092\
+    \u8A08\u7B97\u3059\u308B\u69CB\u9020\u4F53\n/// @tparam T \u578B\ntemplate<typename\
+    \ T>\nstruct Comb {\nprivate:\n\tvector<T> _fact;\n\tvector<T> inv;\n\tint pre_build;\n\
+    \tvoid expand(int x) {\n\t\tif(pre_build == -1) return;\n\t\twhile(SZ(_fact) <=\
+    \ x) {\n\t\t\tint next = SZ(_fact);\n\t\t\t_fact.push_back(_fact[next - 1] * next);\n\
+    \t\t\tinv.push_back(_fact[next].inv());\n\t\t}\n\t}\n\n\tT nPr_calc(int n, int\
+    \ r) {\n\t\tT ret = 1;\n\t\tfor(int i = n; i > n - r; i--) ret *= i;\n\t\treturn\
+    \ ret;\n\t}\n\tT nCr_calc(int n, int r) {\n\t\tT ret = 1;\n\t\tREP(i, r) {\n\t\
+    \t\tret *= n - i;\n\t\t\tret /= i + 1;\n\t\t}\n\t\treturn ret;\n\t}\n\npublic:\n\
+    \tComb(int pre_build = 0): pre_build(pre_build) {\n\t\tif(pre_build == -1) {\n\
+    \t\t\treturn;\n\t\t}\n\t\t_fact = vector<T>(pre_build + 1);\n\t\t_fact[0] = 1;\n\
+    \t\tinv = vector<T>(pre_build + 1);\n\t\tREP(i, pre_build) {\n\t\t\t_fact[i +\
+    \ 1] = _fact[i] * (i + 1);\n\t\t}\n\t\tinv[pre_build] = _fact[pre_build].inv();\n\
+    \t\tREPR(i, pre_build) {\n\t\t\tinv[i] = inv[i + 1] * (i + 1);\n\t\t}\n\t}\n\t\
+    T nPr(int n, int r) {\n\t\tassert(r >= 0);\n\t\tassert(n >= r);\n\t\texpand(n);\n\
+    \t\tif(pre_build == -1) return nPr_calc(n, r);\n\t\treturn _fact[n] * inv[n -\
+    \ r];\n\t}\n\tT nCr(int n, int r) {\n\t\tassert(r >= 0);\n\t\tassert(n >= r);\n\
+    \t\texpand(n);\n\t\tif(pre_build == -1) return nCr_calc(n, r);\n\t\treturn _fact[n]\
+    \ * inv[r] * inv[n - r];\n\t}\n\tT nHr(int n, int r) {\n\t\tassert(r >= 0);\n\t\
+    \tassert(n >= 1);\n\t\texpand(n + r - 1);\n\t\treturn nCr(n + r - 1, r);\n\t}\n\
+    \tT type_permission(vi V) {\n\t\tassert(pre_build != -1);\n\t\tint sum = 0;\n\t\
+    \tfor(int i: V) {\n\t\t\tassert(i >= 0);\n\t\t\tsum += i;\n\t\t}\n\t\texpand(sum);\n\
+    \t\tT ans = _fact[sum];\n\t\tfor(int i: V) ans *= inv[i];\n\t\treturn ans;\n\t\
+    }\n\tT fact(int n) {\n\t\texpand(n);\n\t\treturn _fact[n];\n\t}\n\tT inv_fact(int\
     \ n) {\n\t\texpand(n);\n\t\treturn inv[n];\n\t}\n};"
   dependsOn:
   - base.hpp
@@ -94,7 +99,7 @@ data:
   path: math/comb.hpp
   requiredBy:
   - math/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/comb.hpp
@@ -102,5 +107,5 @@ layout: document
 redirect_from:
 - /library/math/comb.hpp
 - /library/math/comb.hpp.html
-title: math/comb.hpp
+title: "\u7D44\u307F\u5408\u308F\u305B\u3092\u8A08\u7B97\u3059\u308B\u69CB\u9020\u4F53"
 ---

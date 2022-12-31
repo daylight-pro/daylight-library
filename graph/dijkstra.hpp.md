@@ -16,8 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\
-      \u3092\u89E3\u304F"
+    document_title: "\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -51,16 +50,7 @@ data:
     \tEdge() {\n\t}\n\tEdge(int _from, int _to, T _cost) {\n\t\tfrom = _from;\n\t\t\
     to = _to;\n\t\tcost = _cost;\n\t}\n};\ntemplate<class T = ll>\nusing Edges = vector<Edge<T>>;\n\
     template<class T = ll>\nusing Graph = vector<Edges<T>>;\n#line 3 \"graph/dijkstra.hpp\"\
-    \n/// @brief \u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\
-    \u3092\u89E3\u304F\n/// @param s \u59CB\u70B9\n/// @param G \u30B0\u30E9\u30D5\
-    \n/// @return ret[i]:s\u304B\u3089i\u3078\u306E\u6700\u77ED\u7D4C\u8DEF\u9577\n\
-    vll dijkstra(int s, Graph<ll>& G) {\n\tusing P = pair<ll, int>;\n\tpriority_queue<P,\
-    \ vector<P>, greater<>> que;\n\tvll D(SZ(G), LINF);\n\tD[s] = 0;\n\tque.push(P(0,\
-    \ s));\n\twhile(!que.empty()) {\n\t\tP p = que.top();\n\t\tque.pop();\n\t\tint\
-    \ v = p.second;\n\t\tif(D[v] < p.first) continue;\n\t\tfor(Edge e: G[v]) {\n\t\
-    \t\tif(D[e.to] > D[v] + e.cost) {\n\t\t\t\tD[e.to] = D[v] + e.cost;\n\t\t\t\t\
-    que.push(P(D[e.to], e.to));\n\t\t\t}\n\t\t}\n\t}\n\treturn D;\n}\n"
-  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief \u5358\u4E00\
+    \n/// @brief \u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5\n\n/// @brief \u5358\u4E00\
     \u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F\n///\
     \ @param s \u59CB\u70B9\n/// @param G \u30B0\u30E9\u30D5\n/// @return ret[i]:s\u304B\
     \u3089i\u3078\u306E\u6700\u77ED\u7D4C\u8DEF\u9577\nvll dijkstra(int s, Graph<ll>&\
@@ -69,7 +59,18 @@ data:
     \ {\n\t\tP p = que.top();\n\t\tque.pop();\n\t\tint v = p.second;\n\t\tif(D[v]\
     \ < p.first) continue;\n\t\tfor(Edge e: G[v]) {\n\t\t\tif(D[e.to] > D[v] + e.cost)\
     \ {\n\t\t\t\tD[e.to] = D[v] + e.cost;\n\t\t\t\tque.push(P(D[e.to], e.to));\n\t\
-    \t\t}\n\t\t}\n\t}\n\treturn D;\n}"
+    \t\t}\n\t\t}\n\t}\n\treturn D;\n}\n"
+  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief \u30C0\u30A4\
+    \u30AF\u30B9\u30C8\u30E9\u6CD5\n\n/// @brief \u5358\u4E00\u59CB\u70B9\u6700\u77ED\
+    \u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F\n/// @param s \u59CB\u70B9\n\
+    /// @param G \u30B0\u30E9\u30D5\n/// @return ret[i]:s\u304B\u3089i\u3078\u306E\
+    \u6700\u77ED\u7D4C\u8DEF\u9577\nvll dijkstra(int s, Graph<ll>& G) {\n\tusing P\
+    \ = pair<ll, int>;\n\tpriority_queue<P, vector<P>, greater<>> que;\n\tvll D(SZ(G),\
+    \ LINF);\n\tD[s] = 0;\n\tque.push(P(0, s));\n\twhile(!que.empty()) {\n\t\tP p\
+    \ = que.top();\n\t\tque.pop();\n\t\tint v = p.second;\n\t\tif(D[v] < p.first)\
+    \ continue;\n\t\tfor(Edge e: G[v]) {\n\t\t\tif(D[e.to] > D[v] + e.cost) {\n\t\t\
+    \t\tD[e.to] = D[v] + e.cost;\n\t\t\t\tque.push(P(D[e.to], e.to));\n\t\t\t}\n\t\
+    \t}\n\t}\n\treturn D;\n}"
   dependsOn:
   - base.hpp
   - graph/base.hpp
@@ -77,7 +78,7 @@ data:
   path: graph/dijkstra.hpp
   requiredBy:
   - graph/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/dijkstra.hpp
@@ -85,6 +86,5 @@ layout: document
 redirect_from:
 - /library/graph/dijkstra.hpp
 - /library/graph/dijkstra.hpp.html
-title: "\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\
-  \u304F"
+title: "\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5"
 ---

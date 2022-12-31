@@ -16,8 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\u3067\u5358\
-      \u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F"
+    document_title: "\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -51,37 +50,39 @@ data:
     \tEdge() {\n\t}\n\tEdge(int _from, int _to, T _cost) {\n\t\tfrom = _from;\n\t\t\
     to = _to;\n\t\tcost = _cost;\n\t}\n};\ntemplate<class T = ll>\nusing Edges = vector<Edge<T>>;\n\
     template<class T = ll>\nusing Graph = vector<Edges<T>>;\n#line 3 \"graph/bellman_ford.hpp\"\
-    \n/// @brief \u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\u3067\u5358\
-    \u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F\
-    \n/// @param V \u9802\u70B9\u6570\n/// @param EG \u8FBA\u306E\u30EA\u30B9\u30C8\
-    \n/// @param s \u59CB\u70B9\n/// @param D out:\u6700\u77ED\u7D4C\u8DEF\u9577\u304C\
-    \u5165\u308B\u914D\u5217\n/// @return \u8CA0\u9589\u8DEF\u3092\u542B\u3080\u304B\
-    \u3069\u3046\u304B\nbool shortest_path(int V, Edges<ll>& EG, int s, vll& D) {\n\
-    \tD = vll(V, LINF);\n\tD[s] = 0;\n\tint cnt = 0;\n\twhile(true) {\n\t\tbool update\
-    \ = false;  //\u3053\u306E\u30EB\u30FC\u30D7\u3067\u66F4\u65B0\u304C\u8D77\u3053\
-    \u3063\u305F\u304B\n\t\tfor(auto e: EG) {\n\t\t\tif(D[e.from] == LINF) continue;\n\
-    \t\t\tif(chmin(D[e.to], D[e.from] + e.cost)) {\n\t\t\t\t//\u3053\u306EEdge\u3092\
-    \u901A\u308B\u3068\u66AB\u5B9A\u3088\u308A\u4F4E\u30B3\u30B9\u30C8\u3067e.to\u306B\
-    \u884C\u3051\u308B\u5834\u5408\n\t\t\t\tD[e.to] = D[e.from] + e.cost;  //\u5024\
-    \u3092\u66F4\u65B0\n\t\t\t\tupdate = true;\n\t\t\t}\n\t\t}\n\t\tif(!update) return\
-    \ false;  //\u6700\u77ED\u8DDD\u96E2\u306E\u66F4\u65B0\u304C\u7D42\u4E86\n\t\t\
-    cnt++;\n\t\tif(cnt == V) return true;\n\t}\n}\n"
-  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief \u30D9\u30EB\
-    \u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\u3067\u5358\u4E00\u59CB\u70B9\u6700\
-    \u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F\n/// @param V \u9802\u70B9\
-    \u6570\n/// @param EG \u8FBA\u306E\u30EA\u30B9\u30C8\n/// @param s \u59CB\u70B9\
-    \n/// @param D out:\u6700\u77ED\u7D4C\u8DEF\u9577\u304C\u5165\u308B\u914D\u5217\
-    \n/// @return \u8CA0\u9589\u8DEF\u3092\u542B\u3080\u304B\u3069\u3046\u304B\nbool\
-    \ shortest_path(int V, Edges<ll>& EG, int s, vll& D) {\n\tD = vll(V, LINF);\n\t\
-    D[s] = 0;\n\tint cnt = 0;\n\twhile(true) {\n\t\tbool update = false;  //\u3053\
-    \u306E\u30EB\u30FC\u30D7\u3067\u66F4\u65B0\u304C\u8D77\u3053\u3063\u305F\u304B\
-    \n\t\tfor(auto e: EG) {\n\t\t\tif(D[e.from] == LINF) continue;\n\t\t\tif(chmin(D[e.to],\
+    \n/// @brief \u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\n\n/// @brief\
+    \ \u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\u3067\u5358\u4E00\u59CB\
+    \u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F\n/// @param\
+    \ V \u9802\u70B9\u6570\n/// @param EG \u8FBA\u306E\u30EA\u30B9\u30C8\n/// @param\
+    \ s \u59CB\u70B9\n/// @param D out:\u6700\u77ED\u7D4C\u8DEF\u9577\u304C\u5165\u308B\
+    \u914D\u5217\n/// @return \u8CA0\u9589\u8DEF\u3092\u542B\u3080\u304B\u3069\u3046\
+    \u304B\nbool shortest_path(int V, Edges<ll>& EG, int s, vll& D) {\n\tD = vll(V,\
+    \ LINF);\n\tD[s] = 0;\n\tint cnt = 0;\n\twhile(true) {\n\t\tbool update = false;\
+    \  //\u3053\u306E\u30EB\u30FC\u30D7\u3067\u66F4\u65B0\u304C\u8D77\u3053\u3063\u305F\
+    \u304B\n\t\tfor(auto e: EG) {\n\t\t\tif(D[e.from] == LINF) continue;\n\t\t\tif(chmin(D[e.to],\
     \ D[e.from] + e.cost)) {\n\t\t\t\t//\u3053\u306EEdge\u3092\u901A\u308B\u3068\u66AB\
     \u5B9A\u3088\u308A\u4F4E\u30B3\u30B9\u30C8\u3067e.to\u306B\u884C\u3051\u308B\u5834\
     \u5408\n\t\t\t\tD[e.to] = D[e.from] + e.cost;  //\u5024\u3092\u66F4\u65B0\n\t\t\
     \t\tupdate = true;\n\t\t\t}\n\t\t}\n\t\tif(!update) return false;  //\u6700\u77ED\
     \u8DDD\u96E2\u306E\u66F4\u65B0\u304C\u7D42\u4E86\n\t\tcnt++;\n\t\tif(cnt == V)\
-    \ return true;\n\t}\n}"
+    \ return true;\n\t}\n}\n"
+  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief \u30D9\u30EB\
+    \u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\n\n/// @brief \u30D9\u30EB\u30DE\u30F3\
+    \u30D5\u30A9\u30FC\u30C9\u6CD5\u3067\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
+    \u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F\n/// @param V \u9802\u70B9\u6570\n\
+    /// @param EG \u8FBA\u306E\u30EA\u30B9\u30C8\n/// @param s \u59CB\u70B9\n/// @param\
+    \ D out:\u6700\u77ED\u7D4C\u8DEF\u9577\u304C\u5165\u308B\u914D\u5217\n/// @return\
+    \ \u8CA0\u9589\u8DEF\u3092\u542B\u3080\u304B\u3069\u3046\u304B\nbool shortest_path(int\
+    \ V, Edges<ll>& EG, int s, vll& D) {\n\tD = vll(V, LINF);\n\tD[s] = 0;\n\tint\
+    \ cnt = 0;\n\twhile(true) {\n\t\tbool update = false;  //\u3053\u306E\u30EB\u30FC\
+    \u30D7\u3067\u66F4\u65B0\u304C\u8D77\u3053\u3063\u305F\u304B\n\t\tfor(auto e:\
+    \ EG) {\n\t\t\tif(D[e.from] == LINF) continue;\n\t\t\tif(chmin(D[e.to], D[e.from]\
+    \ + e.cost)) {\n\t\t\t\t//\u3053\u306EEdge\u3092\u901A\u308B\u3068\u66AB\u5B9A\
+    \u3088\u308A\u4F4E\u30B3\u30B9\u30C8\u3067e.to\u306B\u884C\u3051\u308B\u5834\u5408\
+    \n\t\t\t\tD[e.to] = D[e.from] + e.cost;  //\u5024\u3092\u66F4\u65B0\n\t\t\t\t\
+    update = true;\n\t\t\t}\n\t\t}\n\t\tif(!update) return false;  //\u6700\u77ED\u8DDD\
+    \u96E2\u306E\u66F4\u65B0\u304C\u7D42\u4E86\n\t\tcnt++;\n\t\tif(cnt == V) return\
+    \ true;\n\t}\n}"
   dependsOn:
   - base.hpp
   - graph/base.hpp
@@ -89,7 +90,7 @@ data:
   path: graph/bellman_ford.hpp
   requiredBy:
   - graph/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bellman_ford.hpp
@@ -97,6 +98,5 @@ layout: document
 redirect_from:
 - /library/graph/bellman_ford.hpp
 - /library/graph/bellman_ford.hpp.html
-title: "\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\u3067\u5358\u4E00\u59CB\
-  \u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F"
+title: "\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5"
 ---

@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u7D04\u6570\u3092\u5168\u5217\u6319\u3059\u308B"
+    document_title: "\u7D04\u6570\u5168\u5217\u6319"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -43,25 +43,24 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"math/diviser.hpp\"\
-    \n/// @brief \u7D04\u6570\u3092\u5168\u5217\u6319\u3059\u308B\n/// @param N \u6574\
-    \u6570N\n/// @return N\u306E\u7D04\u6570\u304C\u5C0F\u3055\u3044\u9806\u306B\u683C\
-    \u7D0D\u3055\u308C\u305F\u30EA\u30B9\u30C8\nvll get_divisers(ll N) {\n\tvll ret;\n\
-    \tfor(ll i = 1; i * i <= N; i++) {\n\t\tif(N % i == 0) {\n\t\t\tret.push_back(i);\n\
-    \t\t\tif(i * i != N) ret.push_back(N / i);\n\t\t}\n\t}\n\tso(ret);\n\treturn ret;\n\
-    }\n"
-  code: "#include \"../base.hpp\"\n/// @brief \u7D04\u6570\u3092\u5168\u5217\u6319\
-    \u3059\u308B\n/// @param N \u6574\u6570N\n/// @return N\u306E\u7D04\u6570\u304C\
-    \u5C0F\u3055\u3044\u9806\u306B\u683C\u7D0D\u3055\u308C\u305F\u30EA\u30B9\u30C8\
-    \nvll get_divisers(ll N) {\n\tvll ret;\n\tfor(ll i = 1; i * i <= N; i++) {\n\t\
-    \tif(N % i == 0) {\n\t\t\tret.push_back(i);\n\t\t\tif(i * i != N) ret.push_back(N\
-    \ / i);\n\t\t}\n\t}\n\tso(ret);\n\treturn ret;\n}"
+    \n/// @brief \u7D04\u6570\u5168\u5217\u6319\n/// @param N \u6574\u6570N\n/// @return\
+    \ N\u306E\u7D04\u6570\u304C\u5C0F\u3055\u3044\u9806\u306B\u683C\u7D0D\u3055\u308C\
+    \u305F\u30EA\u30B9\u30C8\nvll get_divisers(ll N) {\n\tvll ret;\n\tfor(ll i = 1;\
+    \ i * i <= N; i++) {\n\t\tif(N % i == 0) {\n\t\t\tret.push_back(i);\n\t\t\tif(i\
+    \ * i != N) ret.push_back(N / i);\n\t\t}\n\t}\n\tso(ret);\n\treturn ret;\n}\n"
+  code: "#include \"../base.hpp\"\n/// @brief \u7D04\u6570\u5168\u5217\u6319\n///\
+    \ @param N \u6574\u6570N\n/// @return N\u306E\u7D04\u6570\u304C\u5C0F\u3055\u3044\
+    \u9806\u306B\u683C\u7D0D\u3055\u308C\u305F\u30EA\u30B9\u30C8\nvll get_divisers(ll\
+    \ N) {\n\tvll ret;\n\tfor(ll i = 1; i * i <= N; i++) {\n\t\tif(N % i == 0) {\n\
+    \t\t\tret.push_back(i);\n\t\t\tif(i * i != N) ret.push_back(N / i);\n\t\t}\n\t\
+    }\n\tso(ret);\n\treturn ret;\n}"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: math/diviser.hpp
   requiredBy:
   - math/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/diviser.hpp
@@ -69,5 +68,5 @@ layout: document
 redirect_from:
 - /library/math/diviser.hpp
 - /library/math/diviser.hpp.html
-title: "\u7D04\u6570\u3092\u5168\u5217\u6319\u3059\u308B"
+title: "\u7D04\u6570\u5168\u5217\u6319"
 ---

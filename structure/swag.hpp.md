@@ -10,7 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF"
+    document_title: "SWAG(\u30B9\u30E9\u30A4\u30C9\u6700\u5C0F\u5024)"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -40,39 +40,11 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"structure/swag.hpp\"\
-    \ntemplate<typename S>\nstruct SWAG {\nprivate:\n\tfunction<S(S, S)> op;\n\tstruct\
-    \ node {\n\t\tS value, sum;\n\t\tnode(const S &value, const S &sum)\n\t\t\t: value(value),\
-    \ sum(sum) {\n\t\t}\n\t};\n\tstack<node> front_t, back_t;\n\n\tvoid move() {\n\
-    \t\tassert(!back_t.empty());\n\t\tfront_t.emplace(back_t.top().value,\n\t\t\t\t\
-    \t\tback_t.top().value);\n\t\tback_t.pop();\n\t\twhile(!back_t.empty()) {\n\t\t\
-    \tfront_t.emplace(\n\t\t\t\tback_t.top().value,\n\t\t\t\top(back_t.top().value,\
-    \ front_t.top().sum));\n\t\t\tback_t.pop();\n\t\t}\n\t}\n\npublic:\n\t/// @brief\
-    \ \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\n\t/// @param op \u534A\u7FA4\u306E\
-    \u6F14\u7B97\n\tSWAG(const function<S(S, S)> &op): op(op) {\n\t}\n\t/// @brief\
-    \ SWAG\u306B\u8981\u7D20\u3092\u8FFD\u52A0\n\t/// @param s \u8FFD\u52A0\u3059\u308B\
-    \u8981\u7D20\n\tvoid push(const S &s) {\n\t\tif(back_t.empty())\n\t\t\tback_t.emplace(s,\
-    \ s);\n\t\telse\n\t\t\tback_t.emplace(s, op(s, back_t.top().sum));\n\t}\n\t///\
-    \ @brief SWAG\u304B\u3089\u8981\u7D20\u3092\u524A\u9664\n\tvoid pop() {\n\t\t\
-    if(front_t.empty()) {\n\t\t\tmove();\n\t\t}\n\t\tfront_t.pop();\n\t}\n\t/// @brief\
-    \ SWAG\u306E\u5148\u982D\u8981\u7D20\u306B\u30A2\u30AF\u30BB\u30B9\n\t/// @return\
-    \ \u5148\u982D\u8981\u7D20\u306E\u5024\n\tS front() {\n\t\tif(front_t.empty())\
-    \ {\n\t\t\tmove();\n\t\t}\n\t\treturn front_t.top().value;\n\t}\n\t/// @brief\
-    \ SWAG\u5185\u306E\u8981\u7D20\u306E\u7DCF\u7A4D\u3092\u6C42\u3081\u308B\n\t///\
-    \ @return \u8981\u7D20\u306E\u7DCF\u7A4D\n\tS fold() const {\n\t\tassert(!empty());\n\
-    \t\tif(front_t.empty()) {\n\t\t\treturn back_t.top().sum;\n\t\t} else if(back_t.empty())\
-    \ {\n\t\t\treturn front_t.top().sum;\n\t\t} else {\n\t\t\treturn op(front_t.top().sum,\
-    \ back_t.top().sum);\n\t\t}\n\t}\n\t/// @brief SWAG\u304C\u7A7A\u304B\u5224\u5B9A\
-    \u3059\u308B\n\t/// @return SWAG\u304C\u7A7A\u306A\u3089true\n\tbool empty() const\
-    \ {\n\t\treturn front_t.empty() && back_t.empty();\n\t}\n\t/// @brief SWAG\u5185\
-    \u306E\u8981\u7D20\u306E\u6570\u3092\u53D6\u5F97\u3059\u308B\n\t/// @return SWAG\u5185\
-    \u306E\u8981\u7D20\u306E\u6570\n\tsize_t size() {\n\t\treturn SZ(front_t) + SZ(back_t);\n\
-    \t}\n\t/// @brief SWAG\u5185\u306E\u5168\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\
-    \n\tvoid clear() {\n\t\tfront_t = stack<node>();\n\t\tback_t = stack<node>();\n\
-    \t}\n};\n"
-  code: "#include \"../base.hpp\"\ntemplate<typename S>\nstruct SWAG {\nprivate:\n\
-    \tfunction<S(S, S)> op;\n\tstruct node {\n\t\tS value, sum;\n\t\tnode(const S\
-    \ &value, const S &sum)\n\t\t\t: value(value), sum(sum) {\n\t\t}\n\t};\n\tstack<node>\
-    \ front_t, back_t;\n\n\tvoid move() {\n\t\tassert(!back_t.empty());\n\t\tfront_t.emplace(back_t.top().value,\n\
+    \n/// @brief SWAG(\u30B9\u30E9\u30A4\u30C9\u6700\u5C0F\u5024)\n/// @tparam S \u8981\
+    \u7D20\u306E\u578B\ntemplate<typename S>\nstruct SWAG {\nprivate:\n\tfunction<S(S,\
+    \ S)> op;\n\tstruct node {\n\t\tS value, sum;\n\t\tnode(const S &value, const\
+    \ S &sum)\n\t\t\t: value(value), sum(sum) {\n\t\t}\n\t};\n\tstack<node> front_t,\
+    \ back_t;\n\n\tvoid move() {\n\t\tassert(!back_t.empty());\n\t\tfront_t.emplace(back_t.top().value,\n\
     \t\t\t\t\t\tback_t.top().value);\n\t\tback_t.pop();\n\t\twhile(!back_t.empty())\
     \ {\n\t\t\tfront_t.emplace(\n\t\t\t\tback_t.top().value,\n\t\t\t\top(back_t.top().value,\
     \ front_t.top().sum));\n\t\t\tback_t.pop();\n\t\t}\n\t}\n\npublic:\n\t/// @brief\
@@ -97,13 +69,43 @@ data:
     \u306E\u8981\u7D20\u306E\u6570\n\tsize_t size() {\n\t\treturn SZ(front_t) + SZ(back_t);\n\
     \t}\n\t/// @brief SWAG\u5185\u306E\u5168\u8981\u7D20\u3092\u524A\u9664\u3059\u308B\
     \n\tvoid clear() {\n\t\tfront_t = stack<node>();\n\t\tback_t = stack<node>();\n\
-    \t}\n};"
+    \t}\n};\n"
+  code: "#include \"../base.hpp\"\n/// @brief SWAG(\u30B9\u30E9\u30A4\u30C9\u6700\u5C0F\
+    \u5024)\n/// @tparam S \u8981\u7D20\u306E\u578B\ntemplate<typename S>\nstruct\
+    \ SWAG {\nprivate:\n\tfunction<S(S, S)> op;\n\tstruct node {\n\t\tS value, sum;\n\
+    \t\tnode(const S &value, const S &sum)\n\t\t\t: value(value), sum(sum) {\n\t\t\
+    }\n\t};\n\tstack<node> front_t, back_t;\n\n\tvoid move() {\n\t\tassert(!back_t.empty());\n\
+    \t\tfront_t.emplace(back_t.top().value,\n\t\t\t\t\t\tback_t.top().value);\n\t\t\
+    back_t.pop();\n\t\twhile(!back_t.empty()) {\n\t\t\tfront_t.emplace(\n\t\t\t\t\
+    back_t.top().value,\n\t\t\t\top(back_t.top().value, front_t.top().sum));\n\t\t\
+    \tback_t.pop();\n\t\t}\n\t}\n\npublic:\n\t/// @brief \u30B3\u30F3\u30B9\u30C8\u30E9\
+    \u30AF\u30BF\n\t/// @param op \u534A\u7FA4\u306E\u6F14\u7B97\n\tSWAG(const function<S(S,\
+    \ S)> &op): op(op) {\n\t}\n\t/// @brief SWAG\u306B\u8981\u7D20\u3092\u8FFD\u52A0\
+    \n\t/// @param s \u8FFD\u52A0\u3059\u308B\u8981\u7D20\n\tvoid push(const S &s)\
+    \ {\n\t\tif(back_t.empty())\n\t\t\tback_t.emplace(s, s);\n\t\telse\n\t\t\tback_t.emplace(s,\
+    \ op(s, back_t.top().sum));\n\t}\n\t/// @brief SWAG\u304B\u3089\u8981\u7D20\u3092\
+    \u524A\u9664\n\tvoid pop() {\n\t\tif(front_t.empty()) {\n\t\t\tmove();\n\t\t}\n\
+    \t\tfront_t.pop();\n\t}\n\t/// @brief SWAG\u306E\u5148\u982D\u8981\u7D20\u306B\
+    \u30A2\u30AF\u30BB\u30B9\n\t/// @return \u5148\u982D\u8981\u7D20\u306E\u5024\n\
+    \tS front() {\n\t\tif(front_t.empty()) {\n\t\t\tmove();\n\t\t}\n\t\treturn front_t.top().value;\n\
+    \t}\n\t/// @brief SWAG\u5185\u306E\u8981\u7D20\u306E\u7DCF\u7A4D\u3092\u6C42\u3081\
+    \u308B\n\t/// @return \u8981\u7D20\u306E\u7DCF\u7A4D\n\tS fold() const {\n\t\t\
+    assert(!empty());\n\t\tif(front_t.empty()) {\n\t\t\treturn back_t.top().sum;\n\
+    \t\t} else if(back_t.empty()) {\n\t\t\treturn front_t.top().sum;\n\t\t} else {\n\
+    \t\t\treturn op(front_t.top().sum, back_t.top().sum);\n\t\t}\n\t}\n\t/// @brief\
+    \ SWAG\u304C\u7A7A\u304B\u5224\u5B9A\u3059\u308B\n\t/// @return SWAG\u304C\u7A7A\
+    \u306A\u3089true\n\tbool empty() const {\n\t\treturn front_t.empty() && back_t.empty();\n\
+    \t}\n\t/// @brief SWAG\u5185\u306E\u8981\u7D20\u306E\u6570\u3092\u53D6\u5F97\u3059\
+    \u308B\n\t/// @return SWAG\u5185\u306E\u8981\u7D20\u306E\u6570\n\tsize_t size()\
+    \ {\n\t\treturn SZ(front_t) + SZ(back_t);\n\t}\n\t/// @brief SWAG\u5185\u306E\u5168\
+    \u8981\u7D20\u3092\u524A\u9664\u3059\u308B\n\tvoid clear() {\n\t\tfront_t = stack<node>();\n\
+    \t\tback_t = stack<node>();\n\t}\n};"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: structure/swag.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/swag.hpp
@@ -111,5 +113,5 @@ layout: document
 redirect_from:
 - /library/structure/swag.hpp
 - /library/structure/swag.hpp.html
-title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF"
+title: "SWAG(\u30B9\u30E9\u30A4\u30C9\u6700\u5C0F\u5024)"
 ---

@@ -61,8 +61,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "a^n=b(mod m)\u3068\u306A\u308B\u6700\u5C0F\u306En\u3092\u6C42\
-      \u3081\u308B"
+    document_title: "\u96E2\u6563\u5BFE\u6570"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -96,32 +95,33 @@ data:
     #include <atcoder/lazysegtree>\n#include <atcoder/math>\n#include <atcoder/maxflow>\n\
     #include <atcoder/mincostflow>\n#include <atcoder/modint>\n#include <atcoder/scc>\n\
     #include <atcoder/segtree>\n#include <atcoder/string>\n#include <atcoder/twosat>\n\
-    #line 3 \"math/modlog.hpp\"\nusing namespace atcoder;\n\n/// @brief a^n=b(mod\
-    \ m)\u3068\u306A\u308B\u6700\u5C0F\u306En\u3092\u6C42\u3081\u308B\n/// @param\
-    \ a \u30D1\u30E9\u30E1\u30FC\u30BF\n/// @param b \u30D1\u30E9\u30E1\u30FC\u30BF\
-    \n/// @param m \u9664\u6570\n/// @return n\u304C\u5B58\u5728\u3057\u306A\u3044\
-    \u5834\u5408-1,\u5B58\u5728\u3059\u308B\u5834\u5408n\nll modlog(ll a, ll b, ll\
-    \ m) {\n\ta %= m;\n\tb %= m;\n\tif(a == 0) {\n\t\tif(b == 1)\n\t\t\treturn 0;\n\
-    \t\telse if(b == 0)\n\t\t\treturn 1;\n\t\telse\n\t\t\treturn -1;\n\t}\n\tif(b\
-    \ == 1) {\n\t\treturn 0;\n\t}\n\tll sq = 1;\n\twhile(sq * sq < m) sq++;\n\tmap<ll,\
-    \ ll> A;\n\tll cur = a;\n\tFOR(r, 1, sq) {\n\t\tif(!A.count(cur)) A[cur] = r;\n\
-    \t\tcur *= a;\n\t\tcur %= m;\n\t}\n\tusing mint = modint;\n\tmint::set_mod(m);\n\
+    #line 3 \"math/modlog.hpp\"\nusing namespace atcoder;\n\n/// @brief \u96E2\u6563\
+    \u5BFE\u6570\n\n/// @brief a^n=b(mod m)\u3068\u306A\u308B\u6700\u5C0F\u306En\u3092\
+    \u6C42\u3081\u308B\n/// @param a \u30D1\u30E9\u30E1\u30FC\u30BF\n/// @param b\
+    \ \u30D1\u30E9\u30E1\u30FC\u30BF\n/// @param m \u9664\u6570\n/// @return n\u304C\
+    \u5B58\u5728\u3057\u306A\u3044\u5834\u5408-1,\u5B58\u5728\u3059\u308B\u5834\u5408\
+    n\nll modlog(ll a, ll b, ll m) {\n\ta %= m;\n\tb %= m;\n\tif(a == 0) {\n\t\tif(b\
+    \ == 1)\n\t\t\treturn 0;\n\t\telse if(b == 0)\n\t\t\treturn 1;\n\t\telse\n\t\t\
+    \treturn -1;\n\t}\n\tif(b == 1) {\n\t\treturn 0;\n\t}\n\tll sq = 1;\n\twhile(sq\
+    \ * sq < m) sq++;\n\tmap<ll, ll> A;\n\tll cur = a;\n\tFOR(r, 1, sq) {\n\t\tif(!A.count(cur))\
+    \ A[cur] = r;\n\t\tcur *= a;\n\t\tcur %= m;\n\t}\n\tusing mint = modint;\n\tmint::set_mod(m);\n\
     \tll a_powM = mint(a).inv().pow(sq).val();\n\tcur = b;\n\tREP(q, sq) {\n\t\tif(cur\
     \ == 1 && q > 0) return q * sq;\n\t\tif(A.count(cur)) return q * sq + A[cur];\n\
     \t\tcur *= a_powM;\n\t\tcur %= m;\n\t}\n\treturn -1;\n}\n"
   code: "#include \"../base.hpp\"\n#include \"atcoder/all\"\nusing namespace atcoder;\n\
-    \n/// @brief a^n=b(mod m)\u3068\u306A\u308B\u6700\u5C0F\u306En\u3092\u6C42\u3081\
-    \u308B\n/// @param a \u30D1\u30E9\u30E1\u30FC\u30BF\n/// @param b \u30D1\u30E9\
-    \u30E1\u30FC\u30BF\n/// @param m \u9664\u6570\n/// @return n\u304C\u5B58\u5728\
-    \u3057\u306A\u3044\u5834\u5408-1,\u5B58\u5728\u3059\u308B\u5834\u5408n\nll modlog(ll\
-    \ a, ll b, ll m) {\n\ta %= m;\n\tb %= m;\n\tif(a == 0) {\n\t\tif(b == 1)\n\t\t\
-    \treturn 0;\n\t\telse if(b == 0)\n\t\t\treturn 1;\n\t\telse\n\t\t\treturn -1;\n\
-    \t}\n\tif(b == 1) {\n\t\treturn 0;\n\t}\n\tll sq = 1;\n\twhile(sq * sq < m) sq++;\n\
-    \tmap<ll, ll> A;\n\tll cur = a;\n\tFOR(r, 1, sq) {\n\t\tif(!A.count(cur)) A[cur]\
-    \ = r;\n\t\tcur *= a;\n\t\tcur %= m;\n\t}\n\tusing mint = modint;\n\tmint::set_mod(m);\n\
-    \tll a_powM = mint(a).inv().pow(sq).val();\n\tcur = b;\n\tREP(q, sq) {\n\t\tif(cur\
-    \ == 1 && q > 0) return q * sq;\n\t\tif(A.count(cur)) return q * sq + A[cur];\n\
-    \t\tcur *= a_powM;\n\t\tcur %= m;\n\t}\n\treturn -1;\n}"
+    \n/// @brief \u96E2\u6563\u5BFE\u6570\n\n/// @brief a^n=b(mod m)\u3068\u306A\u308B\
+    \u6700\u5C0F\u306En\u3092\u6C42\u3081\u308B\n/// @param a \u30D1\u30E9\u30E1\u30FC\
+    \u30BF\n/// @param b \u30D1\u30E9\u30E1\u30FC\u30BF\n/// @param m \u9664\u6570\
+    \n/// @return n\u304C\u5B58\u5728\u3057\u306A\u3044\u5834\u5408-1,\u5B58\u5728\
+    \u3059\u308B\u5834\u5408n\nll modlog(ll a, ll b, ll m) {\n\ta %= m;\n\tb %= m;\n\
+    \tif(a == 0) {\n\t\tif(b == 1)\n\t\t\treturn 0;\n\t\telse if(b == 0)\n\t\t\treturn\
+    \ 1;\n\t\telse\n\t\t\treturn -1;\n\t}\n\tif(b == 1) {\n\t\treturn 0;\n\t}\n\t\
+    ll sq = 1;\n\twhile(sq * sq < m) sq++;\n\tmap<ll, ll> A;\n\tll cur = a;\n\tFOR(r,\
+    \ 1, sq) {\n\t\tif(!A.count(cur)) A[cur] = r;\n\t\tcur *= a;\n\t\tcur %= m;\n\t\
+    }\n\tusing mint = modint;\n\tmint::set_mod(m);\n\tll a_powM = mint(a).inv().pow(sq).val();\n\
+    \tcur = b;\n\tREP(q, sq) {\n\t\tif(cur == 1 && q > 0) return q * sq;\n\t\tif(A.count(cur))\
+    \ return q * sq + A[cur];\n\t\tcur *= a_powM;\n\t\tcur %= m;\n\t}\n\treturn -1;\n\
+    }"
   dependsOn:
   - base.hpp
   - atcoder/convolution.hpp
@@ -144,7 +144,7 @@ data:
   isVerificationFile: false
   path: math/modlog.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/modlog.hpp
@@ -152,5 +152,5 @@ layout: document
 redirect_from:
 - /library/math/modlog.hpp
 - /library/math/modlog.hpp.html
-title: "a^n=b(mod m)\u3068\u306A\u308B\u6700\u5C0F\u306En\u3092\u6C42\u3081\u308B"
+title: "\u96E2\u6563\u5BFE\u6570"
 ---

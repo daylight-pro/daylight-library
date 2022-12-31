@@ -13,6 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "GCD\u3068LCM"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -42,19 +43,27 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"math/gcd_lcm.hpp\"\
-    \nll gcd(ll x, ll y) {\n\tll r = 0;\n\tif(x < y) swap(x, y);\n\twhile(y > 0) {\n\
-    \t\tr = x % y;\n\t\tx = y;\n\t\ty = r;\n\t}\n\treturn x;\n}\n\nll lcm(ll a, ll\
-    \ b) {\n\treturn a / gcd(a, b) * b;\n}\n"
-  code: "#include \"../base.hpp\"\nll gcd(ll x, ll y) {\n\tll r = 0;\n\tif(x < y)\
-    \ swap(x, y);\n\twhile(y > 0) {\n\t\tr = x % y;\n\t\tx = y;\n\t\ty = r;\n\t}\n\
-    \treturn x;\n}\n\nll lcm(ll a, ll b) {\n\treturn a / gcd(a, b) * b;\n}"
+    \n\n/// @brief GCD\u3068LCM\n\n/// @brief \u6700\u5927\u516C\u7D04\u6570\u3092\
+    \u6C42\u3081\u308B\n/// @param x \u5165\u529B1\n/// @param y \u5165\u529B2\n///\
+    \ @return GCD(x,y)\nll gcd(ll x, ll y) {\n\tll r = 0;\n\tif(x < y) swap(x, y);\n\
+    \twhile(y > 0) {\n\t\tr = x % y;\n\t\tx = y;\n\t\ty = r;\n\t}\n\treturn x;\n}\n\
+    \n/// @brief \u6700\u5C0F\u516C\u500D\u6570\u3092\u6C42\u3081\u308B\n/// @param\
+    \ a \u5165\u529B1\n/// @param b \u5165\u529B2\n/// @return LCM(a,b)\nll lcm(ll\
+    \ a, ll b) {\n\treturn a / gcd(a, b) * b;\n}\n"
+  code: "#include \"../base.hpp\"\n\n/// @brief GCD\u3068LCM\n\n/// @brief \u6700\u5927\
+    \u516C\u7D04\u6570\u3092\u6C42\u3081\u308B\n/// @param x \u5165\u529B1\n/// @param\
+    \ y \u5165\u529B2\n/// @return GCD(x,y)\nll gcd(ll x, ll y) {\n\tll r = 0;\n\t\
+    if(x < y) swap(x, y);\n\twhile(y > 0) {\n\t\tr = x % y;\n\t\tx = y;\n\t\ty = r;\n\
+    \t}\n\treturn x;\n}\n\n/// @brief \u6700\u5C0F\u516C\u500D\u6570\u3092\u6C42\u3081\
+    \u308B\n/// @param a \u5165\u529B1\n/// @param b \u5165\u529B2\n/// @return LCM(a,b)\n\
+    ll lcm(ll a, ll b) {\n\treturn a / gcd(a, b) * b;\n}"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: math/gcd_lcm.hpp
   requiredBy:
   - math/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/gcd_lcm.hpp
@@ -62,5 +71,5 @@ layout: document
 redirect_from:
 - /library/math/gcd_lcm.hpp
 - /library/math/gcd_lcm.hpp.html
-title: math/gcd_lcm.hpp
+title: "GCD\u3068LCM"
 ---

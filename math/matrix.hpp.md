@@ -10,6 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -39,7 +40,18 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"math/matrix.hpp\"\
-    \ntemplate<typename T>\nvector<vector<T>> multiMatrix(const vector<vector<T>>\
+    \n/// @brief \u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA\n\ntemplate<typename T>\n\
+    vector<vector<T>> multiMatrix(const vector<vector<T>> &A,\n\t\t\t\t\t\t\t  const\
+    \ vector<vector<T>> &B) {\n\tint N = SZ(A);\n\tint M = SZ(B[0]);\n\tint L = SZ(A[0]);\n\
+    \tauto ret = make_v<T>(N, M);\n\tREP(i, N) {\n\t\tREP(j, M) {\n\t\t\tREP(k, L)\
+    \ {\n\t\t\t\tret[i][j] += A[i][k] * B[k][j];\n\t\t\t}\n\t\t}\n\t}\n\treturn ret;\n\
+    }\n\ntemplate<typename T>\nvector<vector<T>> powMatrix(const vector<vector<T>>\
+    \ &A,\n\t\t\t\t\t\t\tll p) {\n\tauto ans = make_v<T>(SZ(A), SZ(A));\n\tREP(i,\
+    \ SZ(A)) ans[i][i] = 1;\n\tauto mul = A;\n\tfor(; p > 0; p >>= 1) {\n\t\tif((p\
+    \ & 1) == 1) ans = multiMatrix(ans, mul);\n\t\tmul = multiMatrix(mul, mul);\n\t\
+    }\n\treturn ans;\n}\n"
+  code: "#include \"../base.hpp\"\n/// @brief \u884C\u5217\u30E9\u30A4\u30D6\u30E9\
+    \u30EA\n\ntemplate<typename T>\nvector<vector<T>> multiMatrix(const vector<vector<T>>\
     \ &A,\n\t\t\t\t\t\t\t  const vector<vector<T>> &B) {\n\tint N = SZ(A);\n\tint\
     \ M = SZ(B[0]);\n\tint L = SZ(A[0]);\n\tauto ret = make_v<T>(N, M);\n\tREP(i,\
     \ N) {\n\t\tREP(j, M) {\n\t\t\tREP(k, L) {\n\t\t\t\tret[i][j] += A[i][k] * B[k][j];\n\
@@ -47,22 +59,13 @@ data:
     \ powMatrix(const vector<vector<T>> &A,\n\t\t\t\t\t\t\tll p) {\n\tauto ans = make_v<T>(SZ(A),\
     \ SZ(A));\n\tREP(i, SZ(A)) ans[i][i] = 1;\n\tauto mul = A;\n\tfor(; p > 0; p >>=\
     \ 1) {\n\t\tif((p & 1) == 1) ans = multiMatrix(ans, mul);\n\t\tmul = multiMatrix(mul,\
-    \ mul);\n\t}\n\treturn ans;\n}\n"
-  code: "#include \"../base.hpp\"\ntemplate<typename T>\nvector<vector<T>> multiMatrix(const\
-    \ vector<vector<T>> &A,\n\t\t\t\t\t\t\t  const vector<vector<T>> &B) {\n\tint\
-    \ N = SZ(A);\n\tint M = SZ(B[0]);\n\tint L = SZ(A[0]);\n\tauto ret = make_v<T>(N,\
-    \ M);\n\tREP(i, N) {\n\t\tREP(j, M) {\n\t\t\tREP(k, L) {\n\t\t\t\tret[i][j] +=\
-    \ A[i][k] * B[k][j];\n\t\t\t}\n\t\t}\n\t}\n\treturn ret;\n}\n\ntemplate<typename\
-    \ T>\nvector<vector<T>> powMatrix(const vector<vector<T>> &A,\n\t\t\t\t\t\t\t\
-    ll p) {\n\tauto ans = make_v<T>(SZ(A), SZ(A));\n\tREP(i, SZ(A)) ans[i][i] = 1;\n\
-    \tauto mul = A;\n\tfor(; p > 0; p >>= 1) {\n\t\tif((p & 1) == 1) ans = multiMatrix(ans,\
-    \ mul);\n\t\tmul = multiMatrix(mul, mul);\n\t}\n\treturn ans;\n}"
+    \ mul);\n\t}\n\treturn ans;\n}"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: math/matrix.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/matrix.hpp
@@ -70,5 +73,5 @@ layout: document
 redirect_from:
 - /library/math/matrix.hpp
 - /library/math/matrix.hpp.html
-title: math/matrix.hpp
+title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
 ---

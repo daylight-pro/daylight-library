@@ -16,6 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u6728\u306E\u76F4\u5F84"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -49,19 +50,19 @@ data:
     \tEdge() {\n\t}\n\tEdge(int _from, int _to, T _cost) {\n\t\tfrom = _from;\n\t\t\
     to = _to;\n\t\tcost = _cost;\n\t}\n};\ntemplate<class T = ll>\nusing Edges = vector<Edge<T>>;\n\
     template<class T = ll>\nusing Graph = vector<Edges<T>>;\n#line 3 \"graph/diameter.hpp\"\
-    \nnamespace inner_diameter {\nusing P = pair<int, int>;\nP dfs(int cur, int pre,\
-    \ Graph<> &G) {\n\tP p({ 0, cur });\n\tfor(Edge e: G[cur]) {\n\t\tif(e.to == pre)\
-    \ continue;\n\t\tauto [dis, v] = dfs(e.to, cur, G);\n\t\tchmax(p, P(dis + 1, v));\n\
-    \t}\n\treturn p;\n}\n}\n\nint get_diameter(Graph<> &G) {\n\tauto [dis, v] = inner_diameter::dfs(0,\
-    \ -1, G);\n\tauto [dis2, v2] = inner_diameter::dfs(v, -1, G);\n\treturn dis2;\n\
-    }\n"
-  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\nnamespace inner_diameter\
-    \ {\nusing P = pair<int, int>;\nP dfs(int cur, int pre, Graph<> &G) {\n\tP p({\
-    \ 0, cur });\n\tfor(Edge e: G[cur]) {\n\t\tif(e.to == pre) continue;\n\t\tauto\
-    \ [dis, v] = dfs(e.to, cur, G);\n\t\tchmax(p, P(dis + 1, v));\n\t}\n\treturn p;\n\
-    }\n}\n\nint get_diameter(Graph<> &G) {\n\tauto [dis, v] = inner_diameter::dfs(0,\
-    \ -1, G);\n\tauto [dis2, v2] = inner_diameter::dfs(v, -1, G);\n\treturn dis2;\n\
-    }"
+    \n/// @brief \u6728\u306E\u76F4\u5F84\n\nnamespace inner_diameter {\nusing P =\
+    \ pair<int, int>;\nP dfs(int cur, int pre, Graph<> &G) {\n\tP p({ 0, cur });\n\
+    \tfor(Edge e: G[cur]) {\n\t\tif(e.to == pre) continue;\n\t\tauto [dis, v] = dfs(e.to,\
+    \ cur, G);\n\t\tchmax(p, P(dis + 1, v));\n\t}\n\treturn p;\n}\n}\n\nint get_diameter(Graph<>\
+    \ &G) {\n\tauto [dis, v] = inner_diameter::dfs(0, -1, G);\n\tauto [dis2, v2] =\
+    \ inner_diameter::dfs(v, -1, G);\n\treturn dis2;\n}\n"
+  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n/// @brief \u6728\u306E\
+    \u76F4\u5F84\n\nnamespace inner_diameter {\nusing P = pair<int, int>;\nP dfs(int\
+    \ cur, int pre, Graph<> &G) {\n\tP p({ 0, cur });\n\tfor(Edge e: G[cur]) {\n\t\
+    \tif(e.to == pre) continue;\n\t\tauto [dis, v] = dfs(e.to, cur, G);\n\t\tchmax(p,\
+    \ P(dis + 1, v));\n\t}\n\treturn p;\n}\n}\n\nint get_diameter(Graph<> &G) {\n\t\
+    auto [dis, v] = inner_diameter::dfs(0, -1, G);\n\tauto [dis2, v2] = inner_diameter::dfs(v,\
+    \ -1, G);\n\treturn dis2;\n}"
   dependsOn:
   - base.hpp
   - graph/base.hpp
@@ -69,7 +70,7 @@ data:
   path: graph/diameter.hpp
   requiredBy:
   - graph/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/diameter.hpp
@@ -77,5 +78,5 @@ layout: document
 redirect_from:
 - /library/graph/diameter.hpp
 - /library/graph/diameter.hpp.html
-title: graph/diameter.hpp
+title: "\u6728\u306E\u76F4\u5F84"
 ---

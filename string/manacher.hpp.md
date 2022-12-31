@@ -10,9 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u5404\u6587\u5B57\u306B\u3064\u3044\u3066\u3001\u305D\u306E\u6587\
-      \u5B57\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\
-      \u5F84\u3092\u3082\u3068\u3081\u308B"
+    document_title: Manacher
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -42,51 +40,52 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"string/manacher.hpp\"\
-    \n\n/// @brief \u5404\u6587\u5B57\u306B\u3064\u3044\u3066\u3001\u305D\u306E\u6587\
-    \u5B57\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\
-    \u5F84\u3092\u3082\u3068\u3081\u308B\n/// @param S \u5BFE\u8C61\u306E\u6587\u5B57\
-    \u5217\n/// @return ret[i]:i\u6587\u5B57\u76EE\u3092\u4E2D\u5FC3\u3068\u3059\u308B\
-    \u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\nvi manacher(string& S) {\n\tint N\
-    \ = SZ(S);\n\tint i = 0;\n\tint j = 0;\n\tvi ret(N);\n\twhile(i < N) {\n\t\twhile(i\
-    \ - j >= 0 && i + j < N\n\t\t\t  && S[i - j] == S[i + j])\n\t\t\tj++;\n\t\tret[i]\
-    \ = j;\n\t\tint k = 1;\n\t\twhile(i - k >= 0 && k + ret[i - k] < j) {\n\t\t\t\
-    ret[i + k] = ret[i - k];\n\t\t\tk++;\n\t\t}\n\t\ti += k;\n\t\tj -= k;\n\t}\n\t\
-    return ret;\n}\n\n/// @brief 2N-1\u500B\u306E\u5834\u6240(\u6587\u5B57\u3068\u3001\
-    \u6587\u5B57\u3068\u6587\u5B57\u306E\u9593)\u306B\u3064\u3044\u3066\u3001\u305D\
-    \u308C\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\
-    \u5F84\n/// @param S \u5BFE\u8C61\u306E\u6587\u5B57\u5217\n/// @return ret[i](\u9577\
-    \u30552N-1):\u5DE6\u304B\u3089i\u756A\u76EE\u306E\u5834\u6240\u3092\u4E2D\u5FC3\
-    \u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\nvi ext_manacher(string&\
-    \ S) {\n\tstringstream ss;\n\tint N = SZ(S);\n\tREP(i, N) {\n\t\tif(i != 0) ss\
-    \ << \"$\";\n\t\tss << S[i];\n\t}\n\tstring s = ss.str();\n\tauto ret = manacher(s);\n\
-    \tREP(i, 2 * N - 1) {\n\t\tif(i % 2 == 0) {\n\t\t\tret[i] = (ret[i] + 1) / 2;\n\
-    \t\t} else {\n\t\t\tret[i] = ret[i] / 2;\n\t\t}\n\t}\n\treturn ret;\n}\n"
-  code: "#include \"../base.hpp\"\n\n/// @brief \u5404\u6587\u5B57\u306B\u3064\u3044\
-    \u3066\u3001\u305D\u306E\u6587\u5B57\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\
-    \u9577\u56DE\u6587\u306E\u534A\u5F84\u3092\u3082\u3068\u3081\u308B\n/// @param\
-    \ S \u5BFE\u8C61\u306E\u6587\u5B57\u5217\n/// @return ret[i]:i\u6587\u5B57\u76EE\
-    \u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\
-    \nvi manacher(string& S) {\n\tint N = SZ(S);\n\tint i = 0;\n\tint j = 0;\n\tvi\
-    \ ret(N);\n\twhile(i < N) {\n\t\twhile(i - j >= 0 && i + j < N\n\t\t\t  && S[i\
-    \ - j] == S[i + j])\n\t\t\tj++;\n\t\tret[i] = j;\n\t\tint k = 1;\n\t\twhile(i\
-    \ - k >= 0 && k + ret[i - k] < j) {\n\t\t\tret[i + k] = ret[i - k];\n\t\t\tk++;\n\
-    \t\t}\n\t\ti += k;\n\t\tj -= k;\n\t}\n\treturn ret;\n}\n\n/// @brief 2N-1\u500B\
-    \u306E\u5834\u6240(\u6587\u5B57\u3068\u3001\u6587\u5B57\u3068\u6587\u5B57\u306E\
-    \u9593)\u306B\u3064\u3044\u3066\u3001\u305D\u308C\u3092\u4E2D\u5FC3\u3068\u3059\
-    \u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\n/// @param S \u5BFE\u8C61\u306E\
-    \u6587\u5B57\u5217\n/// @return ret[i](\u9577\u30552N-1):\u5DE6\u304B\u3089i\u756A\
-    \u76EE\u306E\u5834\u6240\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\
-    \u6587\u306E\u534A\u5F84\nvi ext_manacher(string& S) {\n\tstringstream ss;\n\t\
-    int N = SZ(S);\n\tREP(i, N) {\n\t\tif(i != 0) ss << \"$\";\n\t\tss << S[i];\n\t\
-    }\n\tstring s = ss.str();\n\tauto ret = manacher(s);\n\tREP(i, 2 * N - 1) {\n\t\
-    \tif(i % 2 == 0) {\n\t\t\tret[i] = (ret[i] + 1) / 2;\n\t\t} else {\n\t\t\tret[i]\
-    \ = ret[i] / 2;\n\t\t}\n\t}\n\treturn ret;\n}"
+    \n\n/// @brief Manacher\n\n/// @brief \u5404\u6587\u5B57\u306B\u3064\u3044\u3066\
+    \u3001\u305D\u306E\u6587\u5B57\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\
+    \u56DE\u6587\u306E\u534A\u5F84\u3092\u3082\u3068\u3081\u308B\n/// @param S \u5BFE\
+    \u8C61\u306E\u6587\u5B57\u5217\n/// @return ret[i]:i\u6587\u5B57\u76EE\u3092\u4E2D\
+    \u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\nvi manacher(string&\
+    \ S) {\n\tint N = SZ(S);\n\tint i = 0;\n\tint j = 0;\n\tvi ret(N);\n\twhile(i\
+    \ < N) {\n\t\twhile(i - j >= 0 && i + j < N\n\t\t\t  && S[i - j] == S[i + j])\n\
+    \t\t\tj++;\n\t\tret[i] = j;\n\t\tint k = 1;\n\t\twhile(i - k >= 0 && k + ret[i\
+    \ - k] < j) {\n\t\t\tret[i + k] = ret[i - k];\n\t\t\tk++;\n\t\t}\n\t\ti += k;\n\
+    \t\tj -= k;\n\t}\n\treturn ret;\n}\n\n/// @brief 2N-1\u500B\u306E\u5834\u6240\
+    (\u6587\u5B57\u3068\u3001\u6587\u5B57\u3068\u6587\u5B57\u306E\u9593)\u306B\u3064\
+    \u3044\u3066\u3001\u305D\u308C\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\
+    \u56DE\u6587\u306E\u534A\u5F84\n/// @param S \u5BFE\u8C61\u306E\u6587\u5B57\u5217\
+    \n/// @return ret[i](\u9577\u30552N-1):\u5DE6\u304B\u3089i\u756A\u76EE\u306E\u5834\
+    \u6240\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\
+    \u5F84\nvi ext_manacher(string& S) {\n\tstringstream ss;\n\tint N = SZ(S);\n\t\
+    REP(i, N) {\n\t\tif(i != 0) ss << \"$\";\n\t\tss << S[i];\n\t}\n\tstring s = ss.str();\n\
+    \tauto ret = manacher(s);\n\tREP(i, 2 * N - 1) {\n\t\tif(i % 2 == 0) {\n\t\t\t\
+    ret[i] = (ret[i] + 1) / 2;\n\t\t} else {\n\t\t\tret[i] = ret[i] / 2;\n\t\t}\n\t\
+    }\n\treturn ret;\n}\n"
+  code: "#include \"../base.hpp\"\n\n/// @brief Manacher\n\n/// @brief \u5404\u6587\
+    \u5B57\u306B\u3064\u3044\u3066\u3001\u305D\u306E\u6587\u5B57\u3092\u4E2D\u5FC3\
+    \u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\u3092\u3082\u3068\
+    \u3081\u308B\n/// @param S \u5BFE\u8C61\u306E\u6587\u5B57\u5217\n/// @return ret[i]:i\u6587\
+    \u5B57\u76EE\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\
+    \u534A\u5F84\nvi manacher(string& S) {\n\tint N = SZ(S);\n\tint i = 0;\n\tint\
+    \ j = 0;\n\tvi ret(N);\n\twhile(i < N) {\n\t\twhile(i - j >= 0 && i + j < N\n\t\
+    \t\t  && S[i - j] == S[i + j])\n\t\t\tj++;\n\t\tret[i] = j;\n\t\tint k = 1;\n\t\
+    \twhile(i - k >= 0 && k + ret[i - k] < j) {\n\t\t\tret[i + k] = ret[i - k];\n\t\
+    \t\tk++;\n\t\t}\n\t\ti += k;\n\t\tj -= k;\n\t}\n\treturn ret;\n}\n\n/// @brief\
+    \ 2N-1\u500B\u306E\u5834\u6240(\u6587\u5B57\u3068\u3001\u6587\u5B57\u3068\u6587\
+    \u5B57\u306E\u9593)\u306B\u3064\u3044\u3066\u3001\u305D\u308C\u3092\u4E2D\u5FC3\
+    \u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\n/// @param S \u5BFE\
+    \u8C61\u306E\u6587\u5B57\u5217\n/// @return ret[i](\u9577\u30552N-1):\u5DE6\u304B\
+    \u3089i\u756A\u76EE\u306E\u5834\u6240\u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\
+    \u9577\u56DE\u6587\u306E\u534A\u5F84\nvi ext_manacher(string& S) {\n\tstringstream\
+    \ ss;\n\tint N = SZ(S);\n\tREP(i, N) {\n\t\tif(i != 0) ss << \"$\";\n\t\tss <<\
+    \ S[i];\n\t}\n\tstring s = ss.str();\n\tauto ret = manacher(s);\n\tREP(i, 2 *\
+    \ N - 1) {\n\t\tif(i % 2 == 0) {\n\t\t\tret[i] = (ret[i] + 1) / 2;\n\t\t} else\
+    \ {\n\t\t\tret[i] = ret[i] / 2;\n\t\t}\n\t}\n\treturn ret;\n}"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: string/manacher.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/manacher.hpp
@@ -94,7 +93,5 @@ layout: document
 redirect_from:
 - /library/string/manacher.hpp
 - /library/string/manacher.hpp.html
-title: "\u5404\u6587\u5B57\u306B\u3064\u3044\u3066\u3001\u305D\u306E\u6587\u5B57\u3092\
-  \u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\u3092\u3082\
-  \u3068\u3081\u308B"
+title: Manacher
 ---

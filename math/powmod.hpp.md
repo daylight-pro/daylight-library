@@ -10,12 +10,13 @@ data:
     title: math/all.hpp
   - icon: ':warning:'
     path: math/fact.hpp
-    title: "Modint\u7528\u306E\u968E\u4E57\u8A08\u7B97\u95A2\u6570\u3067\u3059\u3002"
+    title: "\u968E\u4E57\u8A08\u7B97"
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: powmod
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -45,15 +46,15 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 3 \"math/powmod.hpp\"\
-    \nll powmod(ll a, ll p, ll m = MOD) {\n\tll ans = 1;\n\tll mul = a;\n\tfor(; p\
-    \ > 0; p >>= 1) {\n\t\tif(p & 1) ans = (ans * mul) % m;\n\t\t//mul\u3092\u66F4\
-    \u65B0\u30022\u56DE\u5206\u306E\u64CD\u4F5C\u3092\u5165\u308C\u308B\u3002\n\t\t\
-    mul = (mul * mul) % m;\n\t}\n\treturn ans;\n}\n"
-  code: "#pragma once\n#include \"../base.hpp\"\nll powmod(ll a, ll p, ll m = MOD)\
-    \ {\n\tll ans = 1;\n\tll mul = a;\n\tfor(; p > 0; p >>= 1) {\n\t\tif(p & 1) ans\
-    \ = (ans * mul) % m;\n\t\t//mul\u3092\u66F4\u65B0\u30022\u56DE\u5206\u306E\u64CD\
-    \u4F5C\u3092\u5165\u308C\u308B\u3002\n\t\tmul = (mul * mul) % m;\n\t}\n\treturn\
-    \ ans;\n}"
+    \n/// @brief powmod\n\nll powmod(ll a, ll p, ll m = MOD) {\n\tll ans = 1;\n\t\
+    ll mul = a;\n\tfor(; p > 0; p >>= 1) {\n\t\tif(p & 1) ans = (ans * mul) % m;\n\
+    \t\t//mul\u3092\u66F4\u65B0\u30022\u56DE\u5206\u306E\u64CD\u4F5C\u3092\u5165\u308C\
+    \u308B\u3002\n\t\tmul = (mul * mul) % m;\n\t}\n\treturn ans;\n}\n"
+  code: "#pragma once\n#include \"../base.hpp\"\n/// @brief powmod\n\nll powmod(ll\
+    \ a, ll p, ll m = MOD) {\n\tll ans = 1;\n\tll mul = a;\n\tfor(; p > 0; p >>= 1)\
+    \ {\n\t\tif(p & 1) ans = (ans * mul) % m;\n\t\t//mul\u3092\u66F4\u65B0\u30022\u56DE\
+    \u5206\u306E\u64CD\u4F5C\u3092\u5165\u308C\u308B\u3002\n\t\tmul = (mul * mul)\
+    \ % m;\n\t}\n\treturn ans;\n}"
   dependsOn:
   - base.hpp
   isVerificationFile: false
@@ -61,7 +62,7 @@ data:
   requiredBy:
   - math/fact.hpp
   - math/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/powmod.hpp
@@ -69,5 +70,5 @@ layout: document
 redirect_from:
 - /library/math/powmod.hpp
 - /library/math/powmod.hpp.html
-title: math/powmod.hpp
+title: powmod
 ---

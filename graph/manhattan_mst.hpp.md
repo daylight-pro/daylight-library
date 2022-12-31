@@ -64,6 +64,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: "\u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u3067MST"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -101,13 +102,14 @@ data:
     #include <atcoder/lazysegtree>\n#include <atcoder/math>\n#include <atcoder/maxflow>\n\
     #include <atcoder/mincostflow>\n#include <atcoder/modint>\n#include <atcoder/scc>\n\
     #include <atcoder/segtree>\n#include <atcoder/string>\n#include <atcoder/twosat>\n\
-    #line 4 \"graph/manhattan_mst.hpp\"\nusing namespace atcoder;\nPL op_for_manhattan_mst(PL\
+    #line 4 \"graph/manhattan_mst.hpp\"\nusing namespace atcoder;\n\nPL op_for_manhattan_mst(PL\
     \ a, PL b) {\n\treturn min(a, b);\n}\nPL e_for_manhattan_mst() {\n\treturn { LINF,\
-    \ -1 };\n}\n\nGraph<> manhattan_mst(vector<PL>& V) {\n\tint N = SZ(V);\n\tGraph<>\
-    \ G(N);\n\tif(N == 1) {\n\t\treturn G;\n\t}\n\tEdges<> EG;\n\tauto sweep = [&]()\
-    \ {\n\t\tvll y;\n\t\tREP(i, N) {\n\t\t\ty.push_back(V[i].second);\n\t\t}\n\t\t\
-    so(y);\n\t\tuni(y);\n\t\tint y_len = SZ(y);\n\t\tmap<ll, int> y_ind;\n\t\tREP(i,\
-    \ y_len) {\n\t\t\ty_ind[y[i]] = i;\n\t\t}\n\t\tsegtree<PL, op_for_manhattan_mst,\n\
+    \ -1 };\n}\n\n/// @brief \u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u3067\
+    MST\n/// @param V \u70B9\u306E\u96C6\u5408\n/// @return MST\nGraph<> manhattan_mst(vector<PL>&\
+    \ V) {\n\tint N = SZ(V);\n\tGraph<> G(N);\n\tif(N == 1) {\n\t\treturn G;\n\t}\n\
+    \tEdges<> EG;\n\tauto sweep = [&]() {\n\t\tvll y;\n\t\tREP(i, N) {\n\t\t\ty.push_back(V[i].second);\n\
+    \t\t}\n\t\tso(y);\n\t\tuni(y);\n\t\tint y_len = SZ(y);\n\t\tmap<ll, int> y_ind;\n\
+    \t\tREP(i, y_len) {\n\t\t\ty_ind[y[i]] = i;\n\t\t}\n\t\tsegtree<PL, op_for_manhattan_mst,\n\
     \t\t\t\te_for_manhattan_mst>\n\t\t\tseg(y_len);\n\t\tvi p(N);\n\t\tREP(i, N) {\n\
     \t\t\tp[i] = i;\n\t\t}\n\t\tsort(ALL(p), [=](auto const& l, auto const& r) {\n\
     \t\t\tauto [lx, ly] = V[l];\n\t\t\tauto [rx, ry] = V[r];\n\t\t\tif(ly - lx !=\
@@ -128,8 +130,10 @@ data:
     \ e.cost);\n\t\tG[e.to].eb(e.to, e.from, e.cost);\n\t}\n\tassert(d.size(0) ==\
     \ N);\n\treturn G;\n}\n"
   code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n#include \"atcoder/all\"\
-    \nusing namespace atcoder;\nPL op_for_manhattan_mst(PL a, PL b) {\n\treturn min(a,\
-    \ b);\n}\nPL e_for_manhattan_mst() {\n\treturn { LINF, -1 };\n}\n\nGraph<> manhattan_mst(vector<PL>&\
+    \nusing namespace atcoder;\n\nPL op_for_manhattan_mst(PL a, PL b) {\n\treturn\
+    \ min(a, b);\n}\nPL e_for_manhattan_mst() {\n\treturn { LINF, -1 };\n}\n\n///\
+    \ @brief \u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u3067MST\n/// @param\
+    \ V \u70B9\u306E\u96C6\u5408\n/// @return MST\nGraph<> manhattan_mst(vector<PL>&\
     \ V) {\n\tint N = SZ(V);\n\tGraph<> G(N);\n\tif(N == 1) {\n\t\treturn G;\n\t}\n\
     \tEdges<> EG;\n\tauto sweep = [&]() {\n\t\tvll y;\n\t\tREP(i, N) {\n\t\t\ty.push_back(V[i].second);\n\
     \t\t}\n\t\tso(y);\n\t\tuni(y);\n\t\tint y_len = SZ(y);\n\t\tmap<ll, int> y_ind;\n\
@@ -176,7 +180,7 @@ data:
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/manhattan_mst.hpp
@@ -184,5 +188,5 @@ layout: document
 redirect_from:
 - /library/graph/manhattan_mst.hpp
 - /library/graph/manhattan_mst.hpp.html
-title: graph/manhattan_mst.hpp
+title: "\u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u3067MST"
 ---

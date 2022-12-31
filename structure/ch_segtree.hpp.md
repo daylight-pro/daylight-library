@@ -10,8 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u30BB\u30B0\u6728\u3092\u914D\u5217\u306E\u5185\u5BB9\u3067\u521D\
-      \u671F\u5316\u3059\u308B"
+    document_title: "Chmax,Chmin\u30BB\u30B0\u30E1\u30F3\u30C8\u30C4\u30EA\u30FC"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -41,30 +40,31 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"structure/ch_segtree.hpp\"\
-    \nclass SegmentTreeBeats {\nprivate:\n\tconst ll inf = 1e18;\n\tint n, n0;\n\t\
-    vll max_v, smax_v, max_c;\n\tvll min_v, smin_v, min_c;\n\tvll sum;\n\tvll len,\
-    \ ladd, lval;\n\n\tvoid update_node_max(int k, ll x) {\n\t\tsum[k] += (x - max_v[k])\
-    \ * max_c[k];\n\n\t\tif(max_v[k] == min_v[k]) {\n\t\t\tmax_v[k] = min_v[k] = x;\n\
-    \t\t} else if(max_v[k] == smin_v[k]) {\n\t\t\tmax_v[k] = smin_v[k] = x;\n\t\t\
-    } else {\n\t\t\tmax_v[k] = x;\n\t\t}\n\n\t\tif(lval[k] != inf && x < lval[k])\
-    \ {\n\t\t\tlval[k] = x;\n\t\t}\n\t}\n\tvoid update_node_min(int k, ll x) {\n\t\
-    \tsum[k] += (x - min_v[k]) * min_c[k];\n\n\t\tif(max_v[k] == min_v[k]) {\n\t\t\
-    \tmax_v[k] = min_v[k] = x;\n\t\t} else if(smax_v[k] == min_v[k]) {\n\t\t\tmin_v[k]\
-    \ = smax_v[k] = x;\n\t\t} else {\n\t\t\tmin_v[k] = x;\n\t\t}\n\n\t\tif(lval[k]\
-    \ != inf && lval[k] < x) {\n\t\t\tlval[k] = x;\n\t\t}\n\t}\n\n\tvoid push(int\
-    \ k) {\n\t\tif(n0 - 1 <= k) return;\n\n\t\tif(lval[k] != inf) {\n\t\t\tupdateall(2\
-    \ * k + 1, lval[k]);\n\t\t\tupdateall(2 * k + 2, lval[k]);\n\t\t\tlval[k] = inf;\n\
-    \t\t\treturn;\n\t\t}\n\n\t\tif(ladd[k] != 0) {\n\t\t\taddall(2 * k + 1, ladd[k]);\n\
-    \t\t\taddall(2 * k + 2, ladd[k]);\n\t\t\tladd[k] = 0;\n\t\t}\n\n\t\tif(max_v[k]\
-    \ < max_v[2 * k + 1]) {\n\t\t\tupdate_node_max(2 * k + 1, max_v[k]);\n\t\t}\n\t\
-    \tif(min_v[2 * k + 1] < min_v[k]) {\n\t\t\tupdate_node_min(2 * k + 1, min_v[k]);\n\
-    \t\t}\n\n\t\tif(max_v[k] < max_v[2 * k + 2]) {\n\t\t\tupdate_node_max(2 * k +\
-    \ 2, max_v[k]);\n\t\t}\n\t\tif(min_v[2 * k + 2] < min_v[k]) {\n\t\t\tupdate_node_min(2\
-    \ * k + 2, min_v[k]);\n\t\t}\n\t}\n\n\tvoid update(int k) {\n\t\tsum[k] = sum[2\
-    \ * k + 1] + sum[2 * k + 2];\n\n\t\tif(max_v[2 * k + 1] < max_v[2 * k + 2]) {\n\
-    \t\t\tmax_v[k] = max_v[2 * k + 2];\n\t\t\tmax_c[k] = max_c[2 * k + 2];\n\t\t\t\
-    smax_v[k]\n\t\t\t\t= max(max_v[2 * k + 1], smax_v[2 * k + 2]);\n\t\t} else if(max_v[2\
-    \ * k + 1] > max_v[2 * k + 2]) {\n\t\t\tmax_v[k] = max_v[2 * k + 1];\n\t\t\tmax_c[k]\
+    \n/// @brief Chmax,Chmin\u30BB\u30B0\u30E1\u30F3\u30C8\u30C4\u30EA\u30FC\nclass\
+    \ SegmentTreeBeats {\nprivate:\n\tconst ll inf = 1e18;\n\tint n, n0;\n\tvll max_v,\
+    \ smax_v, max_c;\n\tvll min_v, smin_v, min_c;\n\tvll sum;\n\tvll len, ladd, lval;\n\
+    \n\tvoid update_node_max(int k, ll x) {\n\t\tsum[k] += (x - max_v[k]) * max_c[k];\n\
+    \n\t\tif(max_v[k] == min_v[k]) {\n\t\t\tmax_v[k] = min_v[k] = x;\n\t\t} else if(max_v[k]\
+    \ == smin_v[k]) {\n\t\t\tmax_v[k] = smin_v[k] = x;\n\t\t} else {\n\t\t\tmax_v[k]\
+    \ = x;\n\t\t}\n\n\t\tif(lval[k] != inf && x < lval[k]) {\n\t\t\tlval[k] = x;\n\
+    \t\t}\n\t}\n\tvoid update_node_min(int k, ll x) {\n\t\tsum[k] += (x - min_v[k])\
+    \ * min_c[k];\n\n\t\tif(max_v[k] == min_v[k]) {\n\t\t\tmax_v[k] = min_v[k] = x;\n\
+    \t\t} else if(smax_v[k] == min_v[k]) {\n\t\t\tmin_v[k] = smax_v[k] = x;\n\t\t\
+    } else {\n\t\t\tmin_v[k] = x;\n\t\t}\n\n\t\tif(lval[k] != inf && lval[k] < x)\
+    \ {\n\t\t\tlval[k] = x;\n\t\t}\n\t}\n\n\tvoid push(int k) {\n\t\tif(n0 - 1 <=\
+    \ k) return;\n\n\t\tif(lval[k] != inf) {\n\t\t\tupdateall(2 * k + 1, lval[k]);\n\
+    \t\t\tupdateall(2 * k + 2, lval[k]);\n\t\t\tlval[k] = inf;\n\t\t\treturn;\n\t\t\
+    }\n\n\t\tif(ladd[k] != 0) {\n\t\t\taddall(2 * k + 1, ladd[k]);\n\t\t\taddall(2\
+    \ * k + 2, ladd[k]);\n\t\t\tladd[k] = 0;\n\t\t}\n\n\t\tif(max_v[k] < max_v[2 *\
+    \ k + 1]) {\n\t\t\tupdate_node_max(2 * k + 1, max_v[k]);\n\t\t}\n\t\tif(min_v[2\
+    \ * k + 1] < min_v[k]) {\n\t\t\tupdate_node_min(2 * k + 1, min_v[k]);\n\t\t}\n\
+    \n\t\tif(max_v[k] < max_v[2 * k + 2]) {\n\t\t\tupdate_node_max(2 * k + 2, max_v[k]);\n\
+    \t\t}\n\t\tif(min_v[2 * k + 2] < min_v[k]) {\n\t\t\tupdate_node_min(2 * k + 2,\
+    \ min_v[k]);\n\t\t}\n\t}\n\n\tvoid update(int k) {\n\t\tsum[k] = sum[2 * k + 1]\
+    \ + sum[2 * k + 2];\n\n\t\tif(max_v[2 * k + 1] < max_v[2 * k + 2]) {\n\t\t\tmax_v[k]\
+    \ = max_v[2 * k + 2];\n\t\t\tmax_c[k] = max_c[2 * k + 2];\n\t\t\tsmax_v[k]\n\t\
+    \t\t\t= max(max_v[2 * k + 1], smax_v[2 * k + 2]);\n\t\t} else if(max_v[2 * k +\
+    \ 1] > max_v[2 * k + 2]) {\n\t\t\tmax_v[k] = max_v[2 * k + 1];\n\t\t\tmax_c[k]\
     \ = max_c[2 * k + 1];\n\t\t\tsmax_v[k]\n\t\t\t\t= max(smax_v[2 * k + 1], max_v[2\
     \ * k + 2]);\n\t\t} else {\n\t\t\tmax_v[k] = max_v[2 * k + 1];\n\t\t\tmax_c[k]\
     \ = max_c[2 * k + 1] + max_c[2 * k + 2];\n\t\t\tsmax_v[k]\n\t\t\t\t= max(smax_v[2\
@@ -170,13 +170,14 @@ data:
     \treturn prod_min(0, n);\n\t}\n\n\t/// @brief \u5168\u4F53\u306E\u7DCF\u548C\u3092\
     \u53D6\u5F97\n\t/// @return \u5168\u4F53\u306E\u7DCF\u548C\n\tll all_prod_sum()\
     \ {\n\t\treturn prod_sum(0, n);\n\t}\n};\n"
-  code: "#include \"../base.hpp\"\nclass SegmentTreeBeats {\nprivate:\n\tconst ll\
-    \ inf = 1e18;\n\tint n, n0;\n\tvll max_v, smax_v, max_c;\n\tvll min_v, smin_v,\
-    \ min_c;\n\tvll sum;\n\tvll len, ladd, lval;\n\n\tvoid update_node_max(int k,\
-    \ ll x) {\n\t\tsum[k] += (x - max_v[k]) * max_c[k];\n\n\t\tif(max_v[k] == min_v[k])\
-    \ {\n\t\t\tmax_v[k] = min_v[k] = x;\n\t\t} else if(max_v[k] == smin_v[k]) {\n\t\
-    \t\tmax_v[k] = smin_v[k] = x;\n\t\t} else {\n\t\t\tmax_v[k] = x;\n\t\t}\n\n\t\t\
-    if(lval[k] != inf && x < lval[k]) {\n\t\t\tlval[k] = x;\n\t\t}\n\t}\n\tvoid update_node_min(int\
+  code: "#include \"../base.hpp\"\n/// @brief Chmax,Chmin\u30BB\u30B0\u30E1\u30F3\u30C8\
+    \u30C4\u30EA\u30FC\nclass SegmentTreeBeats {\nprivate:\n\tconst ll inf = 1e18;\n\
+    \tint n, n0;\n\tvll max_v, smax_v, max_c;\n\tvll min_v, smin_v, min_c;\n\tvll\
+    \ sum;\n\tvll len, ladd, lval;\n\n\tvoid update_node_max(int k, ll x) {\n\t\t\
+    sum[k] += (x - max_v[k]) * max_c[k];\n\n\t\tif(max_v[k] == min_v[k]) {\n\t\t\t\
+    max_v[k] = min_v[k] = x;\n\t\t} else if(max_v[k] == smin_v[k]) {\n\t\t\tmax_v[k]\
+    \ = smin_v[k] = x;\n\t\t} else {\n\t\t\tmax_v[k] = x;\n\t\t}\n\n\t\tif(lval[k]\
+    \ != inf && x < lval[k]) {\n\t\t\tlval[k] = x;\n\t\t}\n\t}\n\tvoid update_node_min(int\
     \ k, ll x) {\n\t\tsum[k] += (x - min_v[k]) * min_c[k];\n\n\t\tif(max_v[k] == min_v[k])\
     \ {\n\t\t\tmax_v[k] = min_v[k] = x;\n\t\t} else if(smax_v[k] == min_v[k]) {\n\t\
     \t\tmin_v[k] = smax_v[k] = x;\n\t\t} else {\n\t\t\tmin_v[k] = x;\n\t\t}\n\n\t\t\
@@ -304,7 +305,7 @@ data:
   isVerificationFile: false
   path: structure/ch_segtree.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/ch_segtree.hpp
@@ -312,6 +313,5 @@ layout: document
 redirect_from:
 - /library/structure/ch_segtree.hpp
 - /library/structure/ch_segtree.hpp.html
-title: "\u30BB\u30B0\u6728\u3092\u914D\u5217\u306E\u5185\u5BB9\u3067\u521D\u671F\u5316\
-  \u3059\u308B"
+title: "Chmax,Chmin\u30BB\u30B0\u30E1\u30F3\u30C8\u30C4\u30EA\u30FC"
 ---

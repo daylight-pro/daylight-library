@@ -10,8 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\u306A\u308B\
-      \u6700\u5C0F\u306Er\u3092\u6C42\u3081\u308B\u3002"
+    document_title: "\u5C3A\u53D6\u308A\u6CD5"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -41,28 +40,28 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"double_pointer.hpp\"\
-    \n/// @brief \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\u306A\u308B\
-    \u6700\u5C0F\u306Er\u3092\u6C42\u3081\u308B\u3002\n/// @param left \u63A2\u7D22\
-    \u7BC4\u56F2\u306E\u5DE6\u7AEF(inclusive)\n/// @param right \u63A2\u7D22\u7BC4\
-    \u56F2\u306E\u53F3\u7AEF(exclusive)\n/// @param check ()->\u73FE\u5728\u306E\u7BC4\
-    \u56F2\u304C\u6761\u4EF6\u3092\u6E80\u305F\u3059\u304B\n/// @param add (\u30A4\
-    \u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\u306E\u64CD\u4F5C\u304B)\n///\
-    \ @param del (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\u306E\u64CD\
-    \u4F5C\u304B)\n/// @param update \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\
-    \u306A\u308B\u6700\u5927\u306Er\u3068\u3068\u3082\u306B1\u5EA6\u306E\u307F\u547C\
-    \u3070\u308C\u308B\nvoid doublePointerMinRight(\n\tint left, int right, function<bool()>\
-    \ check,\n\tfunction<void(int, bool)> add,\n\tfunction<void(int, bool)> del,\n\
-    \tfunction<void(int, int)> update) {\n\tint r = left;\n\tfor(int l = left; l <\
-    \ right; l++) {\n\t\twhile(r < right && check()) {\n\t\t\tadd(r++, false);\n\t\
-    \t}\n\t\tif(!check()) break;\n\t\tupdate(l, r);\n\t\tdel(l, true);\n\t}\n}\n\n\
-    /// @brief \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\u306A\u308B\u6700\
-    \u5927\u306Er\u3092\u6C42\u3081\u308B\u3002\n/// @param left \u63A2\u7D22\u7BC4\
-    \u56F2\u306E\u5DE6\u7AEF(inclusive)\n/// @param right \u63A2\u7D22\u7BC4\u56F2\
-    \u306E\u53F3\u7AEF(exclusive)\n/// @param check ()->\u73FE\u5728\u306E\u7BC4\u56F2\
-    \u304C\u6761\u4EF6\u3092\u6E80\u305F\u3059\u304B\n/// @param add (\u30A4\u30F3\
-    \u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\u306E\u64CD\u4F5C\u304B)\n/// @param\
-    \ del (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\u306E\u64CD\u4F5C\
-    \u304B)\n/// @param update \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\
+    \n/// @brief \u5C3A\u53D6\u308A\u6CD5\n\n/// @brief \u5404l\u306B\u3064\u3044\u3066\
+    check(l,r)==true\u306B\u306A\u308B\u6700\u5C0F\u306Er\u3092\u6C42\u3081\u308B\u3002\
+    \n/// @param left \u63A2\u7D22\u7BC4\u56F2\u306E\u5DE6\u7AEF(inclusive)\n/// @param\
+    \ right \u63A2\u7D22\u7BC4\u56F2\u306E\u53F3\u7AEF(exclusive)\n/// @param check\
+    \ ()->\u73FE\u5728\u306E\u7BC4\u56F2\u304C\u6761\u4EF6\u3092\u6E80\u305F\u3059\
+    \u304B\n/// @param add (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\
+    \u306E\u64CD\u4F5C\u304B)\n/// @param del (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
+    ,\u5DE6\u304B\u3089\u306E\u64CD\u4F5C\u304B)\n/// @param update \u5404l\u306B\u3064\
+    \u3044\u3066check(l,r)==true\u306B\u306A\u308B\u6700\u5927\u306Er\u3068\u3068\u3082\
+    \u306B1\u5EA6\u306E\u307F\u547C\u3070\u308C\u308B\nvoid doublePointerMinRight(\n\
+    \tint left, int right, function<bool()> check,\n\tfunction<void(int, bool)> add,\n\
+    \tfunction<void(int, bool)> del,\n\tfunction<void(int, int)> update) {\n\tint\
+    \ r = left;\n\tfor(int l = left; l < right; l++) {\n\t\twhile(r < right && check())\
+    \ {\n\t\t\tadd(r++, false);\n\t\t}\n\t\tif(!check()) break;\n\t\tupdate(l, r);\n\
+    \t\tdel(l, true);\n\t}\n}\n\n/// @brief \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\
+    \u306A\u308B\u6700\u5927\u306Er\u3092\u6C42\u3081\u308B\u3002\n/// @param left\
+    \ \u63A2\u7D22\u7BC4\u56F2\u306E\u5DE6\u7AEF(inclusive)\n/// @param right \u63A2\
+    \u7D22\u7BC4\u56F2\u306E\u53F3\u7AEF(exclusive)\n/// @param check ()->\u73FE\u5728\
+    \u306E\u7BC4\u56F2\u304C\u6761\u4EF6\u3092\u6E80\u305F\u3059\u304B\n/// @param\
+    \ add (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\u306E\u64CD\u4F5C\
+    \u304B)\n/// @param del (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\
+    \u306E\u64CD\u4F5C\u304B)\n/// @param update \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\
     \u306A\u308B\u6700\u5927\u306Er\u3068\u3068\u3082\u306B1\u5EA6\u306E\u307F\u547C\
     \u3070\u308C\u308B\nvoid doublePointerMaxRight(\n\tint left, int right, function<bool()>\
     \ check,\n\tfunction<void(int, bool)> add,\n\tfunction<void(int, bool)> del,\n\
@@ -71,16 +70,17 @@ data:
     \ {\n\t\t\t\tr--;\n\t\t\t\tdel(r, false);\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\t\
     update(l, r);\n\t\tif(l == r) {\n\t\t\tr++;\n\t\t} else {\n\t\t\tdel(l, true);\n\
     \t\t}\n\t}\n}\n"
-  code: "#include \"./base.hpp\"\n/// @brief \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\
-    \u306A\u308B\u6700\u5C0F\u306Er\u3092\u6C42\u3081\u308B\u3002\n/// @param left\
-    \ \u63A2\u7D22\u7BC4\u56F2\u306E\u5DE6\u7AEF(inclusive)\n/// @param right \u63A2\
-    \u7D22\u7BC4\u56F2\u306E\u53F3\u7AEF(exclusive)\n/// @param check ()->\u73FE\u5728\
-    \u306E\u7BC4\u56F2\u304C\u6761\u4EF6\u3092\u6E80\u305F\u3059\u304B\n/// @param\
-    \ add (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\u306E\u64CD\u4F5C\
-    \u304B)\n/// @param del (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\
-    \u306E\u64CD\u4F5C\u304B)\n/// @param update \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\
-    \u306A\u308B\u6700\u5927\u306Er\u3068\u3068\u3082\u306B1\u5EA6\u306E\u307F\u547C\
-    \u3070\u308C\u308B\nvoid doublePointerMinRight(\n\tint left, int right, function<bool()>\
+  code: "#include \"./base.hpp\"\n/// @brief \u5C3A\u53D6\u308A\u6CD5\n\n/// @brief\
+    \ \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\u306A\u308B\u6700\u5C0F\
+    \u306Er\u3092\u6C42\u3081\u308B\u3002\n/// @param left \u63A2\u7D22\u7BC4\u56F2\
+    \u306E\u5DE6\u7AEF(inclusive)\n/// @param right \u63A2\u7D22\u7BC4\u56F2\u306E\
+    \u53F3\u7AEF(exclusive)\n/// @param check ()->\u73FE\u5728\u306E\u7BC4\u56F2\u304C\
+    \u6761\u4EF6\u3092\u6E80\u305F\u3059\u304B\n/// @param add (\u30A4\u30F3\u30C7\
+    \u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\u306E\u64CD\u4F5C\u304B)\n/// @param del\
+    \ (\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9,\u5DE6\u304B\u3089\u306E\u64CD\u4F5C\u304B\
+    )\n/// @param update \u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\u306A\
+    \u308B\u6700\u5927\u306Er\u3068\u3068\u3082\u306B1\u5EA6\u306E\u307F\u547C\u3070\
+    \u308C\u308B\nvoid doublePointerMinRight(\n\tint left, int right, function<bool()>\
     \ check,\n\tfunction<void(int, bool)> add,\n\tfunction<void(int, bool)> del,\n\
     \tfunction<void(int, int)> update) {\n\tint r = left;\n\tfor(int l = left; l <\
     \ right; l++) {\n\t\twhile(r < right && check()) {\n\t\t\tadd(r++, false);\n\t\
@@ -106,7 +106,7 @@ data:
   isVerificationFile: false
   path: double_pointer.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: double_pointer.hpp
@@ -114,6 +114,5 @@ layout: document
 redirect_from:
 - /library/double_pointer.hpp
 - /library/double_pointer.hpp.html
-title: "\u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\u306A\u308B\u6700\u5C0F\
-  \u306Er\u3092\u6C42\u3081\u308B\u3002"
+title: "\u5C3A\u53D6\u308A\u6CD5"
 ---

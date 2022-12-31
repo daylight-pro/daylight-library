@@ -10,24 +10,23 @@ data:
     title: graph/all.hpp
   - icon: ':warning:'
     path: graph/kruskal.hpp
-    title: "\u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\u3092\u6C42\u3081\
-      \u308B"
+    title: "\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5"
   - icon: ':warning:'
     path: graph/manhattan_mst.hpp
-    title: graph/manhattan_mst.hpp
+    title: "\u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u3067MST"
   - icon: ':warning:'
     path: math/modlog.hpp
-    title: "a^n=b(mod m)\u3068\u306A\u308B\u6700\u5C0F\u306En\u3092\u6C42\u3081\u308B"
+    title: "\u96E2\u6563\u5BFE\u6570"
   - icon: ':warning:'
     path: structure/editable_priority_queue.hpp
-    title: "\u914D\u5217\u306Ei\u756A\u76EE\u306E\u5024\u306B\u30A2\u30AF\u30BB\u30B9\
-      \u3059\u308B"
+    title: "\u7DE8\u96C6\u53EF\u80FD\u30D7\u30E9\u30A4\u30AA\u30EA\u30C6\u30A3\u30FC\
+      \u30AD\u30E5\u30FC"
   - icon: ':warning:'
     path: structure/segtree_builder.hpp
     title: structure/segtree_builder.hpp
   - icon: ':warning:'
     path: structure/zobrist_hash.hpp
-    title: "\u96C6\u5408\u3092\u30CF\u30C3\u30B7\u30E5\u3059\u308B\u69CB\u9020\u4F53"
+    title: Zobrist Hash
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp

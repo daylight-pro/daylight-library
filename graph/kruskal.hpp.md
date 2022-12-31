@@ -67,8 +67,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\u3092\u6C42\
-      \u3081\u308B"
+    document_title: "\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5"
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -106,19 +105,8 @@ data:
     #include <atcoder/lazysegtree>\n#include <atcoder/math>\n#include <atcoder/maxflow>\n\
     #include <atcoder/mincostflow>\n#include <atcoder/modint>\n#include <atcoder/scc>\n\
     #include <atcoder/segtree>\n#include <atcoder/string>\n#include <atcoder/twosat>\n\
-    #line 4 \"graph/kruskal.hpp\"\nusing namespace atcoder;\n/// @brief \u6700\u5C0F\
-    \u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\u3092\u6C42\u3081\u308B\n/// @param\
-    \ V \u9802\u70B9\u6570\n/// @param ES \u8FBA\u96C6\u5408\n/// @return \u30B0\u30E9\
-    \u30D5\u304C\u9023\u7D50\u3067\u306A\u3051\u308C\u3070LINF,\u9023\u7D50\u306A\u3089\
-    \u3070\u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\nll kruskal(int V,\
-    \ Edges<>& ES) {\n\tsort(ALL(ES), [](Edge<> const& a, Edge<> const& b) {\n\t\t\
-    if(a.cost != b.cost) return a.cost < b.cost;\n\t\tif(a.from != b.from) return\
-    \ a.from < b.from;\n\t\treturn a.to < b.to;\n\t});\n\tll ret = 0;\n\tdsu d(V);\n\
-    \tREP(i, SZ(ES)) {\n\t\tEdge e = ES[i];\n\t\tif(!d.same(e.from, e.to)) {\n\t\t\
-    \tret += e.cost;\n\t\t\td.merge(e.from, e.to);\n\t\t}\n\t}\n\tif(d.size(0) !=\
-    \ V) {\n\t\treturn LINF;\n\t}\n\treturn ret;\n}\n"
-  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n#include \"atcoder/all\"\
-    \nusing namespace atcoder;\n/// @brief \u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\
+    #line 4 \"graph/kruskal.hpp\"\nusing namespace atcoder;\n/// @brief \u30AF\u30E9\
+    \u30B9\u30AB\u30EB\u6CD5\n\n/// @brief \u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\
     \u30B9\u30C8\u3092\u6C42\u3081\u308B\n/// @param V \u9802\u70B9\u6570\n/// @param\
     \ ES \u8FBA\u96C6\u5408\n/// @return \u30B0\u30E9\u30D5\u304C\u9023\u7D50\u3067\
     \u306A\u3051\u308C\u3070LINF,\u9023\u7D50\u306A\u3089\u3070\u6700\u5C0F\u5168\u57DF\
@@ -128,7 +116,19 @@ data:
     \ < b.to;\n\t});\n\tll ret = 0;\n\tdsu d(V);\n\tREP(i, SZ(ES)) {\n\t\tEdge e =\
     \ ES[i];\n\t\tif(!d.same(e.from, e.to)) {\n\t\t\tret += e.cost;\n\t\t\td.merge(e.from,\
     \ e.to);\n\t\t}\n\t}\n\tif(d.size(0) != V) {\n\t\treturn LINF;\n\t}\n\treturn\
-    \ ret;\n}"
+    \ ret;\n}\n"
+  code: "#include \"../base.hpp\"\n#include \"./base.hpp\"\n#include \"atcoder/all\"\
+    \nusing namespace atcoder;\n/// @brief \u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5\n\n\
+    /// @brief \u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\u3092\u6C42\u3081\
+    \u308B\n/// @param V \u9802\u70B9\u6570\n/// @param ES \u8FBA\u96C6\u5408\n///\
+    \ @return \u30B0\u30E9\u30D5\u304C\u9023\u7D50\u3067\u306A\u3051\u308C\u3070LINF,\u9023\
+    \u7D50\u306A\u3089\u3070\u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\
+    \nll kruskal(int V, Edges<>& ES) {\n\tsort(ALL(ES), [](Edge<> const& a, Edge<>\
+    \ const& b) {\n\t\tif(a.cost != b.cost) return a.cost < b.cost;\n\t\tif(a.from\
+    \ != b.from) return a.from < b.from;\n\t\treturn a.to < b.to;\n\t});\n\tll ret\
+    \ = 0;\n\tdsu d(V);\n\tREP(i, SZ(ES)) {\n\t\tEdge e = ES[i];\n\t\tif(!d.same(e.from,\
+    \ e.to)) {\n\t\t\tret += e.cost;\n\t\t\td.merge(e.from, e.to);\n\t\t}\n\t}\n\t\
+    if(d.size(0) != V) {\n\t\treturn LINF;\n\t}\n\treturn ret;\n}"
   dependsOn:
   - base.hpp
   - graph/base.hpp
@@ -153,7 +153,7 @@ data:
   path: graph/kruskal.hpp
   requiredBy:
   - graph/all.hpp
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/kruskal.hpp
@@ -161,5 +161,5 @@ layout: document
 redirect_from:
 - /library/graph/kruskal.hpp
 - /library/graph/kruskal.hpp.html
-title: "\u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\u3092\u6C42\u3081\u308B"
+title: "\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5"
 ---

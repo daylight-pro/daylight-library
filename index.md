@@ -61,25 +61,22 @@ data:
       title: base.hpp
     - icon: ':warning:'
       path: double_pointer.hpp
-      title: "\u5404l\u306B\u3064\u3044\u3066check(l,r)==true\u306B\u306A\u308B\u6700\
-        \u5C0F\u306Er\u3092\u6C42\u3081\u308B\u3002"
+      title: "\u5C3A\u53D6\u308A\u6CD5"
     - icon: ':warning:'
       path: doubling.hpp
-      title: "\u30B5\u30A4\u30BAn\u306E\u6052\u7B49\u5199\u50CF\u3067\u521D\u671F\u5316"
+      title: "\u30C0\u30D6\u30EA\u30F3\u30B0"
     - icon: ':warning:'
       path: mo_s_algorithm.hpp
-      title: "\u533A\u9593\u30AF\u30A8\u30EA\u306B\u9AD8\u901F\u306B\u3053\u305F\u3048\
-        \u308B"
+      title: Mo's Algorithm
     - icon: ':warning:'
       path: my_rnd.hpp
-      title: "0\u4EE5\u4E0Aupper\u672A\u6E80\u306E\u6574\u6570\u3092\u4E00\u3064\u30E9\
-        \u30F3\u30C0\u30E0\u306B\u53D6\u5F97\u3059\u308B"
+      title: "\u4E71\u6570\u69CB\u9020\u4F53"
     - icon: ':warning:'
       path: range_sum.hpp
-      title: "\u533A\u9593[l,r)\u306E\u548C\u3092\u6C42\u3081\u308B"
+      title: "\u533A\u9593\u548C"
     - icon: ':warning:'
       path: rerooting.hpp
-      title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF"
+      title: "\u5168\u65B9\u4F4D\u6728DP"
   - name: graph
     pages:
     - icon: ':warning:'
@@ -90,35 +87,31 @@ data:
       title: graph/base.hpp
     - icon: ':warning:'
       path: graph/bellman_ford.hpp
-      title: "\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\u3067\u5358\u4E00\
-        \u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\u304F"
+      title: "\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5"
     - icon: ':warning:'
       path: graph/cycle_detection.hpp
-      title: graph/cycle_detection.hpp
+      title: "\u9589\u8DEF\u691C\u51FA"
     - icon: ':warning:'
       path: graph/diameter.hpp
-      title: graph/diameter.hpp
+      title: "\u6728\u306E\u76F4\u5F84"
     - icon: ':warning:'
       path: graph/dijkstra.hpp
-      title: "\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\
-        \u89E3\u304F"
+      title: "\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5"
     - icon: ':warning:'
       path: graph/euler_tour.hpp
-      title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u3092\u6C42\u3081\u307E\u3059"
+      title: "\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC"
     - icon: ':warning:'
       path: graph/floyd.hpp
-      title: "\u5168\u70B9\u5BFE\u6700\u77ED\u7D4C\u8DEF\u9577\u554F\u984C\u3092\u89E3\
-        \u304F"
+      title: "\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5"
     - icon: ':warning:'
       path: graph/kruskal.hpp
-      title: "\u6700\u5C0F\u5168\u57DF\u6728\u306E\u30B3\u30B9\u30C8\u3092\u6C42\u3081\
-        \u308B"
+      title: "\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5"
     - icon: ':warning:'
       path: graph/lca.hpp
-      title: graph/lca.hpp
+      title: LCA
     - icon: ':warning:'
       path: graph/manhattan_mst.hpp
-      title: graph/manhattan_mst.hpp
+      title: "\u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u3067MST"
   - name: math
     pages:
     - icon: ':warning:'
@@ -126,104 +119,101 @@ data:
       title: math/all.hpp
     - icon: ':warning:'
       path: math/comb.hpp
-      title: math/comb.hpp
+      title: "\u7D44\u307F\u5408\u308F\u305B\u3092\u8A08\u7B97\u3059\u308B\u69CB\u9020\
+        \u4F53"
     - icon: ':warning:'
       path: math/diviser.hpp
-      title: "\u7D04\u6570\u3092\u5168\u5217\u6319\u3059\u308B"
+      title: "\u7D04\u6570\u5168\u5217\u6319"
     - icon: ':warning:'
       path: math/eratos.hpp
-      title: math/eratos.hpp
+      title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
     - icon: ':warning:'
       path: math/extgcd.hpp
-      title: "gcd(a,b)\u3068ax+by=gcd(a,b)\u3092\u6E80\u305F\u3059x,y\u3092\u6C42\u3081\
-        \u308B"
+      title: "\u62E1\u5F35GCD"
     - icon: ':warning:'
       path: math/fact.hpp
-      title: "Modint\u7528\u306E\u968E\u4E57\u8A08\u7B97\u95A2\u6570\u3067\u3059\u3002"
+      title: "\u968E\u4E57\u8A08\u7B97"
     - icon: ':warning:'
       path: math/gcd_lcm.hpp
-      title: math/gcd_lcm.hpp
+      title: "GCD\u3068LCM"
     - icon: ':warning:'
       path: math/geometry.hpp
-      title: "a\u3068b\u306E\u5185\u7A4D\u3092\u6C42\u3081\u308B"
+      title: "\u5E7E\u4F55\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':warning:'
       path: math/matrix.hpp
-      title: math/matrix.hpp
+      title: "\u884C\u5217\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':warning:'
       path: math/modlog.hpp
-      title: "a^n=b(mod m)\u3068\u306A\u308B\u6700\u5C0F\u306En\u3092\u6C42\u3081\u308B"
+      title: "\u96E2\u6563\u5BFE\u6570"
     - icon: ':warning:'
       path: math/powmod.hpp
-      title: math/powmod.hpp
+      title: powmod
     - icon: ':warning:'
       path: math/prime_factor.hpp
-      title: "\u7D20\u56E0\u6570\u5206\u89E3\u3092\u3059\u308B"
+      title: "\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
       path: math/rational.hpp
-      title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF"
+      title: "\u6709\u7406\u6570\u30E9\u30A4\u30D6\u30E9\u30EA"
   - name: string
     pages:
     - icon: ':warning:'
       path: string/manacher.hpp
-      title: "\u5404\u6587\u5B57\u306B\u3064\u3044\u3066\u3001\u305D\u306E\u6587\u5B57\
-        \u3092\u4E2D\u5FC3\u3068\u3059\u308B\u6700\u9577\u56DE\u6587\u306E\u534A\u5F84\
-        \u3092\u3082\u3068\u3081\u308B"
+      title: Manacher
     - icon: ':warning:'
       path: string/mp.hpp
-      title: string/mp.hpp
+      title: (K)MP
     - icon: ':warning:'
       path: string/rolling_hash.hpp
-      title: "\u521D\u671F\u5316\u3002\u57FA\u5E95\u306E\u9078\u5B9A\u3092\u884C\u3046"
+      title: "\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5"
     - icon: ':warning:'
       path: string/trie.hpp
-      title: "\u5358\u8A9Eword\u3092\u633F\u5165"
+      title: "\u30C8\u30E9\u30A4\u6728"
   - name: structure
     pages:
     - icon: ':warning:'
       path: structure/abel.hpp
-      title: structure/abel.hpp
+      title: "\u53EF\u63DB\u7FA4\u30E9\u30A4\u30D6\u30E9\u30EA"
     - icon: ':warning:'
       path: structure/binary_trie.hpp
-      title: "\u7A7A\u306E\u30C8\u30E9\u30A4\u6728\u3092\u751F\u6210"
+      title: "\u30D0\u30A4\u30CA\u30EA\u30C8\u30E9\u30A4\u6728"
     - icon: ':warning:'
       path: structure/ch_segtree.hpp
-      title: "\u30BB\u30B0\u6728\u3092\u914D\u5217\u306E\u5185\u5BB9\u3067\u521D\u671F\
-        \u5316\u3059\u308B"
+      title: "Chmax,Chmin\u30BB\u30B0\u30E1\u30F3\u30C8\u30C4\u30EA\u30FC"
     - icon: ':warning:'
       path: structure/deletable_priority_queue.hpp
-      title: "\u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\u3059\u308B"
+      title: "\u524A\u9664\u53EF\u80FD\u30D7\u30E9\u30A4\u30AA\u30EA\u30C6\u30A3\u30FC\
+        \u30AD\u30E5\u30FC"
     - icon: ':warning:'
       path: structure/editable_priority_queue.hpp
-      title: "\u914D\u5217\u306Ei\u756A\u76EE\u306E\u5024\u306B\u30A2\u30AF\u30BB\u30B9\
-        \u3059\u308B"
+      title: "\u7DE8\u96C6\u53EF\u80FD\u30D7\u30E9\u30A4\u30AA\u30EA\u30C6\u30A3\u30FC\
+        \u30AD\u30E5\u30FC"
     - icon: ':warning:'
       path: structure/li_chao_segtree.hpp
-      title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF"
+      title: Li Chao Segmenttree
     - icon: ':warning:'
       path: structure/partial_persistent_uf.hpp
-      title: "\u30B5\u30A4\u30BAn\u3067\u8FBA\u304C\u306A\u3044UF\u3092\u751F\u6210"
+      title: "\u90E8\u5206\u6C38\u7D9AUF"
     - icon: ':warning:'
       path: structure/potential_uf.hpp
-      title: "\u9802\u70B9x\u3068\u9802\u70B9y\u304C\u9023\u7D50\u304B\u5224\u5B9A\
-        \u3059\u308B"
+      title: "\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u4ED8\u304DUF"
     - icon: ':warning:'
       path: structure/priority_deque.hpp
-      title: "\u30AD\u30E5\u30FC\u306B\u8981\u7D20v\u3092\u8FFD\u52A0\u3059\u308B"
+      title: priority_deque
     - icon: ':warning:'
       path: structure/segtree_builder.hpp
       title: structure/segtree_builder.hpp
     - icon: ':warning:'
       path: structure/sparse_table.hpp
-      title: "\u524D\u8A08\u7B97\u3092\u884C\u3046"
+      title: Sparse Table
     - icon: ':warning:'
       path: structure/swag.hpp
-      title: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF"
+      title: "SWAG(\u30B9\u30E9\u30A4\u30C9\u6700\u5C0F\u5024)"
     - icon: ':warning:'
       path: structure/wavelet_matrix.hpp
-      title: "v[i]\u306B\u30A2\u30AF\u30BB\u30B9\u3059\u308B"
+      title: Wavelet Matrix
     - icon: ':warning:'
       path: structure/zobrist_hash.hpp
-      title: "\u96C6\u5408\u3092\u30CF\u30C3\u30B7\u30E5\u3059\u308B\u69CB\u9020\u4F53"
+      title: Zobrist Hash
   verificationCategories:
   - name: .
     pages:

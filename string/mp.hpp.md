@@ -10,6 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: (K)MP
     links: []
   bundledCode: "#line 2 \"base.hpp\"\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n#define SZ(x) (int) (x).size()\n#define REP(i, n) for(int i = 0; i < (n);\
@@ -39,22 +40,24 @@ data:
     \ SZ(vec)) {\n\t\tif(i != 0) ss << splitter;\n\t\tss << vec[i];\n\t}\n\treturn\
     \ ss.str();\n}\n\ntemplate<typename T>\nostream& operator<<(ostream& os, vector<T>&\
     \ vec) {\n\tos << join(vec, \" \");\n\treturn os;\n}\n#line 2 \"string/mp.hpp\"\
-    \ntemplate<typename T>\nstruct MP {\n\tvi a;\n\tint n;\n\tT s;\n\tMP(T s): s(s)\
-    \ {\n\t\tinit();\n\t}\n\n\tvoid init() {\n\t\tn = SZ(s);\n\t\ta = vi(n + 1);\n\
-    \t\ta[0] = -1;\n\t\tint j = -1;\n\t\tREP(i, n) {\n\t\t\twhile(j != -1 && s[j]\
-    \ != s[i]) j = a[j];\n\t\t\tj++;\n\t\t\ta[i + 1] = j;\n\t\t}\n\t}\n\n\tint operator[](int\
-    \ i) {\n\t\treturn a[i];\n\t}\n};\n"
-  code: "#include \"../base.hpp\"\ntemplate<typename T>\nstruct MP {\n\tvi a;\n\t\
-    int n;\n\tT s;\n\tMP(T s): s(s) {\n\t\tinit();\n\t}\n\n\tvoid init() {\n\t\tn\
-    \ = SZ(s);\n\t\ta = vi(n + 1);\n\t\ta[0] = -1;\n\t\tint j = -1;\n\t\tREP(i, n)\
-    \ {\n\t\t\twhile(j != -1 && s[j] != s[i]) j = a[j];\n\t\t\tj++;\n\t\t\ta[i + 1]\
-    \ = j;\n\t\t}\n\t}\n\n\tint operator[](int i) {\n\t\treturn a[i];\n\t}\n};"
+    \n/// @brief (K)MP\n/// @tparam T \u914D\u5217\u306E\u578B\ntemplate<typename\
+    \ T>\nstruct MP {\n\tvi a;\n\tint n;\n\tT s;\n\tMP(T s): s(s) {\n\t\tinit();\n\
+    \t}\n\n\tvoid init() {\n\t\tn = SZ(s);\n\t\ta = vi(n + 1);\n\t\ta[0] = -1;\n\t\
+    \tint j = -1;\n\t\tREP(i, n) {\n\t\t\twhile(j != -1 && s[j] != s[i]) j = a[j];\n\
+    \t\t\tj++;\n\t\t\ta[i + 1] = j;\n\t\t}\n\t}\n\n\tint operator[](int i) {\n\t\t\
+    return a[i];\n\t}\n};\n"
+  code: "#include \"../base.hpp\"\n/// @brief (K)MP\n/// @tparam T \u914D\u5217\u306E\
+    \u578B\ntemplate<typename T>\nstruct MP {\n\tvi a;\n\tint n;\n\tT s;\n\tMP(T s):\
+    \ s(s) {\n\t\tinit();\n\t}\n\n\tvoid init() {\n\t\tn = SZ(s);\n\t\ta = vi(n +\
+    \ 1);\n\t\ta[0] = -1;\n\t\tint j = -1;\n\t\tREP(i, n) {\n\t\t\twhile(j != -1 &&\
+    \ s[j] != s[i]) j = a[j];\n\t\t\tj++;\n\t\t\ta[i + 1] = j;\n\t\t}\n\t}\n\n\tint\
+    \ operator[](int i) {\n\t\treturn a[i];\n\t}\n};"
   dependsOn:
   - base.hpp
   isVerificationFile: false
   path: string/mp.hpp
   requiredBy: []
-  timestamp: '2022-12-31 13:55:15+09:00'
+  timestamp: '2022-12-31 14:31:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/mp.hpp
@@ -62,5 +65,5 @@ layout: document
 redirect_from:
 - /library/string/mp.hpp
 - /library/string/mp.hpp.html
-title: string/mp.hpp
+title: (K)MP
 ---
