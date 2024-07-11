@@ -62,9 +62,8 @@ public:
 		assert(begin >= 0);
 		assert(length > 0);
 		expand(length);
-		auto ret = 
-			add(hash[begin + length],
-				mod - mul(hash[begin], pow[length]));
+		auto ret = add(hash[begin + length],
+					   mod - mul(hash[begin], pow[length]));
 		return ret;
 	}
 };
