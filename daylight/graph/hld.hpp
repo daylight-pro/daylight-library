@@ -1,4 +1,5 @@
 #include "daylight/base.hpp"
+/// @brief HL分解
 class HLdecomposition {
 private:
 	int V;
@@ -45,7 +46,7 @@ public:
 		BuildPath(root, -1, tm);
 	}
 	//元の頂点のインデックスの配列上でのidを返す
-	inline int get(int a) {
+	inline int index(int a) {
 		return in[a];
 	}
 	int lca(int a, int b) {
