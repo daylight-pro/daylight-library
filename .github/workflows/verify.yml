@@ -39,6 +39,7 @@ jobs:
           # Specify patterns
           exclude: |
                 .github/
+                atcoder
           # If you have config.toml
           # config: .verify-helper/config.toml
       - name: parse-doxygen
