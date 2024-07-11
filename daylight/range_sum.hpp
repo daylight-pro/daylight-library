@@ -1,3 +1,5 @@
+#include "daylight/base.hpp"
+
 template<typename T>
 struct RangeSum {
 private:
