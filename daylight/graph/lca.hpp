@@ -1,5 +1,6 @@
 #include "daylight/base.hpp"
 #include "daylight/graph/base.hpp"
+/// @brief Lowest Common Ancestor
 struct LCA {
 private:
 	vvi parent;
