@@ -57,10 +57,13 @@ public:
 	/// @brief build関数で計算されたhash値をもとにbegin文字目からlength文字のhash値を求める
 	/// @param begin 文字列の初期位置(0-indexed)
 	/// @param length 文字列の長さ
-	/// @return 2通りのhash値
+	/// @return hash値
 	uint64_t query(int begin, int length) {
 		assert(begin + length <= SZ(hash));
 		assert(begin >= 0);
+		if(length == 0) {
+			return 0;
+		}
 		assert(length > 0);
 		expand(length);
 		auto ret = add(hash[begin + length],
