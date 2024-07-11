@@ -12,7 +12,7 @@ int main() {
 	REP(i, Q) {
 		int l, r, k;
 		cin >> l >> r >> k;
-		cout << wm.kthMin(l, r, k - 1) << endl;
+		cout << wm.kthMin(l, r, k) << endl;
 	}
 	return 0;
 }
