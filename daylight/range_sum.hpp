@@ -1,3 +1,4 @@
+/// @brief 静的区間和を求める構造体
 #include "daylight/base.hpp"
 
 template<typename T>

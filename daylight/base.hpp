@@ -1,3 +1,4 @@
+/// @brief 基本テンプレート
 #pragma once
 #include <bits/stdc++.h>
 
