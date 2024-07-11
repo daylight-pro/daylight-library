@@ -26,5 +26,5 @@ int main() {
 	REP(i, N + 1) {
 		ans += dp[i];
 	}
-	cout << ans.val() << endl;
+	cout << ans.val();
 }
