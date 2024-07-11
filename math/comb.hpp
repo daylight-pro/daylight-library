@@ -1,7 +1,4 @@
-#include "../base.hpp"
-
-/// @brief 組み合わせを計算する構造体
-/// @tparam T 型
+#include "daylight/base.hpp"
 template<typename T>
 struct Comb {
 private:

@@ -1,7 +1,5 @@
 #pragma once
-#include "../base.hpp"
-/// @brief powmod
-
+#include "daylight/base.hpp"
 ll powmod(ll a, ll p, ll m = MOD) {
 	ll ans = 1;
 	ll mul = a;

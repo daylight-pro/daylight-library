@@ -1,5 +1,5 @@
 #pragma once
-#include "../base.hpp"
+#include "daylight/base.hpp"
 template<class T = ll>
 struct Edge {
 public:

@@ -1,7 +1,6 @@
-#include "../base.hpp"
 #include "atcoder/all"
+#include "daylight/base.hpp"
 using namespace atcoder;
-
 namespace inner_editable_pq {
 pair<ll, int> op(pair<ll, int> a, pair<ll, int> b) {
 	return min(a, b);
@@ -10,7 +9,6 @@ pair<ll, int> e() {
 	return { LINF, -1 };
 }
 }
-/// @brief 編集可能プライオリティーキュー
 struct editable_priority_queue {
 private:
 	segtree<pair<ll, int>, inner_editable_pq::op,

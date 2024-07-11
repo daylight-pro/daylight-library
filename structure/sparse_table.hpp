@@ -1,8 +1,5 @@
-#include "../base.hpp"
+#include "daylight/base.hpp"
 
-/// @brief Sparse Table
-/// @tparam S 要素の型
-/// @tparam F 演算の型
 template<typename S, typename F>
 struct sparse_table {
 private:

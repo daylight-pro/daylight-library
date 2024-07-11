@@ -1,5 +1,5 @@
-#include "../base.hpp"
-#include "atcoder/all"
+#include <atcoder/all>
+#include "daylight/base.hpp"
 using namespace atcoder;
 
 struct segtree_builder {

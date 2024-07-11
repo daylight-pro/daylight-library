@@ -1,5 +1,4 @@
-#include "../base.hpp"
-/// @brief 拡張GCD
+#include "daylight/base.hpp"
 /// @brief gcd(a,b)とax+by=gcd(a,b)を満たすx,yを求める
 /// @param a 入力1つ目
 /// @param b 入力2つ目

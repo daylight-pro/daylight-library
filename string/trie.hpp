@@ -1,7 +1,4 @@
-#include "../base.hpp"
-/// @brief トライ木
-/// @tparam alphabet アルファベットの種類数
-/// @tparam base ベースとなるアルファベット
+#include "daylight/base.hpp"
 template<int alphabet, char base>
 struct Trie {
 	struct Node {

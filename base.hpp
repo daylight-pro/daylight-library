@@ -15,7 +15,7 @@ using namespace std;
 #define uni(v) v.erase(unique(ALL(v)), (v).end())
 #define eb emplace_back
 
-typedef long long unsigned int llu;
+typedef unsigned long long ull;
 typedef long long ll;
 typedef vector<int> vi;
 typedef vector<ll> vll;
@@ -24,7 +24,7 @@ typedef vector<vi> vvi;
 typedef vector<vll> vvll;
 typedef pair<int, int> PI;
 typedef pair<ll, ll> PL;
-const double EPS = 1e-9;
+const double EPS = 1e-6;
 const int MOD = 1e9 + 7;
 const int INF = (1 << 30);
 const ll LINF = 1e18;
@@ -98,3 +98,16 @@ ostream& operator<<(ostream& os, vector<T>& vec) {
 	os << join(vec, " ");
 	return os;
 }
+
+#ifdef LOCAL
+#include "./cpp-dump/dump.hpp"
+#include "./cpp-dump/my_type.hpp"
+#define dump(...) cpp_dump(__VA_ARGS__)
+namespace cp = cpp_dump;
+#else
+#define dump(...)
+#define CPP_DUMP_SET_OPTION(...)
+#define CPP_DUMP_DEFINE_EXPORT_OBJECT(...)
+#define CPP_DUMP_DEFINE_EXPORT_ENUM(...)
+#define CPP_DUMP_DEFINE_DANGEROUS_EXPORT_OBJECT(...)
+#endif

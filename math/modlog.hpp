@@ -1,8 +1,6 @@
-#include "../base.hpp"
-#include "atcoder/all"
+#include <atcoder/all>
+#include "daylight/base.hpp"
 using namespace atcoder;
-
-/// @brief 離散対数
 
 /// @brief a^n=b(mod m)となる最小のnを求める
 /// @param a パラメータ

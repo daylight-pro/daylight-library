@@ -1,14 +1,13 @@
-#include "../base.hpp"
-#include "./base.hpp"
-/// @brief ベルマンフォード法
-
+#include "daylight/base.hpp"
+#include "daylight/graph/base.hpp"
 /// @brief ベルマンフォード法で単一始点最短経路長問題を解く
 /// @param V 頂点数
 /// @param EG 辺のリスト
 /// @param s 始点
 /// @param D out:最短経路長が入る配列
 /// @return 負閉路を含むかどうか
-bool shortest_path(int V, Edges<ll>& EG, int s, vll& D) {
+bool shortest_path(int V, const Edges<ll>& EG, int s,
+				   vll& D) {
 	D = vll(V, LINF);
 	D[s] = 0;
 	int cnt = 0;

@@ -1,8 +1,6 @@
-#include "../base.hpp"
 #include "atcoder/all"
+#include "daylight/base.hpp"
 using namespace atcoder;
-/// @brief Zobrist Hash
-
 /// @brief 集合をハッシュする構造体
 /// @tparam T 配列の要素の型
 template<typename T>

@@ -1,11 +1,9 @@
-#include "../base.hpp"
-/// @brief Wavelet Matrix
-
+#include "daylight/base.hpp"
 struct BitVector {
 private:
 	vector<int> vec;
 	int len;
-
+	
 public:
 	BitVector() {
 	}
@@ -74,10 +72,12 @@ private:
 	vi start_one;  //ソート結果の1の開始地点
 	map<T, int> start_num;	//最終結果の各数字の開始地点
 	int len, bit_len;
-
+	T base = 0;
 public:
-	WaveletMatrix(const vector<T>& vec,
+	WaveletMatrix(vector<T> vec,
 				  bool use_acc = true) {
+		for(auto e : vec)chmax(base, -e);
+		for(auto &&e : vec)e += base;
 		ll max_el
 			= vec.empty() ? 1 : *max_element(ALL(vec)) + 1;
 		bit_len = (max_el == 1)
@@ -138,7 +138,7 @@ public:
 				i += start_one[j];
 			}
 		}
-		return ret;
+		return ret - base;
 	}
 
 	/// @brief 区間[0,k)の中に、cがいくつ含まれるか求める
@@ -146,6 +146,7 @@ public:
 	/// @param k 区間の右端(exclusive)
 	/// @return [0,k)でのcの出現回数
 	int rank(T c, int k) {
+		c += base;
 		assert(k <= len);
 		assert(k >= 0);
 		if(start_num.find(c) == start_num.end()) return 0;
@@ -184,7 +185,7 @@ public:
 			res <<= 1;
 			res |= bit;
 		}
-		return res;
+		return res - base;
 	}
 
 	/// @brief 区間[left,right)でk番目に大きい値を求める
@@ -206,7 +207,9 @@ public:
 	/// @param k 先頭要素の個数
 	/// @return 昇順先頭k要素の和
 	T kMinSum(int left, int right, int k) {
+		int original_k = k;
 		assert(right - left >= k);
+		if(k == 0)return 0;
 		assert(left < right);
 		ll kth = 0;
 		ll ret = 0;
@@ -228,7 +231,7 @@ public:
 			kth |= bit;
 		}
 		ret += kth * k;
-		return ret;
+		return ret - base * original_k;
 	}
 	/// @brief [left,right)の要素を降順に並べた先頭k要素の和を求める
 	/// @param left 検索対象の左端(inclusive)
@@ -237,6 +240,7 @@ public:
 	/// @return 降順先頭k要素の和
 	T kMaxSum(int left, int right, int k) {
 		assert(right - left >= k);
+		if(k == 0)return 0;
 		assert(left < right);
 		return kMinSum(left, right, right - left)
 			- kMinSum(left, right, right - left - k);
@@ -247,6 +251,7 @@ public:
 	/// @param upper 検索対象の値(exclusive)
 	/// @return upper未満の数の値
 	int lessCount(int left, int right, T upper) {
+		upper += base;
 		assert(left <= right);
 		ll ret = 0;
 		if(left == right) {

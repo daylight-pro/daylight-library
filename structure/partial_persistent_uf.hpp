@@ -1,6 +1,5 @@
-#include "../base.hpp"
+#include "daylight/base.hpp"
 
-/// @brief 部分永続UF
 class dsu {
 private:
 	vi p;  //p => 親

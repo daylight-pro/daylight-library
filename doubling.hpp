@@ -1,6 +1,4 @@
-#include "./base.hpp"
-/// @brief ダブリング
-/// @tparam T モノイドの型
+#include "daylight/base.hpp"
 template<class T = ll>
 struct Doubling {
 private:
@@ -98,5 +96,42 @@ public:
 			L >>= 1ll;
 		}
 		return ret;
+	}
+	ll max_search(int s, function<bool(T)> f) {
+		ll ok = 0;
+		ll ng = 1;
+		while(f(prod(ng, s))) {
+			ng *= 2;
+		}
+		while(ng - ok > 1) {
+			ll mid = (ng + ok) / 2;
+			if(f(prod(mid, s))) {
+				ok = mid;
+			} else {
+				ng = mid;
+			}
+		}
+		return ok;
+	}
+	ll min_search(int s, function<bool(T)> f,
+				  ll limit = LINF) {
+		ll ng = -1;
+		ll ok = 1;
+		while(!f(prod(ok, s))) {
+			if(ok * 2 >= LINF) {
+				ok = LINF;
+				break;
+			}
+			ok *= 2;
+		}
+		while(ok - ng > 1) {
+			ll mid = (ok + ng) / 2;
+			if(f(prod(mid, s))) {
+				ok = mid;
+			} else {
+				ng = mid;
+			}
+		}
+		return ok;
 	}
 };

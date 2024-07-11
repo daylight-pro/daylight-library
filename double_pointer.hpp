@@ -1,6 +1,4 @@
-#include "./base.hpp"
-/// @brief 尺取り法
-
+#include "daylight/base.hpp"
 /// @brief 各lについてcheck(l,r)==trueになる最小のrを求める。
 /// @param left 探索範囲の左端(inclusive)
 /// @param right 探索範囲の右端(exclusive)
@@ -15,7 +13,7 @@ void doublePointerMinRight(
 	function<void(int, int)> update) {
 	int r = left;
 	for(int l = left; l < right; l++) {
-		while(r < right && check()) {
+		while(r < right && !check()) {
 			add(r++, false);
 		}
 		if(!check()) break;

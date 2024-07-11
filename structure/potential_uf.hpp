@@ -1,8 +1,5 @@
-#include "../base.hpp"
-#include "./abel.hpp"
-
-/// @brief ポテンシャル付きUF
-/// @tparam Abel 可換群の型
+#include "daylight/base.hpp"
+#include "daylight/structure/abel.hpp"
 template<typename Abel = AbelAdd<ll>>
 class potential_uf {
 public:

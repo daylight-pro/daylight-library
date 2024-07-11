@@ -1,6 +1,4 @@
-#include "../base.hpp"
-
-/// @brief 削除可能プライオリティーキュー
+#include "daylight/base.hpp"
 
 template<typename T, typename vec = vector<T>,
 		 typename cmp = less<typename vec::value_type>>
@@ -14,6 +12,7 @@ public:
 	deletable_priority_queue() {
 		sz = 0;
 	}
+
 	/// @brief キューに要素vを追加する
 	/// @param v 追加する要素
 	void push(T v) {
@@ -24,7 +23,7 @@ public:
 	/// @brief キューから要素vを削除する
 	/// @param v 削除する要素
 	/// @return 削除が成功したかどうか
-	bool del(T v) {
+	bool remove(T v) {
 		if(M[v] == 0) return false;
 		M[v]--;
 		sz--;
