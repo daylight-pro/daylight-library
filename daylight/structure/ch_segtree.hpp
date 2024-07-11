@@ -1,4 +1,5 @@
 #include "daylight/base.hpp"
+/// @brief 区間chmin,chmax,addをサポートする遅延セグ木
 class SegmentTreeBeats {
 private:
 	const ll inf = 1e18;
