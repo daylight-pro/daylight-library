@@ -1,3 +1,4 @@
+#define PROBLEM "https://yukicoder.me/problems/no/599"
 #include "daylight/base.hpp"
 #include "daylight/math/diviser.hpp"
 #include "daylight/string/rolling_hash.hpp"

@@ -1,3 +1,4 @@
+#define PROBLEM "https://yukicoder.me/problems/no/430"
 #include "daylight/base.hpp"
 #include "daylight/string/rolling_hash.hpp"
 
