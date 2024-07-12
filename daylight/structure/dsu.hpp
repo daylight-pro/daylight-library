@@ -1,3 +1,5 @@
+#include "daylight/base.hpp"
+/// @brief Union-Find木
 class dsu {
 public:
 	int treeCnt;  //ツリーの数

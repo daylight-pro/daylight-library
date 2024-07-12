@@ -1,12 +1,13 @@
 #include "daylight/base.hpp"
+/// @brief スナップショットを撮って，その時点までロールバックできるDSU
 class rollback_dsu {
 public:
 	int N;
 	vi p;
 	stack<PI> history;
-	dsu() {
+	rollback_dsu() {
 	}
-	dsu(int size): N(size) {
+	rollback_dsu(int size): N(size) {
 		p.resize(N, -1);
 	}
 
@@ -20,13 +21,13 @@ public:
 	}
 	//木と木を繋ぐ処理をする。
 	void link(int x, int y) {
+		history.push({ x, p[x] });
+		history.push({ y, p[y] });
 		if(x == y) return;
 		if(p[x] > p[y]) swap(x, y);
 		if(p[x] == p[y]) {
-			history.push({ x, p[x] });
 			p[x]--;
 		}
-		history.push({ y, p[y] });
 		p[y] = x;
 	}
 	//xが属している木の根を探る
@@ -36,9 +37,18 @@ public:
 		else
 			return leader(p[x]);
 	}
-	void snapshot() {
-		history.clear();
+
+	void undo() {
+		p[history.top().first] = history.top().second;
+		history.pop();
+		p[history.top().first] = history.top().second;
+		history.pop();
 	}
+
+	void snapshot() {
+		while(!history.empty()) history.pop();
+	}
+
 	void rollback() {
 		while(!history.empty()) {
 			auto [i, v] = history.top();
