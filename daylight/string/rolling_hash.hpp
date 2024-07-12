@@ -45,8 +45,8 @@ public:
 			uniform_int_distribution<uint64_t> rand(
 				1e9, RollingHash::mod - 1);
 			base = rand(mt);
+		    pow.push_back(1);
 		}
-		pow.push_back(1);
 		expand(SZ(s) + 1);
 		hash = vector<uint64_t>(SZ(s) + 1);
 		REP(i, SZ(s)) {
