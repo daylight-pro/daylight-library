@@ -93,6 +93,7 @@ jobs:
           split-size: ${{ env.SPLIT_SIZE }}
           split-index: ${{ matrix.index }}
           timeout: 1800
+          prev-result: ${{ steps.restore-cached-results.outputs.cache-hit && 'merged-result.json' || ''}
         env:
           YUKICODER_TOKEN: ${{secrets.YUKICODER_TOKEN}}
 
@@ -138,12 +139,22 @@ jobs:
         with:
           cache-pip: true
 
+      - name: Merge results
+        uses: competitive-verifier/actions/merge-result@v2
+        with:
+          result-files: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
+          output-path: ${{github.workspace}}/merged-result.json
       - name: Docs
         uses: competitive-verifier/actions/docs@v2
         with:
           verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
           destination: _jekyll
           write-summary: true
+      - name: Save result
+        uses: actions/cache/save@v4
+        with:
+          path: ${{github.workspace}}/merged-result.json
+          key: ${{ runner.os }}-verify-result-${{ github.sha }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
