@@ -1,0 +1,10 @@
+[[languages.cpp.environments]]
+CXX = "g++"
+CXXFLANG = [
+    "-std=gnu++20",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-mtune=native",
+    "-march=native",
+]
