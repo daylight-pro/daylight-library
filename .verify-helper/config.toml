@@ -1,6 +1,6 @@
 [[languages.cpp.environments]]
 CXX = "g++"
-CXXFLANG = [
+CXXFLAGS = [
     "-std=gnu++20",
     "-O2",
     "-Wall",
