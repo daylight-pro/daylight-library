@@ -1,19 +1,16 @@
 #define PROBLEM \
 	"https://judge.yosupo.jp/problem/jump_on_tree"
 #include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
+#include "daylight/graph/graph_builder.hpp"
 #include "daylight/graph/lca.hpp"
 
 int main() {
 	int N, Q;
 	cin >> N >> Q;
-	Graph<> G(N);
-	REP(i, N - 1) {
-		int a, b;
-		cin >> a >> b;
-		G[a].eb(a, b, 1);
-		G[b].eb(b, a, 1);
-	}
+	auto G = TreeBuilder<>(N)
+				 .setDirected(false)
+				 .setIndex(0)
+				 .build(cin);
 	LCA lca(G);
 	while(Q-- > 0) {
 		int s, t, i;

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
-#include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
 #include "daylight/graph/lca.hpp"
+#include "daylight/base.hpp"
+#include "daylight/graph/graph_builder.hpp"
 int main() {
 	int N, Q;
 	cin >> N >> Q;
@@ -12,6 +12,10 @@ int main() {
 		G[P].eb(P, i, 1);
 		G[i].eb(i, P, 1);
 	}
+	auto G = TreeBuilder<>(N)
+				 .setDirected(false)
+				 .setIndex(0)
+				 .build(cin);
 	LCA lca(G);
 	while(Q-- > 0) {
 		int u, v;
