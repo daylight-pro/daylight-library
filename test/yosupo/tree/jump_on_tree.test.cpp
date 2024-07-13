@@ -7,9 +7,10 @@
 int main() {
 	int N, Q;
 	cin >> N >> Q;
-	auto G
-		= GraphBuilder<>(N).undirected().setIndex(0).build(
-			cin);
+	auto G = GraphBuilder<>(N)
+				 .directed(false)
+				 .setIndex(0)
+				 .build(cin);
 	LCA lca(G);
 	while(Q--) {
 		int s, t, i;

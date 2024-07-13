@@ -21,7 +21,7 @@ public:
 		G = Graph<T>(N);
 	}
 
-	GraphBuilder& setIndex(int index) {
+	GraphBuilder& setIndex(int index = 1) {
 		this->index = index;
 		return *this;
 	}
@@ -31,7 +31,7 @@ public:
 		return *this;
 	}
 
-	GraphBuilder& undirected(bool undirected = true) {
+	GraphBuilder& directed(bool directed = true) {
 		this->m_directed = undirected;
 		return *this;
 	}
