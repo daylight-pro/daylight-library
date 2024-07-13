@@ -18,7 +18,7 @@ int main() {
 	}
 	hld.build();
 	fenwick_tree<ll> fw(N);
-	REP(i, N) fw.add(i, A[i]);
+	REP(i, N) fw.add(hld.index(i), A[i]);
 	while(Q--) {
 		int k;
 		cin >> k;
