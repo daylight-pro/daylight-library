@@ -13,6 +13,7 @@ ll mapping(ll f, ll x, int len) {
 }
 ll composition(ll f, ll g) {
 	if(f == -1) return g;
+	return f;
 }
 ll id() {
 	return -1;
