@@ -1,6 +1,7 @@
 #pragma once
 #include "daylight/base.hpp"
 #include "daylight/range.hpp"
+/// @brief Treap
 template<class S, S (*op)(S, S), S (*e)(), class F,
 		 S (*mapping)(F, S, int), F (*composition)(F, F),
 		 F (*id)()>
@@ -197,10 +198,19 @@ private:
 
 public:
 	Treap() {
+		Treap(0);
+	}
+	Treap(int N) {
+		Treap(vector<S>(N, e()));
+	}
+	Treap(vector<S> V) {
 		mt = mt19937_64(chrono::steady_clock::now()
 							.time_since_epoch()
 							.count());
 		rand = uniform_int_distribution<uint64_t>(1, 1e18);
+		for(auto v: V) {
+			push_back(v);
+		}
 	}
 	/// @brief treapに追加された要素数を求める
 	/// @return treapに追加された要素数
@@ -252,7 +262,7 @@ public:
 	/// @param l 値の範囲の下限(inclusive)
 	/// @param r 値の範囲の上限(exclusive)
 	/// @return 範囲内のノード数
-	S value_range_sum(Range<S> range) {
+	S value_range_prod(Range<S> range) {
 		int L = 0;
 		if(range.getLeft().first) {
 			S l = range.getLeft().second;
@@ -356,7 +366,7 @@ public:
 	/// @param l 範囲の左端(inclusive)
 	/// @param r 範囲の右端(exclusive)
 	/// @return 範囲の演算結果を求める
-	S query(int l, int r) {
+	S prod(int l, int r) {
 		auto [t, rt] = query(root, l, r);
 		root = rt;
 		return t;
