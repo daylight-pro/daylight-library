@@ -53,7 +53,7 @@ public:
 				}
 				G[p].eb(p, i, c);
 				if(!m_directed) {
-					G[i].eb(p, i, c);
+					G[i].eb(i, p, c);
 				}
 			}
 		} else {
