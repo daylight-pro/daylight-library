@@ -5,12 +5,13 @@
 int main() {
 	int N, Q;
 	cin >> N >> Q;
-	auto G = TreeBuilder<>(N)
-				 .setDirected(false)
+	auto G = GraphBuilder<>(N)
+				 .undirected()
 				 .setIndex(0)
+				 .useTreeFormat()
 				 .build(cin);
 	LCA lca(G);
-	while(Q-- > 0) {
+	while(Q--) {
 		int u, v;
 		cin >> u >> v;
 		cout << lca.query(u, v) << endl;

@@ -7,12 +7,11 @@
 int main() {
 	int N, Q;
 	cin >> N >> Q;
-	auto G = TreeBuilder<>(N)
-				 .setDirected(false)
-				 .setIndex(0)
-				 .build(cin);
+	auto G
+		= GraphBuilder<>(N).undirected().setIndex(0).build(
+			cin);
 	LCA lca(G);
-	while(Q-- > 0) {
+	while(Q--) {
 		int s, t, i;
 		cin >> s >> t >> i;
 		if(lca.get_dis(s, t) < i)
