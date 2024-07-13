@@ -1,7 +1,6 @@
 #define PROBLEM \
 	"https://judge.yosupo.jp/problem/persistent_unionfind"
 #include "daylight/base.hpp"
-#include "daylight/graph/base.hpp"
 #include "daylight/structure/rollback_dsu.hpp"
 
 int main() {
