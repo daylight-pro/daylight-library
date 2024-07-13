@@ -1,6 +1,6 @@
 #include "daylight/base.hpp"
 #include "daylight/graph/base.hpp"
-/// @brief 単一始点最短経路長問題を解く
+/// @brief ダイクストラ法
 /// @param s 始点
 /// @param G グラフ
 /// @return ret[i]:sからiへの最短経路長
