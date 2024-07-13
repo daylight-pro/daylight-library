@@ -32,7 +32,7 @@ public:
 	}
 
 	GraphBuilder& directed(bool directed = true) {
-		this->m_directed = undirected;
+		this->m_directed = directed;
 		return *this;
 	}
 
