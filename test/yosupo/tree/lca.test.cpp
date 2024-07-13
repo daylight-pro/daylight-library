@@ -5,13 +5,6 @@
 int main() {
 	int N, Q;
 	cin >> N >> Q;
-	Graph<> G(N);
-	FOR(i, 1, N) {
-		int P;
-		cin >> P;
-		G[P].eb(P, i, 1);
-		G[i].eb(i, P, 1);
-	}
 	auto G = TreeBuilder<>(N)
 				 .setDirected(false)
 				 .setIndex(0)
