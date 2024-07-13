@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 #include "daylight/graph/lca.hpp"
 #include "daylight/base.hpp"
-#include "daylight/graph/graph_builder.hpp"
+#include "daylight/graph/builder.hpp"
 int main() {
 	int N, Q;
 	cin >> N >> Q;

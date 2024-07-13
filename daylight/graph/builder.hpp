@@ -2,6 +2,7 @@
 #include "daylight/base.hpp"
 #include "daylight/graph/base.hpp"
 
+/// @brief グラフビルダー
 template<typename T = ll>
 class GraphBuilder {
 private:
@@ -9,7 +10,7 @@ private:
 	Graph<T> G;
 	int index = 1;
 	bool m_weighted = false;
-	bool m_directed = true;
+	bool m_directed = false;
 	bool m_tree_format = false;
 
 public:

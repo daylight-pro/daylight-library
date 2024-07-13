@@ -1,7 +1,7 @@
 #define PROBLEM \
 	"https://judge.yosupo.jp/problem/jump_on_tree"
 #include "daylight/base.hpp"
-#include "daylight/graph/graph_builder.hpp"
+#include "daylight/graph/builder.hpp"
 #include "daylight/graph/lca.hpp"
 
 int main() {
