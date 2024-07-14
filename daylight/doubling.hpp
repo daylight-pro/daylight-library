@@ -1,4 +1,5 @@
 #include "daylight/base.hpp"
+/// @brief ダブリング
 template<class T = ll>
 struct Doubling {
 private:
