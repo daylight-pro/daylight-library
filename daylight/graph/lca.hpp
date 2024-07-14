@@ -51,12 +51,13 @@ public:
 	/// @param v クエリの頂点2
 	/// @return LCAの頂点番号
 	int query(int u, int v) {
-		assert(u >= 0 && v >= 0 && u < SZ(dis)
-			   && v < SZ(dis) && "invalid vertex index");
-		if(dis[u] < dis[v]) swap(u, v);
+		assert(u >= 0 && v >= 0 && u < SZ(simple_dis)
+			   && v < SZ(simple_dis)
+			   && "invalid vertex index");
+		if(simple_dis[u] < simple_dis[v]) swap(u, v);
 		int K = SZ(parent);
 		REP(i, K) {
-			if((dis[u] - dis[v]) >> i & 1) {
+			if((simple_dis[u] - simple_dis[v]) >> i & 1) {
 				u = parent[i][u];
 			}
 		}

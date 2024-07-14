@@ -6,7 +6,6 @@ int main() {
 	int N, Q;
 	cin >> N >> Q;
 	auto G = GraphBuilder<>(N)
-				 .directed(false)
 				 .setIndex(0)
 				 .useTreeFormat()
 				 .build(cin);
