@@ -1,41 +1,6 @@
 #include "daylight/base.hpp"
-
-ll pow_mod(ll a, ll p, ll m) {
-	using i128 = __int128_t;
-	i128 ret = 1;
-	i128 mul = a;
-	for(; p > 0; p >>= 1) {
-		if(p & 1) ret = (ret * mul) % m;
-		mul = (mul * mul) % m;
-	}
-	return ll(ret);
-}
-bool is_prime(ll N) {
-	if(N == 2) return true;
-	if(N == 1 || N % 2 == 0) return false;
-	ll s = 0;
-	ll d = N - 1;
-	while(d % 2 == 0) {
-		s++;
-		d /= 2;
-	}
-	vll tests
-		= { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37 };
-	for(auto a: tests) {
-		if(a == N) continue;
-		ll X = pow_mod(a, d, N);
-		int r = 0;
-		if(X == 1) {
-			continue;
-		}
-		while(X != N - 1) {
-			X = pow_mod(X, 2, N);
-			r++;
-			if(X == 1 || r == s) return false;
-		}
-	}
-	return true;
-}
+#include "daylight/math/powmod.hpp"
+#include "daylight/math/primality_test.hpp"
 
 ll find_prime_factor(ll N) {
 	using i128 = __int128_t;

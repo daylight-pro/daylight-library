@@ -1,12 +1,12 @@
 #pragma once
 #include "daylight/base.hpp"
-ll powmod(ll a, ll p, ll m = MOD) {
-	ll ans = 1;
-	ll mul = a;
+ll pow_mod(ll a, ll p, ll m) {
+	using i128 = __int128_t;
+	i128 ret = 1;
+	i128 mul = a;
 	for(; p > 0; p >>= 1) {
-		if(p & 1) ans = (ans * mul) % m;
-		//mulを更新。2回分の操作を入れる。
+		if(p & 1) ret = (ret * mul) % m;
 		mul = (mul * mul) % m;
 	}
-	return ans;
+	return ll(ret);
 }
