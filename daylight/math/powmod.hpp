@@ -1,5 +1,6 @@
 #pragma once
 #include "daylight/base.hpp"
+/// @brief 繰り返し2乗法でa^p mod mを求める
 ll pow_mod(ll a, ll p, ll m) {
 	using i128 = __int128_t;
 	i128 ret = 1;

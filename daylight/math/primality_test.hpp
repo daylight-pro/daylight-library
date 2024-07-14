@@ -1,6 +1,7 @@
 #include "daylight/base.hpp"
 #include "daylight/math/powmod.hpp"
 
+/// @brief 素数判定 (O(log(N)))
 bool is_prime(ll N) {
 	if(N == 2) return true;
 	if(N == 1 || N % 2 == 0) return false;
