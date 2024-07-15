@@ -1,84 +1,189 @@
 #include "daylight/base.hpp"
 
 /// @brief Sliding Window Aggregation
+
 template<typename S>
-struct SWAG {
+struct FoldableStack {
 private:
 	function<S(S, S)> op;
-	struct node {
+	S e;
+	struct Node {
 		S value, sum;
-		node(const S &value, const S &sum)
+		Node(const S &value, const S &sum)
 			: value(value), sum(sum) {
 		}
 	};
-	stack<node> front_t, back_t;
+	stack<Node> ST;
+	bool reversed;
 
+public:
+	FoldableStack(const function<S(S, S)> &op, const S &e,
+				  bool reversed = false)
+		: op(op), e(e), reversed(reversed) {
+	}
+
+	void push(const S &s) {
+		if(ST.empty())
+			ST.emplace(s, s);
+		else if(reversed)
+			ST.emplace(s, op(s, ST.top().sum));
+		else
+			ST.emplace(s, op(ST.top().sum, s));
+	}
+
+	S pop() {
+		assert(!ST.empty() && "FoldableStack is empty");
+		S ret = ST.top().value;
+		ST.pop();
+		return ret;
+	}
+
+	S fold() const {
+		if(ST.empty()) return e;
+		return ST.top().sum;
+	}
+
+	S top() const {
+		assert(!ST.empty() && "FoldableStack is empty");
+		return ST.top().value;
+	}
+
+	bool empty() const {
+		return ST.empty();
+	}
+
+	size_t size() const {
+		return ST.size();
+	}
+};
+
+template<typename S>
+struct FoldableQueue {
+private:
+	FoldableStack<S> frontS, backS;
+	function<S(S, S)> op;
 	void move() {
-		assert(!back_t.empty());
-		front_t.emplace(back_t.top().value,
-						back_t.top().value);
-		back_t.pop();
-		while(!back_t.empty()) {
-			front_t.emplace(
-				back_t.top().value,
-				op(back_t.top().value, front_t.top().sum));
-			back_t.pop();
+		assert(!backS.empty());
+		frontS.push(backS.pop());
+		while(!backS.empty()) {
+			frontS.push(backS.pop());
 		}
 	}
 
 public:
-	/// @brief コンストラクタ
-	/// @param op 半群の演算
-	SWAG(const function<S(S, S)> &op): op(op) {
+	FoldableQueue(const function<S(S, S)> &op, const S &e)
+		: frontS(op, e, true), backS(op, e), op(op) {
 	}
-	/// @brief SWAGに要素を追加
-	/// @param s 追加する要素
+
 	void push(const S &s) {
-		if(back_t.empty())
-			back_t.emplace(s, s);
-		else
-			back_t.emplace(s, op(back_t.top().sum, s));
+		backS.push(s);
 	}
-	/// @brief SWAGから要素を削除
-	void pop() {
-		if(front_t.empty()) {
-			move();
-		}
-		front_t.pop();
+
+	S pop() {
+		assert(!empty() && "FoldableQueue is empty");
+		if(frontS.empty()) move();
+		return frontS.pop();
 	}
-	/// @brief SWAGの先頭要素にアクセス
-	/// @return 先頭要素の値
+
 	S front() {
-		if(front_t.empty()) {
-			move();
-		}
-		return front_t.top().value;
+		assert(!empty() && "FoldableQueue is empty");
+		if(frontS.empty()) move();
+		return frontS.top();
 	}
-	/// @brief SWAG内の要素の総積を求める
-	/// @return 要素の総積
+
 	S fold() const {
-		assert(!empty());
-		if(front_t.empty()) {
-			return back_t.top().sum;
-		} else if(back_t.empty()) {
-			return front_t.top().sum;
+		return op(frontS.fold(), backS.fold());
+	}
+
+	bool empty() const {
+		return frontS.empty() && backS.empty();
+	}
+
+	size_t size() const {
+		return frontS.size() + backS.size();
+	}
+};
+
+template<typename S>
+struct FoldableDeque {
+private:
+	FoldableStack<S> frontS, backS;
+	function<S(S, S)> op;
+	void move() {
+		if(frontS.empty()) {
+			stack<S> tmp;
+			int sz = backS.size();
+			REP(_, sz / 2) {
+				tmp.push(backS.pop());
+			}
+			while(!backS.empty()) {
+				frontS.push(backS.pop());
+			}
+			while(!tmp.empty()) {
+				backS.push(tmp.top());
+				tmp.pop();
+			}
 		} else {
-			return op(front_t.top().sum, back_t.top().sum);
+			stack<S> tmp;
+			int sz = frontS.size();
+			REP(_, sz / 2) {
+				tmp.push(frontS.top());
+				frontS.pop();
+			}
+			while(!frontS.empty()) {
+				backS.push(frontS.pop());
+			}
+			while(!tmp.empty()) {
+				frontS.push(tmp.top());
+				tmp.pop();
+			}
 		}
 	}
-	/// @brief SWAGが空か判定する
-	/// @return SWAGが空ならtrue
+
+public:
+	FoldableDeque(const function<S(S, S)> &op, const S &e)
+		: frontS(op, e, true), backS(op, e), op(op) {
+	}
+	void push_front(const S &s) {
+		frontS.push(s);
+	}
+	void push_back(const S &s) {
+		backS.push(s);
+	}
+
+	S pop_front() {
+		assert(!empty() && "FoldableDeque is empty");
+		if(frontS.empty()) move();
+		return frontS.pop();
+	}
+
+	S pop_back() {
+		assert(!empty() && "FoldableDeque is empty");
+		if(backS.empty()) move();
+		return backS.pop();
+	}
+
+	S front() {
+		assert(!empty() && "FoldableDeque is empty");
+		if(frontS.empty()) move();
+		return frontS.top();
+	}
+
+	S back() {
+		assert(!empty() && "FoldableDeque is empty");
+		if(backS.empty()) move();
+		return backS.top();
+	}
+
+	S fold() const {
+		return op(frontS.fold(), backS.fold());
+	}
+
 	bool empty() const {
-		return front_t.empty() && back_t.empty();
+		return frontS.empty() && backS.empty();
 	}
-	/// @brief SWAG内の要素の数を取得する
-	/// @return SWAG内の要素の数
-	size_t size() {
-		return SZ(front_t) + SZ(back_t);
-	}
-	/// @brief SWAG内の全要素を削除する
-	void clear() {
-		front_t = stack<node>();
-		back_t = stack<node>();
+
+	size_t size() const {
+		return frontS.size() + backS.size();
 	}
 };

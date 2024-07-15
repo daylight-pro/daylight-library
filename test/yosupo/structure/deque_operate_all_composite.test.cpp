@@ -1,17 +1,17 @@
-
 #define PROBLEM \
-	"https://judge.yosupo.jp/problem/queue_operate_all_composite"
+	"https://judge.yosupo.jp/problem/deque_operate_all_composite"
 #include <atcoder/all>
 #include "daylight/base.hpp"
 #include "daylight/structure/swag.hpp"
 using namespace atcoder;
+
 using mint = modint998244353;
 
 int main() {
 	int Q;
 	cin >> Q;
 	using P = pair<mint, mint>;
-	FoldableQueue<P> swag(
+	FoldableDeque<P> D(
 		[](P a, P b) -> P {
 			return { a.first * b.first,
 					 a.second * b.first + b.second };
@@ -23,14 +23,21 @@ int main() {
 		if(t == 0) {
 			int a, b;
 			cin >> a >> b;
-			swag.push({ a, b });
+			D.push_front({ a, b });
 		} else if(t == 1) {
-			swag.pop();
+			int a, b;
+			cin >> a >> b;
+			D.push_back({ a, b });
+		} else if(t == 2) {
+			D.pop_front();
+		} else if(t == 3) {
+			D.pop_back();
 		} else {
 			int x;
 			cin >> x;
-			auto f = swag.fold();
-			cout << (f.first * x + f.second).val() << endl;
+			cout << (D.fold().first * x + D.fold().second)
+						.val()
+				 << endl;
 		}
 	}
 }

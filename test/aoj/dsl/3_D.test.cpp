@@ -6,19 +6,21 @@
 int main() {
 	int N, L;
 	cin >> N >> L;
-	SWAG<int> swag([](int a, int b) {
-		return min(a, b);
-	});
+	FoldableQueue<int> Q(
+		[](int a, int b) {
+			return min(a, b);
+		},
+		INF);
 	vi ans;
 	REP(i, N) {
 		int A;
 		cin >> A;
-		swag.push(A);
-		if(SZ(swag) > L) {
-			swag.pop();
+		Q.push(A);
+		if(SZ(Q) > L) {
+			Q.pop();
 		}
-		if(SZ(swag) == L) {
-			ans.push_back(swag.fold());
+		if(SZ(Q) == L) {
+			ans.push_back(Q.fold());
 		}
 	}
 	cout << ans << endl;
