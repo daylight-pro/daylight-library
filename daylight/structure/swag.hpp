@@ -37,7 +37,7 @@ public:
 		if(back_t.empty())
 			back_t.emplace(s, s);
 		else
-			back_t.emplace(s, op(s, back_t.top().sum));
+			back_t.emplace(s, op(back_t.top().sum, s));
 	}
 	/// @brief SWAGから要素を削除
 	void pop() {

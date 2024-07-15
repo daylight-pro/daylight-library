@@ -1,3 +1,4 @@
+
 #define PROBLEM \
 	"https://judge.yosupo.jp/problem/queue_operate_all_composite"
 #include <atcoder/all>
@@ -12,7 +13,7 @@ int main() {
 	using P = pair<mint, mint>;
 	SWAG<P> swag([](P a, P b) -> P {
 		return { a.first * b.first,
-				 b.second * a.first + a.second };
+				 a.second * b.first + b.second };
 	});
 	while(Q--) {
 		int t;
