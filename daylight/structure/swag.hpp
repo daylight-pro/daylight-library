@@ -1,4 +1,6 @@
 #include "daylight/base.hpp"
+
+/// @brief Sliding Window Aggregation
 template<typename S>
 struct SWAG {
 private:
