@@ -1,5 +1,6 @@
 #include "daylight/base.hpp"
 
+/// @brief スパーステーブル
 template<class S>
 struct SparseTable {
 private:
