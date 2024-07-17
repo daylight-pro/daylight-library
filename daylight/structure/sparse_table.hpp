@@ -1,17 +1,18 @@
 #include "daylight/base.hpp"
 
-template<typename S, typename F>
-struct sparse_table {
+template<class S>
+struct SparseTable {
 private:
 	vector<vector<S>> V;
-	F op;
+	function<S(S, S)> op;
 	vi lookup;
 
 public:
 	/// @brief 前計算を行う
 	/// @param _V 配列の値
 	/// @param op 演算を表すラムダ式
-	sparse_table(vector<S> _V, F op): op(op) {
+	SparseTable(vector<S> _V, function<S(S, S)> op)
+		: op(op) {
 		int N = SZ(_V);
 		int len = 0;
 		while((1 << len) <= N) len++;
