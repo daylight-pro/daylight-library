@@ -1,4 +1,6 @@
 #include "daylight/base.hpp"
+/// 拡張ユークリッドの互除法
+
 /// @brief gcd(a,b)とax+by=gcd(a,b)を満たすx,yを求める
 /// @param a 入力1つ目
 /// @param b 入力2つ目
