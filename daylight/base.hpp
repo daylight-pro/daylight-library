@@ -98,3 +98,17 @@ ostream &operator<<(ostream &os, vector<T> &vec) {
 	os << join(vec, " ");
 	return os;
 }
+
+#ifdef LOCAL
+#include "./cpp-dump/dump.hpp"
+#include "./cpp-dump/mytypes.hpp"
+#define dump(...) cpp_dump(__VA_ARGS__)
+namespace cp = cpp_dump;
+#else
+#define dump(...)
+#define preprocess(...)
+#define CPP_DUMP_SET_OPTION(...)
+#define CPP_DUMP_DEFINE_EXPORT_OBJECT(...)
+#define CPP_DUMP_DEFINE_EXPORT_ENUM(...)
+#define CPP_DUMP_DEFINE_DANGEROUS_EXPORT_OBJECT(...)
+#endif
