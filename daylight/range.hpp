@@ -6,9 +6,20 @@ private:
 	pair<T, T> P;
 	pair<bool, bool> bound;
 	pair<bool, bool> inclusive;
+	int _id = -1;
 
 public:
 	Range() {
+	}
+	Range& left() {
+		bound.first = false;
+		inclusive.first = false;
+		return *this;
+	}
+	Range& right() {
+		bound.second = false;
+		inclusive.second = false;
+		return *this;
 	}
 	Range& left(T x, bool inclusive = true) {
 		P.first = x;
@@ -22,16 +33,139 @@ public:
 		this->inclusive.second = inclusive;
 		return *this;
 	}
-	pair<bool, T> getLeft() {
+	Range& id(int id) {
+		this->_id = id;
+		return *this;
+	}
+	int getId() const {
+		return _id;
+	}
+	pair<bool, T> getLeft() const {
 		return { bound.first, P.first };
 	}
-	pair<bool, T> getRight() {
+	pair<bool, T> getRight() const {
 		return { bound.second, P.second };
 	}
-	bool isLeftInclusive() {
+	bool isLeftInclusive() const {
 		return inclusive.first;
 	}
-	bool isRightInclusive() {
+	bool isRightInclusive() const {
 		return inclusive.second;
+	}
+	bool isLeftBound() const {
+		return bound.first;
+	}
+	bool isRightBound() const {
+		return bound.second;
+	}
+
+	// 1 : this < r
+	// 0 : this == r
+	// -1 : this > r
+	int compareLeft(const Range<T>& r) const {
+		if(bound.first && !r.bound.first) return -1;
+		if(!bound.first && r.bound.first) return 1;
+		if(!bound.first && !r.bound.first) return 0;
+		if(P.first < r.P.first) return 1;
+		if(P.first > r.P.first) return -1;
+		if(inclusive.first && !r.inclusive.first) return 1;
+		if(!inclusive.first && r.inclusive.first) return -1;
+		return 0;
+	}
+
+	int compareRight(const Range<T>& r) const {
+		if(bound.second && !r.bound.second) return 1;
+		if(!bound.second && r.bound.second) return -1;
+		if(!bound.second && !r.bound.second) return 0;
+		if(P.second < r.P.second) return 1;
+		if(P.second > r.P.second) return -1;
+		if(inclusive.second && !r.inclusive.second)
+			return -1;
+		if(!inclusive.second && r.inclusive.second)
+			return 1;
+		return 0;
+	}
+	bool operator<(const Range<T>& r) const {
+		int leftcmp = compareLeft(r);
+		int rightcmp = compareRight(r);
+		if(leftcmp == 1) return true;
+		if(leftcmp == -1) return false;
+		if(rightcmp == 1) return true;
+		if(rightcmp == -1) return false;
+		return false;
+	}
+
+	bool cross(const Range<T>& r) const {
+		Range<T> a = *this;
+		Range<T> b = r;
+		if(a.compareLeft(b) == -1) swap(a, b);
+		auto [ba, xa] = a.getRight();
+		auto [bb, xb] = b.getLeft();
+		if(!ba) return true;
+		return xa > xb;
+	}
+
+	bool contact(const Range<T>& r) const {
+		Range<T> a = *this;
+		Range<T> b = r;
+		if(a.compareLeft(b) == -1) swap(a, b);
+		auto [ba, xa] = a.getRight();
+		auto [bb, xb] = b.getLeft();
+		if(!ba) return true;
+		return (xa > xb)
+			|| (a.isRightInclusive() && b.isLeftInclusive()
+				&& xa == xb);
+	}
+
+	bool contains(const Range<T>& r) const {
+		int leftcmp = compareLeft(r);
+		int rightcmp = compareRight(r);
+		return leftcmp != -1 && rightcmp != 1;
+	}
+
+	bool contained(const Range<T>& r) const {
+		return r.contains(this);
+	}
+
+	void extendLeft(const Range<T>& r) {
+		if(compareLeft(r) == -1) {
+			auto [b, x] = r.getLeft();
+			if(!b)
+				left();
+			else
+				left(x, r.isLeftInclusive());
+		}
+	}
+
+	void extendRight(const Range<T>& r) {
+		if(compareRight(r) == 1) {
+			auto [b, x] = r.getRight();
+			if(!b)
+				right();
+			else
+				right(x, r.isRightInclusive());
+		}
+	}
+
+	T countIntegerPoint() const {
+		if(!bound.first || !bound.second) return 0;
+		T ret = P.second - P.first - 1;
+		if(inclusive.first) ret++;
+		if(inclusive.second) ret++;
+		return max(T(0), ret);
+	}
+
+	T countMiddlePoint() const {
+		if(!bound.first || !bound.second) return 0;
+		return max(T(0), P.second - P.first);
+	}
+
+	Range<T> intersect(const Range<T>& r) const {
+		auto ret = r;
+		if(compareLeft(r) == -1)
+			ret.left(P.first, inclusive.first);
+		if(compareRight(r) == 1)
+			ret.right(P.second, inclusive.second);
+		return ret;
 	}
 };
