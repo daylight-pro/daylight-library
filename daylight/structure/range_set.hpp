@@ -50,12 +50,18 @@ public:
 			if(it->contains(r)) {
 				to_erase.push_back(*it);
 				Range<T> tmp = *it;
-				tmp.right(r.getLeft().second,
-						  !r.isLeftInclusive());
+				auto ret = r.getLeft();
+				if(ret) {
+					tmp.right(ret.value(),
+							  !r.isLeftInclusive());
+				}
 				to_insert.push_back(tmp);
 				tmp = *it;
-				tmp.left(r.getRight().second,
-						 !r.isRightInclusive());
+				ret = r.getRight();
+				if(ret) {
+					tmp.left(ret.value(),
+							 !r.isRightInclusive());
+				}
 				to_insert.push_back(tmp);
 			} else if(!xa) {
 				to_erase.push_back(*it);

@@ -101,23 +101,23 @@ public:
 		Range<T> a = *this;
 		Range<T> b = r;
 		if(a.compareLeft(b) == -1) swap(a, b);
-		auto [ba, xa] = a.getRight();
-		auto [bb, xb] = b.getLeft();
-		if(!ba) return true;
-		return xa > xb;
+		auto ra = a.getRight();
+		auto lb = b.getLeft();
+		if((!ra) || (!lb)) return true;
+		return ra.value() > lb.value();
 	}
 
 	bool contact(const Range<T>& r) const {
 		Range<T> a = *this;
 		Range<T> b = r;
 		if(a.compareLeft(b) == -1) swap(a, b);
-		auto [ba, xa] = a.getRight();
-		auto [bb, xb] = b.getLeft();
-		if(!ba) return true;
-		return (xa > xb)
+		auto ra = a.getRight();
+		auto lb = b.getLeft();
+		if((!ra) || (!lb)) return true;
+		return ra.value() > lb.value()
 			|| ((a.isRightInclusive()
 				 || b.isLeftInclusive())
-				&& xa == xb);
+				&& ra.value() == lb.value());
 	}
 
 	bool contains(const Range<T>& r) const {
@@ -132,21 +132,21 @@ public:
 
 	void extendLeft(const Range<T>& r) {
 		if(compareLeft(r) == -1) {
-			auto [b, x] = r.getLeft();
-			if(!b)
+			auto ret = r.getLeft();
+			if(!ret)
 				left();
 			else
-				left(x, r.isLeftInclusive());
+				left(ret.value(), r.isLeftInclusive());
 		}
 	}
 
 	void extendRight(const Range<T>& r) {
 		if(compareRight(r) == 1) {
-			auto [b, x] = r.getRight();
-			if(!b)
+			auto ret = r.getRight();
+			if(!ret)
 				right();
 			else
-				right(x, r.isRightInclusive());
+				right(ret.value(), r.isRightInclusive());
 		}
 	}
 
