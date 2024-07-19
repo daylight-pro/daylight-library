@@ -11,7 +11,7 @@ int main() {
 	while(Q--) {
 		ll A, B;
 		cin >> A >> B;
-		auto r = Range<>().left(A).right(B);
+		auto r = Range<>().left(A).right(B + 1, false);
 		chmax(ans, rs.add(r).countIntegerPoint());
 		cout << ans << endl;
 	}

@@ -113,7 +113,8 @@ public:
 		auto [bb, xb] = b.getLeft();
 		if(!ba) return true;
 		return (xa > xb)
-			|| (a.isRightInclusive() && b.isLeftInclusive()
+			|| ((a.isRightInclusive()
+				 || b.isLeftInclusive())
 				&& xa == xb);
 	}
 
