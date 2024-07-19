@@ -40,11 +40,13 @@ public:
 	int getId() const {
 		return _id;
 	}
-	pair<bool, T> getLeft() const {
-		return { bound.first, P.first };
+	optional<T> getLeft() const {
+		if(!bound.first) return nullopt;
+		return P.first;
 	}
-	pair<bool, T> getRight() const {
-		return { bound.second, P.second };
+	optional<T> getRight() const {
+		if(!bound.second) return nullopt;
+		return P.second;
 	}
 	bool isLeftInclusive() const {
 		return inclusive.first;

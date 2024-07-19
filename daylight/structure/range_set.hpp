@@ -45,8 +45,8 @@ public:
 		vector<Range<T>> to_insert;
 		if(it != ranges.begin()) {
 			it--;
-			auto [ba, xa] = r.getLeft();
-			auto [bb, xb] = it->getRight();
+			auto xa = r.getLeft();
+			auto xb = it->getRight();
 			if(it->contains(r)) {
 				to_erase.push_back(*it);
 				Range<T> tmp = *it;
@@ -57,19 +57,21 @@ public:
 				tmp.left(r.getRight().second,
 						 !r.isRightInclusive());
 				to_insert.push_back(tmp);
-			} else if(!ba)
+			} else if(!xa) {
 				to_erase.push_back(*it);
-			else {
-				if(xa < xb) {
+			} else {
+				if(!xb || xa.value() < xb.value()) {
 					to_erase.push_back(*it);
 					Range<T> tmp = *it;
-					tmp.right(xa, !r.isLeftInclusive());
+					tmp.right(xa.value(),
+							  !r.isLeftInclusive());
 					to_insert.push_back(tmp);
-				} else if(xa == xb && r.isLeftInclusive()
+				} else if(xa.value() == xb.value()
+						  && r.isLeftInclusive()
 						  && it->isRightInclusive()) {
 					to_erase.push_back(*it);
 					Range<T> tmp = *it;
-					tmp.right(xb, false);
+					tmp.right(xb.value(), false);
 					to_insert.push_back(tmp);
 				}
 			}
@@ -82,9 +84,10 @@ public:
 				to_erase.push_back(*it);
 			else {
 				to_erase.push_back(*it);
-				if(r.isRightBound()) {
+				auto rb = r.getRight();
+				if(rb) {
 					Range<T> tmp = *it;
-					tmp.left(r.getRight().second,
+					tmp.left(rb.value(),
 							 !r.isRightInclusive());
 					to_insert.push_back(tmp);
 				}
@@ -94,6 +97,37 @@ public:
 		for(auto &e: to_erase) ranges.erase(e);
 		for(auto &e: to_insert) ranges.insert(e);
 	}
+
+	optional<Range<T>> getLeft(Range<T> r) const {
+		auto it = ranges.lower_bound(r);
+		if(it != ranges.begin()) {
+			it--;
+			return *it;
+		}
+		return nullopt;
+	}
+
+	optional<Range<T>> getRight(Range<T> r) const {
+		auto it = ranges.upper_bound(r);
+		if(it != ranges.end()) {
+			return *it;
+		}
+		return nullopt;
+	}
+
+	optional<Range<T>> get(T x) const {
+		auto r = Range<T>().left(x, true).right(x, true);
+		auto it = ranges.lower_bound(r);
+		if(it != ranges.end()) {
+			if(it->contains(r)) return *it;
+		}
+		if(it != ranges.begin()) {
+			it--;
+			if(it->contains(r)) return *it;
+		}
+		return nullopt;
+	}
+
 	bool contains(Range<T> r) const {
 		auto it = ranges.lower_bound(r);
 		if(it != ranges.end()) {
