@@ -2,7 +2,7 @@
 #include "daylight/range.hpp"
 
 /// @brief 区間をsetで管理するやつ
-template<typename T>
+template<typename T = ll>
 struct RangeSet {
 private:
 	set<Range<T>> ranges;
