@@ -171,4 +171,12 @@ public:
 			ret.right(P.second, inclusive.second);
 		return ret;
 	}
+
+	bool empty() const {
+		auto l = getLeft();
+		auto r = getRight();
+		if(!l || !r) return false;
+		return l.value() == r.value()
+			&& (!isLeftInclusive() || !isRightInclusive());
+	}
 };

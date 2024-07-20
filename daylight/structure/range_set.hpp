@@ -12,10 +12,8 @@ public:
 	}
 
 	/// @brief 区間を追加する
-	Range<T> add(Range<T> r) {
-		if(contains(r))
-			return Range<T>().left(0, false).right(0,
-												   false);
+	optional<Range<T>> add(Range<T> r) {
+		if(contains(r) || r.empty()) return nullopt;
 		auto it = ranges.lower_bound(r);
 		if(it != ranges.begin()) {
 			it--;
@@ -55,14 +53,14 @@ public:
 					tmp.right(ret.value(),
 							  !r.isLeftInclusive());
 				}
-				to_insert.push_back(tmp);
+				if(!tmp.empty()) to_insert.push_back(tmp);
 				tmp = *it;
 				ret = r.getRight();
 				if(ret) {
 					tmp.left(ret.value(),
 							 !r.isRightInclusive());
 				}
-				to_insert.push_back(tmp);
+				if(!tmp.empty()) to_insert.push_back(tmp);
 			} else if(!xa) {
 				to_erase.push_back(*it);
 			} else {
@@ -71,14 +69,16 @@ public:
 					Range<T> tmp = *it;
 					tmp.right(xa.value(),
 							  !r.isLeftInclusive());
-					to_insert.push_back(tmp);
+					if(!tmp.empty())
+						to_insert.push_back(tmp);
 				} else if(xa.value() == xb.value()
 						  && r.isLeftInclusive()
 						  && it->isRightInclusive()) {
 					to_erase.push_back(*it);
 					Range<T> tmp = *it;
 					tmp.right(xb.value(), false);
-					to_insert.push_back(tmp);
+					if(!tmp.empty())
+						to_insert.push_back(tmp);
 				}
 			}
 		}
@@ -95,7 +95,8 @@ public:
 					Range<T> tmp = *it;
 					tmp.left(rb.value(),
 							 !r.isRightInclusive());
-					to_insert.push_back(tmp);
+					if(!tmp.empty())
+						to_insert.push_back(tmp);
 				}
 			}
 			it++;
@@ -132,6 +133,10 @@ public:
 			if(it->contains(r)) return *it;
 		}
 		return nullopt;
+	}
+
+	set<Range<T>> all() const {
+		return ranges;
 	}
 
 	bool contains(Range<T> r) const {

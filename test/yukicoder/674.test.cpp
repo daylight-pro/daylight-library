@@ -12,7 +12,8 @@ int main() {
 		ll A, B;
 		cin >> A >> B;
 		auto r = Range<>().left(A).right(B + 1, false);
-		chmax(ans, rs.add(r).countIntegerPoint());
+		chmax(ans,
+			  rs.add(r).value_or(0).countIntegerPoint());
 		cout << ans << endl;
 	}
 	return 0;
