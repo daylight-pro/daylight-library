@@ -10,7 +10,7 @@ int main() {
 	cin >> N >> M >> Q;
 	RangeSet<ll> rs;
 	using T = tuple<int, int, int>;
-	priority_queue<T> PQ;
+	priority_queue<T, vector<T>, greater<>> PQ;
 	REP(i, M) {
 		int D, A, B;
 		cin >> D >> A >> B;
