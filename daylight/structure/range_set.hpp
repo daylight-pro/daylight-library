@@ -1,3 +1,4 @@
+#pragma once
 #include "daylight/base.hpp"
 #include "daylight/range.hpp"
 
@@ -279,5 +280,20 @@ public:
 			it++;
 		}
 		return ret;
+	}
+
+	optional<T> mex(T x) const {
+		auto R = get(x);
+		if(!R) return x;
+		auto ret = R.value().getRight();
+		if(!ret) return nullopt;
+		int ans = ret.value();
+		if(R.value().isRightInclusive()) ans++;
+		return ans;
+	}
+
+	bool same(T x, T y) const {
+		return contains(
+			Range<T>().left(x, true).right(y, true));
 	}
 };

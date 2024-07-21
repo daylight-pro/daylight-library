@@ -179,4 +179,8 @@ public:
 		return l.value() == r.value()
 			&& (!isLeftInclusive() || !isRightInclusive());
 	}
+
+	bool operator==(const Range<T>& r) const {
+		return compareLeft(r) == 0 && compareRight(r) == 0;
+	}
 };
