@@ -1,6 +1,5 @@
 #include "daylight/base.hpp"
 #include "daylight/structure/binary_trie.hpp"
-#include "daylight/structure/treap.hpp"
 
 ///@brief 動的Wavelet Matrix
 
@@ -12,23 +11,236 @@ ll e() {
 	return 0;
 }
 
-ll mapping(ll f, ll s, int sz) {
-	return s;
-}
-ll composition(ll f, ll g) {
-	return 0;
-}
-ll id() {
-	return 0;
-}
+template<class S, S (*op)(S, S), S (*e)()>
+struct Treap {
+private:
+	mt19937_64 mt;
+	uniform_int_distribution<uint64_t> rand;
+	vector<S> value, acc;
+	vll priority;
+	vi cnt;
+	vi lch, rch;
+	int new_node(S v, ll p) {
+		value.push_back(v);
+		acc.push_back(e());
+		priority.push_back(p);
+		cnt.push_back(0);
+		lch.push_back(-1);
+		rch.push_back(-1);
+		return SZ(value) - 1;
+	}
+
+	int root = -1;
+	int get_cnt(int t) {
+		return t == -1 ? 0 : cnt[t];
+	}
+	S get_acc(int t) {
+		return t == -1 ? e() : acc[t];
+	}
+	int update(int t) {
+		if(t == -1) return t;
+		cnt[t] = 1 + get_cnt(lch[t]) + get_cnt(rch[t]);
+		acc[t] = op(get_acc(lch[t]),
+					op(value[t], get_acc(rch[t])));
+		return t;
+	}
+	int push(int t) {
+		if(t == -1) return t;
+		return update(t);
+	}
+	int merge(int l, int r) {
+		push(l);
+		push(r);
+		if(l == -1) return r;
+		if(r == -1) return l;
+		if(priority[l] > priority[r]) {
+			rch[l] = merge(rch[l], r);
+			return update(l);
+		} else {
+			lch[r] = merge(l, lch[r]);
+			return update(r);
+		}
+	}
+	PI split(int t, int k) {
+		if(t == -1) return make_pair(-1, -1);
+		push(t);
+		int implicit_key = get_cnt(lch[t]) + 1;
+		if(k < implicit_key) {
+			PI s = split(lch[t], k);
+			lch[t] = s.second;
+			return make_pair(s.first, update(t));
+		} else {
+			PI s = split(rch[t], k - implicit_key);
+			rch[t] = s.first;
+			return make_pair(update(t), s.second);
+		}
+	}
+	int insert(int t, int k, int n) {
+		auto s = split(t, k);
+		return merge(merge(s.first, n), s.second);
+	}
+	int _erase(int t, int k) {
+		auto [tt, t3] = split(t, k + 1);
+		auto [t1, t2] = split(tt, k);
+		return merge(t1, t3);
+	}
+	int erase_range(int t, int l, int r) {
+		auto [tt, t3] = split(t, r);
+		auto [t1, t2] = split(tt, l);
+		return merge(t1, t3);
+	}
+	pair<S, int> query(int t, int l, int r) {
+		auto [t1, tt] = split(t, l);
+		auto [t2, t3] = split(tt, r - l);
+		S ret = acc[t2];
+		return make_pair(ret, merge(merge(t1, t2), t3));
+	}
+	int set(int t, int k, S v) {
+		auto [tt, t3] = split(t, k + 1);
+		auto [t1, t2] = split(tt, k);
+		push(t2);
+		value[t2] = v;
+		update(t2);
+		return merge(merge(t1, t2), t3);
+	}
+	int _find(int t, S x, int offset, bool left = true) {
+		if(op(get_acc(t), x) == x) {
+			return -1;
+		} else {
+			if(left) {
+				if(lch[t] != -1
+				   && op(acc[lch[t]], x) != x) {
+					return find(lch[t], x, offset, left);
+				} else {
+					return (op(value[t], x) != x)
+						? offset + get_cnt(lch[t])
+						: find(rch[t], x,
+							   offset + get_cnt(lch[t]) + 1,
+							   left);
+				}
+			} else {
+				if(rch[t] != -1
+				   && op(acc[rch[t]], x) != x) {
+					return find(
+						rch[t], x,
+						offset + get_cnt(lch[t]) + 1, left);
+				} else {
+					return (op(value[t], x) != x)
+						? offset + get_cnt(lch[t])
+						: find(lch[t], x, offset, left);
+				}
+			}
+		}
+	}
+	int lower_search(int t, S x) {
+		int ret = 0;
+		while(t != -1) {
+			if(x <= value[t]) {
+				t = lch[t];
+			} else {
+				ret += get_cnt(lch[t]) + 1;
+				t = rch[t];
+			}
+		}
+		return ret;
+	}
+	int upper_search(int t, S x) {
+		int ret = 0;
+		while(t != -1) {
+			if(x < value[t]) {
+				t = lch[t];
+			} else {
+				ret += get_cnt(lch[t]) + 1;
+				t = rch[t];
+			}
+		}
+		return ret;
+	}
+
+public:
+	Treap(): Treap(0) {
+	}
+	Treap(int N): Treap(vector<S>(N, e())) {
+	}
+	Treap(vector<S> V) {
+		mt = mt19937_64(chrono::steady_clock::now()
+							.time_since_epoch()
+							.count());
+		rand = uniform_int_distribution<uint64_t>(1, 1e18);
+		for(auto v: V) {
+			push_back(v);
+		}
+	}
+	/// @brief treapに追加された要素数を求める
+	/// @return treapに追加された要素数
+	size_t size() {
+		return size_t(get_cnt(root));
+	}
+	/// @brief インデックスがindになるように要素xを追加する
+	/// @param ind 追加先のインデックス
+	/// @param x 追加する要素
+	void insert(int ind, S x) {
+		root = insert(root, ind, new_node(x, rand(mt)));
+	}
+	/// @brief 末尾に要素xを追加する
+	/// @param x 追加する要素
+	void push_back(S x) {
+		root = insert(root, int(size()),
+					  new_node(x, rand(mt)));
+	}
+
+	/// @brief インデックスindの要素を削除する
+	/// @param ind 削除する要素のインデックス
+	void erase(int ind) {
+		root = _erase(root, ind);
+	}
+	/// @brief インデックスkの要素にvを代入する
+	/// @param k 更新する要素k
+	/// @param v 更新後の要素v
+	void set(int k, S v) {
+		root = set(root, k, v);
+	}
+	/// @brief Monoid::op(value[k],x)!=xになるような[l,r)内のkで最左/最右を求める.
+	/// @param l 探索範囲の左端(inclusive)
+	/// @param r 探索範囲の右端(exclusive)
+	/// @param x 探索対象の要素x
+	/// @param left 最左/最右を指定
+	/// @return 条件を満たすk
+	int find(int l, int r, S x, bool left = true) {
+		auto [t1, tt] = split(root, l);
+		auto [t2, t3] = split(tt, r - l);
+		int ret = _find(t2, x, l, left);
+		if(ret == -1) ret = r;
+		root = merge(merge(t1, t2), t3);
+		return ret;
+	}
+	/// @brief Monoid::op(value[l,r))を求める
+	/// @param l 範囲の左端(inclusive)
+	/// @param r 範囲の右端(exclusive)
+	/// @return 範囲の演算結果を求める
+	S prod(int l, int r) {
+		if(l == r) return S(0);
+		auto [t, rt] = query(root, l, r);
+		root = rt;
+		return t;
+	}
+	/// @brief value[ind]を求める
+	/// @param ind 取得するindex
+	/// @return value[ind]
+	S operator[](int ind) {
+		auto [tt, t3] = split(root, ind + 1);
+		auto [t1, t2] = split(tt, ind);
+		S ret = acc[t2];
+		root = merge(merge(t1, t2), t3);
+		return ret;
+	}
+};
 };
 
 struct DynamicBitVector {
 private:
-	Treap<ll, InnerWaveletMatrix::op, InnerWaveletMatrix::e,
-		  ll, InnerWaveletMatrix::mapping,
-		  InnerWaveletMatrix::composition,
-		  InnerWaveletMatrix::id>
+	InnerWaveletMatrix::Treap<ll, InnerWaveletMatrix::op,
+							  InnerWaveletMatrix::e>
 		treap;
 	int len;
 
@@ -37,11 +249,9 @@ public:
 	}
 	DynamicBitVector(const vll &v) {
 		len = SZ(v);
-		treap = Treap<ll, InnerWaveletMatrix::op,
-					  InnerWaveletMatrix::e, ll,
-					  InnerWaveletMatrix::mapping,
-					  InnerWaveletMatrix::composition,
-					  InnerWaveletMatrix::id>(v);
+		treap = InnerWaveletMatrix::Treap<
+			ll, InnerWaveletMatrix::op,
+			InnerWaveletMatrix::e>(v);
 	}
 	// i ビット目を取得
 	int get(const unsigned int i) {
@@ -105,11 +315,8 @@ public:
 struct DynamicWaveletMatrix {
 private:
 	vector<DynamicBitVector> B;
-	vector<Treap<ll, InnerWaveletMatrix::op,
-				 InnerWaveletMatrix::e, ll,
-				 InnerWaveletMatrix::mapping,
-				 InnerWaveletMatrix::composition,
-				 InnerWaveletMatrix::id>>
+	vector<InnerWaveletMatrix::Treap<
+		ll, InnerWaveletMatrix::op, InnerWaveletMatrix::e>>
 		acc;
 	vi start_one;
 	const int bit_size = 63;
@@ -133,12 +340,9 @@ public:
 		len = SZ(vec);
 		if(use_acc) {
 			REP(i, bit_size) {
-				auto treap
-					= Treap<ll, InnerWaveletMatrix::op,
-							InnerWaveletMatrix::e, ll,
-							InnerWaveletMatrix::mapping,
-							InnerWaveletMatrix::composition,
-							InnerWaveletMatrix::id>(len);
+				auto treap = InnerWaveletMatrix::Treap<
+					ll, InnerWaveletMatrix::op,
+					InnerWaveletMatrix::e>(len);
 				acc.push_back(treap);
 			}
 		}
