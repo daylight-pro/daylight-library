@@ -197,11 +197,9 @@ private:
 	}
 
 public:
-	Treap() {
-		Treap(0);
+	Treap(): Treap(0) {
 	}
-	Treap(int N) {
-		Treap(vector<S>(N, e()));
+	Treap(int N): Treap(vector<S>(N, e())) {
 	}
 	Treap(vector<S> V) {
 		mt = mt19937_64(chrono::steady_clock::now()
@@ -367,6 +365,7 @@ public:
 	/// @param r 範囲の右端(exclusive)
 	/// @return 範囲の演算結果を求める
 	S prod(int l, int r) {
+		if(l == r) return S(0);
 		auto [t, rt] = query(root, l, r);
 		root = rt;
 		return t;
