@@ -11,6 +11,14 @@ ll e() {
 	return 0;
 }
 
+int opI(int a, int b) {
+	return a + b;
+}
+
+int eI() {
+	return 0;
+}
+
 template<class S, S (*op)(S, S), S (*e)()>
 struct Treap {
 private:
@@ -239,19 +247,19 @@ public:
 
 struct DynamicBitVector {
 private:
-	InnerWaveletMatrix::Treap<ll, InnerWaveletMatrix::op,
-							  InnerWaveletMatrix::e>
+	InnerWaveletMatrix::Treap<int, InnerWaveletMatrix::opI,
+							  InnerWaveletMatrix::eI>
 		treap;
 	int len;
 
 public:
 	DynamicBitVector() {
 	}
-	DynamicBitVector(const vll &v) {
+	DynamicBitVector(const vi &v) {
 		len = SZ(v);
 		treap = InnerWaveletMatrix::Treap<
-			ll, InnerWaveletMatrix::op,
-			InnerWaveletMatrix::e>(v);
+			int, InnerWaveletMatrix::opI,
+			InnerWaveletMatrix::eI>(v);
 	}
 	// i ビット目を取得
 	int get(const unsigned int i) {
@@ -350,9 +358,9 @@ public:
 		vector<ll> v(vec);
 		REP(b, bit_size) {
 			vector<ll> cur;
-			vll bi(len);
+			vi bi(len);
 			REP(i, len) {
-				ll bit = (v[i] >> (bit_size - b - 1)) & 1;
+				int bit = (v[i] >> (bit_size - b - 1)) & 1;
 				if(bit == 0) {
 					cur.push_back(v[i]);
 					bi[i] = 0;
@@ -360,7 +368,7 @@ public:
 			}
 			start_one[b] = SZ(cur);
 			REP(i, len) {
-				ll bit = (v[i] >> (bit_size - b - 1)) & 1;
+				int bit = (v[i] >> (bit_size - b - 1)) & 1;
 				if(bit == 1) {
 					cur.push_back(v[i]);
 					bi[i] = 1;
@@ -369,7 +377,7 @@ public:
 			B.push_back(DynamicBitVector(bi));
 			if(use_acc) {
 				REP(i, len) {
-					if(B[b].get(i) == 0) {
+					if(bi[i] == 0) {
 						acc[b].set(i, v[i]);
 					} else {
 						acc[b].set(i, 0);
@@ -400,7 +408,7 @@ public:
 
 	void insert(int pos, ll v) {
 		REP(i, bit_size) {
-			ll bit = (v >> (bit_size - i - 1)) & 1;
+			int bit = (v >> (bit_size - i - 1)) & 1;
 			B[i].insert(pos, bit);
 			if(use_acc) {
 				if(bit == 0)
@@ -421,8 +429,8 @@ public:
 	void erase(int pos) {
 		ll v = access(pos);
 		REP(i, bit_size) {
-			ll bit = B[i].get(pos);
-			ll next_pos = B[i].rank(bit, pos);
+			int bit = B[i].get(pos);
+			int next_pos = B[i].rank(bit, pos);
 			B[i].erase(pos);
 			if(use_acc) {
 				acc[i].erase(pos);
@@ -447,7 +455,7 @@ public:
 		assert(k >= 0);
 		if(nums.count(getId(c)) == 0) return 0;
 		REP(i, bit_size) {
-			ll bit = (c >> (bit_size - i - 1)) & 1;
+			int bit = (c >> (bit_size - i - 1)) & 1;
 			k = B[i].rank(bit, k);
 			if(bit == 1) {
 				k += start_one[i];
@@ -463,10 +471,10 @@ public:
 		assert(right <= len);
 		ll res = 0;
 		REP(i, bit_size) {
-			ll left_rank = B[i].rank(0, left);
-			ll right_rank = B[i].rank(0, right);
-			ll zero_in_range = right_rank - left_rank;
-			ll bit = (k < zero_in_range) ? 0 : 1;
+			int left_rank = B[i].rank(0, left);
+			int right_rank = B[i].rank(0, right);
+			int zero_in_range = right_rank - left_rank;
+			int bit = (k < zero_in_range) ? 0 : 1;
 
 			if(bit == 1) {
 				k -= zero_in_range;
@@ -497,10 +505,10 @@ public:
 		ll kth = 0;
 		ll ret = 0;
 		REP(i, bit_size) {
-			ll left_rank = B[i].rank(0, left);
-			ll right_rank = B[i].rank(0, right);
-			ll zero_in_range = right_rank - left_rank;
-			ll bit = (k < zero_in_range) ? 0 : 1;
+			int left_rank = B[i].rank(0, left);
+			int right_rank = B[i].rank(0, right);
+			int zero_in_range = right_rank - left_rank;
+			int bit = (k < zero_in_range) ? 0 : 1;
 			if(bit == 1) {
 				ret += acc[i].prod(left, right);
 				k -= zero_in_range;
@@ -535,10 +543,10 @@ public:
 			return right - left;
 		}
 		REP(i, bit_size) {
-			ll left_rank = B[i].rank(0, left);
-			ll right_rank = B[i].rank(0, right);
-			ll zero_in_range = right_rank - left_rank;
-			ll bit = (upper >> (bit_size - i - 1)) & 1;
+			int left_rank = B[i].rank(0, left);
+			int right_rank = B[i].rank(0, right);
+			int zero_in_range = right_rank - left_rank;
+			int bit = (upper >> (bit_size - i - 1)) & 1;
 			if(bit == 1) {
 				ret += zero_in_range;
 				left += start_one[i] - left_rank;
