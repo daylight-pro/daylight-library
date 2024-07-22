@@ -335,7 +335,7 @@ private:
 		ll ret = 0;
 		REP(i, bit_size) {
 			if(x >> i & 1) {
-				ret |= x << (bit_size - i - 1);
+				ret |= 1ll << (bit_size - i - 1);
 			}
 		}
 		return ret;
@@ -346,14 +346,6 @@ public:
 						 bool use_acc = true)
 		: use_acc(use_acc) {
 		len = SZ(vec);
-		if(use_acc) {
-			REP(i, bit_size) {
-				auto treap = InnerWaveletMatrix::Treap<
-					ll, InnerWaveletMatrix::op,
-					InnerWaveletMatrix::e>(len);
-				acc.push_back(treap);
-			}
-		}
 		start_one = vi(bit_size);
 		vector<ll> v(vec);
 		REP(b, bit_size) {
@@ -376,13 +368,16 @@ public:
 			}
 			B.push_back(DynamicBitVector(bi));
 			if(use_acc) {
+				vll a(len);
 				REP(i, len) {
 					if(bi[i] == 0) {
-						acc[b].set(i, v[i]);
-					} else {
-						acc[b].set(i, 0);
+						a[i] = v[i];
 					}
 				}
+				auto treap = InnerWaveletMatrix::Treap<
+					ll, InnerWaveletMatrix::op,
+					InnerWaveletMatrix::e>(a);
+				acc.push_back(treap);
 			}
 			v = cur;
 		}
