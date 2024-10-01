@@ -3,14 +3,10 @@
 template<typename T, int MAX_LOG = 32>
 struct BinaryTrie {
 	struct Node {
-		vi next;  //次の頂点番号
+		std::array<int, 2> next;  //次の頂点番号
 		int common;	 //この頂点を通る文字列の数
 		T lazy;
-		Node() {
-			next.assign(2, -1);
-			common = 0;
-			lazy = 0;
-		}
+		Node() : next{-1, -1}, common(), lazy() {}
 	};
 
 	vector<Node> nodes;
