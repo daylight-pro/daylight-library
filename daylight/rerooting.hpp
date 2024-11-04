@@ -30,14 +30,7 @@ struct Rerooting {
 	}
 	void add_edge(int from, int to, Cost cost) {
 		G[from].eb(from, to, cost);
-	}
-
-	/// @brief 辺を追加する
-	/// @param edge 追加する辺
-	void add_edge(Edge<Cost> edge) {
-		assert(0 <= edge.from && edge.from < N
-			   && 0 <= edge.to && edge.to < N);
-		G[edge.from].push_back(edge);
+	G[to].eb(to, from, cost);
 	}
 
 	/// @brief 全方位木DPを行う
