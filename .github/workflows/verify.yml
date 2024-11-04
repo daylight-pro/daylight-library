@@ -189,7 +189,7 @@ jobs:
     if: success()
     needs: docs-and-check
     runs-on: ubuntu-latest
-    permission:
+    permissions:
       pull-requests: write
     steps:
       - uses: hmarr/auto-approve-action@v4
