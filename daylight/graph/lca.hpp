@@ -3,12 +3,14 @@
 /// @brief Lowest Common Ancestor
 struct LCA {
 private:
-	vvi parent;
+	static constexpr int max_bit = 20;
+	int K = 1;
+	vector<array<int, max_bit>> parent;
 	vi dis;
 	vi simple_dis;
 	void dfs(int cur, int pre, const Graph<>& G, int d,
 			 int sd) {
-		parent[0][cur] = pre;
+		parent[cur][0] = pre;
 		dis[cur] = d;
 		simple_dis[cur] = sd;
 		for(auto e: G[cur]) {
@@ -20,19 +22,23 @@ private:
 public:
 	LCA(const Graph<>& G) {
 		int N = SZ(G);
-		int K = 1;
 		while((1 << K) < N) K++;
-		parent = vvi(K, vi(N, -1));
+		parent = vector<array<int,max_bit>>(N);
+		REP(i, N){
+			REP(j, max_bit){
+				parent[i][j] = -1;
+			}
+		}
 		dis = vi(N, -1);
 		simple_dis = vi(N, -1);
 		dfs(0, -1, G, 0, 0);
 		REP(i, K - 1) {
 			REP(j, N) {
-				if(parent[i][j] < 0) {
-					parent[i + 1][j] = -1;
+				if(parent[j][i] < 0) {
+					parent[j][i + 1] = -1;
 				} else {
-					parent[i + 1][j]
-						= parent[i][parent[i][j]];
+					parent[j][i + 1]
+						= parent[parent[j][i]][i];
 				}
 			}
 		}
@@ -55,20 +61,19 @@ public:
 			   && v < SZ(simple_dis)
 			   && "invalid vertex index");
 		if(simple_dis[u] < simple_dis[v]) swap(u, v);
-		int K = SZ(parent);
 		REP(i, K) {
 			if((simple_dis[u] - simple_dis[v]) >> i & 1) {
-				u = parent[i][u];
+				u = parent[u][i];
 			}
 		}
 		if(u == v) return u;
 		REPR(i, K) {
-			if(parent[i][u] != parent[i][v]) {
-				u = parent[i][u];
-				v = parent[i][v];
+			if(parent[u][i] != parent[v][i]) {
+				u = parent[u][i];
+				v = parent[v][i];
 			}
 		}
-		return parent[0][u];
+		return parent[u][0];
 	}
 
 	/// @brief 頂点fromから頂点toに向かってcnt回たどった位置にある頂点
@@ -83,20 +88,18 @@ public:
 		int l = query(from, to);
 		if(cnt <= get_simple_dis(from, l)) {
 			int cur = from;
-			int K = SZ(parent);
 			REP(i, K) {
 				if(cnt >> i & 1) {
-					cur = parent[i][cur];
+					cur = parent[cur][i];
 				}
 			}
 			return cur;
 		}
 		cnt = get_simple_dis(from, to) - cnt;
 		int cur = to;
-		int K = SZ(parent);
 		REP(i, K) {
 			if(cnt >> i & 1) {
-				cur = parent[i][cur];
+				cur = parent[cur][i];
 			}
 		}
 		return cur;
