@@ -146,7 +146,7 @@ public:
 		for(auto &&[k, v, cond]: V) {
 			if(cond == GREATER_EQUAL) {
 				if(v >= choices[k]) continue;
-				left.push_back(start[k] + v);
+				left.push_back(start[k] + v - 1);
 			} else if(cond == LESS_EQUAL) {
 				if(v < 0) continue;
 				right.push_back(start[k] + v);
