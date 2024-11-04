@@ -186,7 +186,7 @@ jobs:
         with:
           verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
   auto-approve:
-    if: success()
+    if: success() && github.event_name == 'pull_request'
     needs: docs-and-check
     runs-on: ubuntu-latest
     permissions:
