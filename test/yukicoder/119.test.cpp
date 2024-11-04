@@ -9,10 +9,10 @@ int main() {
 	cin >> N;
 	vector<PI> V(N);
 	cin >> V;
-	// 0: participate, 1: not participate
-	ProjectSelection ps(vi(N, 2));
+	// 0:not participate, 1: not go, 2: participate
+	ProjectSelection ps(vi(N, 3));
 	REP(i, N) {
-		ps.add_cost(i, { -V[i].first, -V[i].second });
+		ps.add_cost(i, { -V[i].second, 0, -V[i].first });
 	}
 	int M;
 	cin >> M;
@@ -22,9 +22,9 @@ int main() {
 		int D, E;
 		cin >> D >> E;
 		vector<tuple<int, int, condition>> cond;
-		cond.emplace_back(D, 0, ProjectSelection::LESS_EQUAL);
-		cond.emplace_back(E, 1, ProjectSelection::GREATER_EQUAL);
-		ps.add_cost(cond, inf, ProjectSelection::OR);
+		cond.emplace_back(D, 2, ProjectSelection::GREATER_EQUAL);
+		cond.emplace_back(E, 0, ProjectSelection::LESS_EQUAL);
+		ps.add_cost(cond, inf, ProjectSelection::AND);
 	}
 	cout << -ps.solve() << endl;
 	return 0;
