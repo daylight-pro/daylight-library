@@ -100,7 +100,7 @@ ostream &operator<<(ostream &os, vector<T> &vec) {
 }
 
 #ifdef LOCAL
-#include "./cpp-dump/dump.hpp"
+#include "./cpp-dump/cpp-dump.hpp"
 #include "./cpp-dump/mytypes.hpp"
 #define dump(...) cpp_dump(__VA_ARGS__)
 namespace cp = cpp_dump;
