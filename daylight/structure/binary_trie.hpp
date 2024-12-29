@@ -1,6 +1,6 @@
 #include "daylight/base.hpp"
 /// @brief バイナリトライ木
-template<typename T, int MAX_LOG = 32>
+template<typename T, int MAX_LOG = 64>
 struct BinaryTrie {
 	struct Node {
 		std::array<int, 2> next;  //次の頂点番号
